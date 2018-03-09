@@ -20,6 +20,6 @@ TO DO
 
 ![Group Image](https://pbs.twimg.com/media/DXx87jjX0AATRCR.jpg)
 
-* **Click [here](https://github.com/Bullseye14/TENGAI-Project1/wiki) to visit our wiki page. **
-* **Click [here](https://bullseye14.github.io/TENGAI-Project1/) to visit our website. **
-* **Click [here](https://github.com/Bullseye14/TENGAI-Project1) to visit our project page. **
+* Click [here](https://github.com/Bullseye14/TENGAI-Project1/wiki) to visit our wiki page. 
+* Click [here](https://bullseye14.github.io/TENGAI-Project1/) to visit our website. 
+* Click [here](https://github.com/Bullseye14/TENGAI-Project1) to visit our project page. 
