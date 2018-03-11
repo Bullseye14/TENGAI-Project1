@@ -8,6 +8,8 @@ We are four students at the Tech Talent Center of the UPC in Barcelona and we ar
 
 ## DESCRIPTION
 
+![](https://camo.githubusercontent.com/0185216e908449cd33caaa89c8df00a590bfa9cc/68747470733a2f2f692e7974696d672e636f6d2f76692f706c3069574673503334512f6d617872657364656661756c742e6a7067)
+
 Tengai is horizontal-scrolling shoot'em up game released in Japanese arcades in 1996 by Psikyo as a sequel to Sengoku Ace (1993). Later, it was ported to the Sega Saturn at the end of the same year. It was ported to PlayStation in 2004 and it was released for Android and iOS mobiles ten years later. The game is set in a futuristic version of feudal Japan that features traditional ninjas and steam-driven weapons. There are five playable characters (and two hidden ones).
 
 ## TEAM
