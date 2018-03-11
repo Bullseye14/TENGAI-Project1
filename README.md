@@ -1,5 +1,7 @@
 # QUOKKAS
 
+![](https://pbs.twimg.com/media/DXx4h0xWAAAiKg5.png)
+
 ## PRESENTATION
 
 We are four students at the Tech Talent Center of the UPC in Barcelona and we are analysing the game **Tengai**. 
