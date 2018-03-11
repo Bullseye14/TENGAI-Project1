@@ -1,6 +1,6 @@
 # QUOKKAS
 
-![](https://pbs.twimg.com/media/DXx4h0xWAAAiKg5.png)
+<img src="https://pbs.twimg.com/media/DXx4h0xWAAAiKg5.png" alt="TengaiGameplayPicture" width="300" height="300">
 
 ## PRESENTATION
 
@@ -16,7 +16,7 @@ Code: _Oscar Pons_
 
 Art: _Albert Robles_
 
-![](https://github.com/Bullseye14/TENGAI-Project1/blob/master/Quokkas.jpg)
+<img src="https://github.com/Bullseye14/TENGAI-Project1/blob/master/Quokkas.jpg" alt="TengaiGameplayPicture" width="300" height="300">
 
 _Group photo_
 
