@@ -4,7 +4,7 @@ QUOKKAS
 
 ## TEAM
 
-### Management: _Pol Casaú_
+### Management: _Pol Casau_
 
 ### QA: _Albert Maleki_
 
