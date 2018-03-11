@@ -16,7 +16,7 @@ Code: _Oscar Pons_
 
 Art: _Albert Robles_
 
-<img src="https://github.com/Bullseye14/TENGAI-Project1/blob/master/Quokkas.jpg" alt="TengaiGameplayPicture" width="500" height="300">
+<img src="https://github.com/Bullseye14/TENGAI-Project1/blob/master/Quokkas.jpg" alt="TengaiGameplayPicture" width="450" height="300">
 
 _Group photo_
 
