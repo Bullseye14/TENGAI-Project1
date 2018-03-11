@@ -8,7 +8,7 @@ QUOKKAS
 
 ### QA: _Albert Maleki_
 
-### Code: _Òscar Pons_
+### Code: _Oscar Pons_
 
 ### Art: _Albert Robles_
 
