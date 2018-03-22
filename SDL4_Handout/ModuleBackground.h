@@ -19,6 +19,7 @@ public:
 public:
 	
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* background_TENGAI = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
 	SDL_Rect ship;
