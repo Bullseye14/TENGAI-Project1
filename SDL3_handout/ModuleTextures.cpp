@@ -64,8 +64,8 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 	SDL_Texture* background_texture = nullptr;
 	SDL_Surface* background_surface = IMG_Load("background.png");
 
-	SDL_Texture* sprite_texture = nullptr;
-	SDL_Surface* sprite_surface = IMG_Load("MIKO.png");
+	//SDL_Texture* sprite_texture = nullptr;
+	//SDL_Surface* sprite_surface = IMG_Load("MIKO.png");
 
 
 	if (background_surface == NULL) 
@@ -73,14 +73,14 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 		LOG("Could load the surface: %s", IMG_GetError());
 	}
 	
-	if (sprite_surface == NULL)
+	//if (sprite_surface == NULL)
 	{
 		LOG("Could load the surface: %s", IMG_GetError());
 	}
 
 	background_texture = SDL_CreateTextureFromSurface(App->render->renderer, background_surface);
 
-	sprite_texture = SDL_CreateTextureFromSurface(App->render->renderer, sprite_surface);
+	//sprite_texture = SDL_CreateTextureFromSurface(App->render->renderer, sprite_surface);
 	// TODO 3: Once your have the SDL_surface*, you need to create
 	// a texture from it to return it (check for errors again)
 
@@ -89,7 +89,7 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 		LOG("Could create the texture %s. IMG_Init: %s", "background.png", IMG_GetError());
 	}
 	
-	if (sprite_texture == NULL)
+	//if (sprite_texture == NULL)
 	{
 		LOG("Could create the texture %s. IMG_Init: %s", "MIKO.png", IMG_GetError());
 	}
@@ -103,14 +103,14 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 			break;
 		}
 	}
-	for (int i = 0; i < MAX_TEXTURES; ++i) {
+	/*for (int i = 0; i < MAX_TEXTURES; ++i) {
 		if (textures[i] == nullptr) {
 			textures[i] = sprite_texture;
 			break;
 		}
-	}
+	}*/
 	
 	SDL_FreeSurface(background_surface);
-	SDL_FreeSurface(sprite_surface);
+	//SDL_FreeSurface(sprite_surface);
 	return background_texture;
 }
