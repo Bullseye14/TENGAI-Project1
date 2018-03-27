@@ -66,11 +66,16 @@ update_status ModulePlayer::Update()
 		position.x += speed;
 	}
 
-	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
 		current_animation = &backward;
 		position.x -= speed;
 	}
+
+	if (App->input->keyboard[SDL_SCANCODE_UP] == 1){ position.y -= speed; }
+
+	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1){ position.y += speed; }
+		
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
