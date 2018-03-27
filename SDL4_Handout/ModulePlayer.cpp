@@ -60,13 +60,13 @@ update_status ModulePlayer::Update()
 
 	int speed = 1;
 
-	if(App->input->keyboard[SDL_SCANCODE_D] == 1)
+	if(App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 	{
 		current_animation = &forward;
 		position.x += speed;
 	}
 
-	else if (App->input->keyboard[SDL_SCANCODE_A] == 1)
+	else if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
 	{
 		current_animation = &backward;
 		position.x -= speed;
