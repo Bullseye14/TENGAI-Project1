@@ -28,8 +28,7 @@ bool ModuleUI::Start()
 update_status ModuleUI::Update()
 {
 	
-	// player 1 : 27,1390
-	App->render->Blit(UI_texture, 0, 0, &p1);
+	App->render->Blit(UI_texture, 0, 0, &p1, 0.0f);
 
 	return UPDATE_CONTINUE;
 }

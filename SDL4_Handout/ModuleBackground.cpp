@@ -11,19 +11,24 @@ ModuleBackground::ModuleBackground()
 	// ground
 	ground.x = 0;
 	ground.y = 153;
-	ground.w = 758;
+	ground.w = 760;
 	ground.h = 11;
 	
 
-	// Background Tengai
-	BG_forest.x = 0;
-	BG_forest.y = 0;
-	BG_forest.w = 759;
-	BG_forest.h = 163;
+	// Background Mid
+	BG_mid.x = 0;
+	BG_mid.y = 0;
+	BG_mid.w = 760;
+	BG_mid.h = 152;
+
+	// background far
+	BG_far.x = 0;
+	BG_far.y = 0;
+	BG_far.w = 760;
+	BG_far.h = 40;
 
 	//700x525
 
-	
 }
 
 ModuleBackground::~ModuleBackground()
@@ -43,8 +48,9 @@ update_status ModuleBackground::Update()
 {
 	// Draw everything --------------------------------------
 
-	App->render->Blit(BG_forest_texture, 0, 0, &BG_forest, 0.75f);
-	App->render->Blit(BG_forest_texture, 0, 222, &ground, 4.0f);
+	App->render->Blit(BG_forest_texture, 0, 0, &BG_mid, 0.75f);
+	App->render->Blit(BG_forest_texture, 0, 0, &BG_far, 0.25f);
+	App->render->Blit(BG_forest_texture, 0, 152, &ground, 1.0f);
 	
 
 	return UPDATE_CONTINUE;

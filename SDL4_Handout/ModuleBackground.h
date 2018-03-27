@@ -19,7 +19,8 @@ public:
 public:
 	
 	SDL_Texture* BG_forest_texture = nullptr;
-	SDL_Rect BG_forest;
+	SDL_Rect BG_mid;
+	SDL_Rect BG_far;
 	SDL_Rect ground;
 };
 

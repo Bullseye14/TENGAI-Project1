@@ -27,7 +27,7 @@ ModulePlayer::ModulePlayer()
 	backward.speed = 0.19f;
 
 	// run animation (arcade sprite sheet)
-	run.PushBack({ 72,7,33,35 });
+	run.PushBack({  72,7,33,35 });
 	run.PushBack({ 108,7,33,35 });
 	run.PushBack({ 145,7,33,35 });
 	run.PushBack({ 190,7,33,35 });
@@ -36,9 +36,9 @@ ModulePlayer::ModulePlayer()
 	run.PushBack({ 308,7,33,35 });
 	run.PushBack({ 349,7,33,35 });
 	run.speed = 0.19f;
-
+	
 	// die animation 
-	die.PushBack({630,7,35,35});
+	die.PushBack({ 630,7,35,35 });
 
 	// shield animation
 	shield.PushBack({ 673,7,35,35 });
@@ -50,6 +50,8 @@ ModulePlayer::ModulePlayer()
 	shield.PushBack({ 911,7,35,35 });
 	shield.speed = 0.1f;
 
+	// bullet animation
+	bullet.PushBack({ 7,45,20,25 });
 	
 }
 
@@ -73,8 +75,8 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-
 	if (alive) {
+		current_animation = &idle;
 		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 		{
 			if (position.y >= 120) current_animation = &run;
@@ -104,6 +106,12 @@ update_status ModulePlayer::Update()
 		if (App->input->keyboard[SDL_SCANCODE_S] == 1)
 		{
 			current_animation = &shield;
+		}
+
+		// Better if placed in a separated module with poll event and event key down, so firing is semiautomatic 
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+		{
+			//Shoot();
 		}
 		
 	}

@@ -34,6 +34,7 @@ public:
 	Animation run;
 	Animation die;
 	Animation shield;
+	Animation bullet;
 	iPoint position;
 	bool alive;
 	int speed;
