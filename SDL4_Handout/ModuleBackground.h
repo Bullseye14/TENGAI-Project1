@@ -22,7 +22,7 @@ public:
 	SDL_Texture* background_TENGAI = nullptr;
 	SDL_Rect background_T;
 	SDL_Rect ground;
-	SDL_Rect background;
+
 	SDL_Rect ship;
 	Animation flag;
 	Animation girl;
