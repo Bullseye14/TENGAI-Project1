@@ -61,6 +61,8 @@ ModuleBackground::ModuleBackground()
 	blueAN.PushBack({ 704,144,48,56 });
 	blueAN.speed = 0.08f;
 
+	//700x525
+
 	// brown man animation
 	brownAN.PushBack({ 760,16,40,40 });
 	brownAN.PushBack({ 760,64,40,40 });
