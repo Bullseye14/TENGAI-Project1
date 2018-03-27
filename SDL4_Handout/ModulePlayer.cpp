@@ -9,37 +9,51 @@
 
 ModulePlayer::ModulePlayer()
 {
-	position.x = 20;
-	position.y = 30;
+	position.x = 0;
+	position.y = 0;
 
-	/* idle animation (arcade sprite sheet)
-	idle.PushBack({7, 14, 60, 90});
-	idle.PushBack({95, 15, 60, 89});
-	idle.PushBack({184, 14, 60, 90});
-	idle.PushBack({276, 11, 60, 93});
-	idle.PushBack({366, 12, 60, 92});
-	idle.speed = 0.2f;
 
-	// walk forward animation (arcade sprite sheet)
-	forward.PushBack({9, 136, 53, 83});
-	forward.PushBack({78, 131, 60, 88});
-	forward.PushBack({162, 128, 64, 92});
-	forward.PushBack({259, 128, 63, 90});
-	forward.PushBack({352, 128, 54, 91});
-	forward.PushBack({432, 131, 50, 89});
-	forward.speed = 0.1f;
 
-	// TODO 4: Make ryu walk backwards with the correct animations
+	//idle animation (arcade sprite sheet)
+	idle.PushBack({ 389,7, 41,35 });
+	idle.PushBack({ 430,7, 41,35 });
+	idle.PushBack({ 471,7, 41,35 });
+	idle.speed = 0.19f;
 
-	// walk backward animation (arcade sprite sheet)
-	backward.PushBack({ 538,127,70,95 });
-	backward.PushBack({ 620,128,75,95 });
-	backward.PushBack({ 710,128,70,95 });
-	backward.PushBack({ 790,128,70,95 });
-	backward.PushBack({ 880,128,70,95 });
-	backward.PushBack({ 970,128,65,95 });
-	backward.speed = 0.1f;
-	*/
+	// no forward animation (game)
+
+	// backward animation (arcade sprite sheet)
+	backward.PushBack({ 514,7,41,31 });
+	backward.PushBack({ 555,7,31,31 });
+	backward.PushBack({ 592,7,33,31 });
+	backward.speed = 0.19f;
+
+	// run animation (arcade sprite sheet)
+	run.PushBack({ 72,7,33,35 });
+	run.PushBack({ 108,7,33,35 });
+	run.PushBack({ 145,7,33,35 });
+	run.PushBack({ 190,7,33,35 });
+	run.PushBack({ 230,7,33,35 });
+	run.PushBack({ 270,7,33,35 });
+	run.PushBack({ 308,7,33,35 });
+	run.PushBack({ 349,7,33,35 });
+	run.speed = 0.19f;
+
+	// die animation 
+	die.PushBack({630,7,35,35});
+
+	// shield animation
+	shield.PushBack({ 673,7,35,35 });
+	shield.PushBack({ 713,7,35,35 });
+	shield.PushBack({ 750,7,35,35 });
+	shield.PushBack({ 795,7,35,35 });
+	shield.PushBack({ 830,7,35,35 });
+	shield.PushBack({ 870,7,35,35 });
+	shield.PushBack({ 911,7,35,35 });
+	shield.speed = 0.1f;
+
+	
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -50,7 +64,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	miko_text = App->textures->Load("miko.png"); // arcade version
+	alive = true;
+	miko_texture = App->textures->Load("mikoSpritesheet.png"); // arcade version
 	return ret;
 }
 
@@ -58,30 +73,49 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	Animation* current_animation = &idle;
-
+	
 	int speed = 1;
-
-	if(App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
-	{
-		//current_animation = &forward;
-		position.x += speed;
+	if (alive) {
+		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+		{
+			if (position.y >= 120) current_animation = &run;
+			else current_animation = &idle;
+			position.x += speed;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+		{
+			current_animation = &backward;
+			position.x -= speed;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
+		{
+			current_animation = &backward;
+			position.y -= speed;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
+		{
+			current_animation = &idle;
+			position.y += speed;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_R] == 1)
+		{
+			current_animation = &run;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+		{
+			current_animation = &die;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+		{
+			current_animation = &shield;
+		}
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
-	{
-		//current_animation = &backward;
-		position.x -= speed;
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_UP] == 1){ position.y -= speed; }
-
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1){ position.y += speed; }
 		
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
 
-	App->render->Blit(miko_text, position.x, position.y - r.h, &r);
+	App->render->Blit(miko_texture, position.x, position.y, &r);
 	
 	return UPDATE_CONTINUE;
 }

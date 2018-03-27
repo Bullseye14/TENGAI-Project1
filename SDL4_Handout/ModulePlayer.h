@@ -20,11 +20,16 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* miko_text = nullptr;
+	SDL_Texture* miko_texture = nullptr;
+	SDL_Rect miko;
 	Animation idle;
-	Animation forward;
 	Animation backward;
+	Animation forward;
+	Animation run;
+	Animation die;
+	Animation shield;
 	iPoint position;
+	bool alive;
 
 };
 

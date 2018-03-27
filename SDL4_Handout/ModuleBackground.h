@@ -21,9 +21,6 @@ public:
 	SDL_Texture* background_TENGAI_texture = nullptr;
 	SDL_Rect background_TENGAI;
 
-	SDL_Texture* miko_text = nullptr;
-	SDL_Rect miko;
-
 	/*
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
