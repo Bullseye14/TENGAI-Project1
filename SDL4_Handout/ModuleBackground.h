@@ -18,11 +18,12 @@ public:
 
 public:
 	
-	SDL_Texture* graphics = nullptr;
 	SDL_Texture* background_TENGAI = nullptr;
 	SDL_Rect background_T;
-	SDL_Rect ground;
 
+	/*
+	SDL_Texture* graphics = nullptr;
+	SDL_Rect ground;
 	SDL_Rect ship;
 	Animation flag;
 	Animation girl;
@@ -32,6 +33,7 @@ public:
 	Animation blueAN;
 	Animation brownAN;
 	Animation purpleAN;
+	*/
 
 };
 
