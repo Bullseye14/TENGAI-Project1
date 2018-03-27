@@ -18,8 +18,8 @@ public:
 
 public:
 	
-	SDL_Texture* background_TENGAI = nullptr;
-	SDL_Rect background_T;
+	SDL_Texture* background_TENGAI_texture = nullptr;
+	SDL_Rect background_TENGAI;
 
 	SDL_Texture* miko_text = nullptr;
 	SDL_Rect miko;
