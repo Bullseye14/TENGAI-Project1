@@ -20,6 +20,12 @@ ModuleBackground::ModuleBackground()
 	background.w = 768;
 	background.h = 176;
 
+	// Background Tengai
+	background_T.x = 0;
+	background_T.y = 0;
+	background_T.w = 759;
+	background_T.h = 163;
+
 	// Ship
 	ship.x = 8;
 	ship.y = 24;
@@ -78,6 +84,8 @@ bool ModuleBackground::Start()
 	LOG("Loading background assets");
 	bool ret = true;
 	graphics = App->textures->Load("ken_stage.png");
+	background_TENGAI = App->textures->Load("background.png");
+
 	return ret;
 }
 
@@ -85,7 +93,8 @@ bool ModuleBackground::Start()
 update_status ModuleBackground::Update()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
+	//App->render->Blit(graphics, 0, 0, &background, 0.75f); // sea and sky
+	App->render->Blit(background_TENGAI, 0, 0, &background_T, 0.75f);
 	App->render->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
 
 	// TODO 2: Draw the ship from the sprite sheet with some parallax effect
