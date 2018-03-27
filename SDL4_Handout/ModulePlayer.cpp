@@ -9,10 +9,8 @@
 
 ModulePlayer::ModulePlayer()
 {
-	position.x = 0;
-	position.y = 0;
-
-
+	position.x = 50;
+	position.y = 40;
 
 	//idle animation (arcade sprite sheet)
 	idle.PushBack({ 389,7, 41,35 });
@@ -53,7 +51,6 @@ ModulePlayer::ModulePlayer()
 	shield.speed = 0.1f;
 
 	
-	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -64,17 +61,19 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player textures");
 	bool ret = true;
-	alive = true;
 	miko_texture = App->textures->Load("mikoSpritesheet.png"); // arcade version
+
+	alive = true;
+	speed = 1;
+	current_animation = &idle;
+
 	return ret;
 }
 
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	Animation* current_animation = &idle;
-	
-	int speed = 1;
+
 	if (alive) {
 		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
 		{
@@ -101,21 +100,25 @@ update_status ModulePlayer::Update()
 		{
 			current_animation = &run;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_D] == 1)
-		{
-			current_animation = &die;
-		}
+		
 		if (App->input->keyboard[SDL_SCANCODE_S] == 1)
 		{
 			current_animation = &shield;
 		}
+		
 	}
+	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
+		{
+			current_animation = &die;
+			alive = !alive;
+		}
 		
 
 	// Draw everything --------------------------------------
 	SDL_Rect r = current_animation->GetCurrentFrame();
-
-	App->render->Blit(miko_texture, position.x, position.y, &r);
+	
+	
+	App->render->Blit(miko_texture, position.x, position.y-r.h, &r);
 	
 	return UPDATE_CONTINUE;
 }

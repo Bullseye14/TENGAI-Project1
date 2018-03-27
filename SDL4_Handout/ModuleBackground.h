@@ -18,23 +18,9 @@ public:
 
 public:
 	
-	SDL_Texture* background_TENGAI_texture = nullptr;
-	SDL_Rect background_TENGAI;
-
-	/*
-	SDL_Texture* graphics = nullptr;
+	SDL_Texture* BG_forest_texture = nullptr;
+	SDL_Rect BG_forest;
 	SDL_Rect ground;
-	SDL_Rect ship;
-	Animation flag;
-	Animation girl;
-	Animation ryu;
-	Animation twomen;
-	Animation greenAN;
-	Animation blueAN;
-	Animation brownAN;
-	Animation purpleAN;
-	*/
-
 };
 
 #endif
