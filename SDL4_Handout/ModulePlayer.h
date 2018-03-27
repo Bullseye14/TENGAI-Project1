@@ -20,6 +20,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* miko_text = nullptr;
 	Animation idle;
 	Animation forward;
 	Animation backward;
