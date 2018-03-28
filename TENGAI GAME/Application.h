@@ -14,6 +14,7 @@ class ModulePlayer;
 class ModulePlayerMotor;
 class ModuleUI;
 class Module;
+class ModuleAudio;
 
 class Application
 {
@@ -28,6 +29,7 @@ public:
 	ModulePlayer* player = nullptr;
 	ModulePlayerMotor* playerMotor = nullptr;
 	ModuleUI* UI = nullptr;
+	ModuleAudio* Audio = nullptr;
 
 public:
 
