@@ -15,7 +15,7 @@ public:
 	update_status Update();
 
 public:
-
+	
 
 };
 
