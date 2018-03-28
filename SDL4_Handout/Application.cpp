@@ -6,6 +6,7 @@
 #include "ModuleBackground.h"
 #include "ModulePlayer.h"
 #include "ModuleUI.h"
+#include "ModulePlayerMotor.h"
 
 Application::Application()
 {
@@ -16,6 +17,7 @@ Application::Application()
 	modules[4] = background = new ModuleBackground();
 	modules[5] = player = new ModulePlayer();
 	modules[6] = UI = new ModuleUI();
+	modules[7] = playerMotor = new ModulePlayerMotor();
 }	
 
 Application::~Application()

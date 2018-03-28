@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
+#include "ModulePlayerMotor.h"
 
 /* CONTROLS:
 	UP, DOWN, LEFT, RIGHT => MOVEMENT
@@ -38,6 +39,8 @@ public:
 	iPoint position;
 	bool alive;
 	int speed;
+
+	ModulePlayerMotor playerMotor;
 
 };
 
