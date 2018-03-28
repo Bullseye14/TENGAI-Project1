@@ -2,11 +2,11 @@
 #include "Application.h"
 #include "ModuleAudio.h"
 
-ModuleAudio::ModuleAudio(){ }
+ModuleAudio::ModuleAudio() { }
 
-ModuleAudio::~ModuleAudio(){ }
+ModuleAudio::~ModuleAudio() { }
 
-bool ModuleAudio::Init() 
+bool ModuleAudio::Init()
 {
 	LOG("Loading audio assets");
 	bool ret = true;
@@ -14,7 +14,7 @@ bool ModuleAudio::Init()
 	return ret;
 }
 
-update_status ModuleAudio::Update() 
+update_status ModuleAudio::Update()
 {
 	return UPDATE_CONTINUE;
 }

@@ -53,10 +53,10 @@
     <ClInclude Include="ModuleUI.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayerMotor.h">
+    <ClInclude Include="ModuleAudio.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
+    <ClInclude Include="..\..\TENGAI-Project1\TENGAI_GAME\ModulePlayerMotor.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -91,10 +91,10 @@
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayerMotor.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TENGAI-Project1\TENGAI_GAME\ModulePlayerMotor.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

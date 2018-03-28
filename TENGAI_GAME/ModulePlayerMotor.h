@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "ModuleTextures.h"
+
 
 enum bulletType
 {
