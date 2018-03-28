@@ -11,6 +11,11 @@ public:
 	ModuleAudio();
 	~ModuleAudio();
 
+	bool Init();
+	update_status Update();
+
+public:
+
 
 };
 
