@@ -20,16 +20,16 @@ class Application
 {
 public:
 
-	Module * modules[NUM_MODULES] = { nullptr };
-	ModuleWindow* window = nullptr;
-	ModuleRender* render = nullptr;
-	ModuleInput* input = nullptr;
-	ModuleTextures* textures = nullptr;
-	ModuleBackground* background = nullptr;
-	ModulePlayer* player = nullptr;
-	ModulePlayerMotor* playerMotor = nullptr;
-	ModuleUI* UI = nullptr;
-	ModuleAudio* Audio = nullptr;
+	Module *				modules[NUM_MODULES]		= { nullptr };
+	ModuleWindow*		window					= nullptr;
+	ModuleRender*		render					= nullptr;
+	ModuleInput*			input					= nullptr;
+	ModuleTextures*		textures					= nullptr;
+	ModuleBackground*	background				= nullptr;
+	ModulePlayer*		player					= nullptr;
+	ModulePlayerMotor*	playerMotor				= nullptr;
+	ModuleUI*			UI						= nullptr;
+	ModuleAudio*			Audio					= nullptr;
 
 public:
 

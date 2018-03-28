@@ -25,7 +25,6 @@ public:
 
 public:
 
-	SDL_Texture* graphics = nullptr;
 	SDL_Texture* miko_texture = nullptr;
 	SDL_Rect miko;
 	Animation* current_animation;

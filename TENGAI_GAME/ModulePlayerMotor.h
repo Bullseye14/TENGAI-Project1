@@ -3,9 +3,15 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "ModulePlayer.h"
 #include "ModuleTextures.h"
 
 
+struct Bullet {
+	Animation bullet;
+	int x;
+	int y;
+};
 enum bulletType
 {
 	bullet,
@@ -28,7 +34,9 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
-	Animation bullet;
+	ModulePlayer* thisPlayer = nullptr;
+	Bullet bullet;
+	//Animation bullet;
 	Animation secondBullet;
 	Animation bomb;
 	Animation specialAttack;

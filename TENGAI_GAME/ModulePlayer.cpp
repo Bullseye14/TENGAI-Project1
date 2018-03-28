@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayerMotor.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
