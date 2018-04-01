@@ -59,6 +59,12 @@
     <ClInclude Include="..\..\TENGAI-Project1\TENGAI_GAME\ModulePlayerMotor.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBullet.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,6 +101,12 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="..\..\TENGAI-Project1\TENGAI_GAME\ModulePlayerMotor.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBullet.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

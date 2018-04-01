@@ -6,6 +6,7 @@
 #include "ModuleBackground.h"
 #include "ModulePlayer.h"
 #include "ModulePlayerMotor.h"
+#include "ModuleBullet.h"
 #include "ModuleUI.h"
 #include "ModuleAudio.h"
 
@@ -19,7 +20,8 @@ Application::Application()
 	modules[5] = player = new ModulePlayer();
 	modules[6] = playerMotor = new ModulePlayerMotor();
 	modules[7] = UI = new ModuleUI();
-	modules[8] = Audio = new ModuleAudio();
+	modules[8] = audio = new ModuleAudio();
+	modules[9] = bullet = new ModuleBullet();
 }	
 
 Application::~Application()
