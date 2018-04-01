@@ -62,9 +62,6 @@
     <ClInclude Include="Bullet.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBullet.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -104,9 +101,6 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleBullet.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

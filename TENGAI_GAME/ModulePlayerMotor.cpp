@@ -3,7 +3,6 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModulePlayerMotor.h"
-#include <Windows.h>
 
 ModulePlayerMotor::ModulePlayerMotor()
 {
@@ -38,14 +37,21 @@ update_status ModulePlayerMotor::Update()
 
  	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1) // && time_interval_between_shots
 	{
-		int x = thisPlayer->position.getX();
-		int y = thisPlayer->position.getY();
+		int x = thisPlayer->position.getX()+25;
+		int y = thisPlayer->position.getY()-30;
  		magazineList.push_back(Bullet(animation_bullet, x, y));
 	}
-	for (std::list<Bullet>::iterator it = magazineList.begin(); it != magazineList.end(); ++it) {
+	for (std::list<Bullet>::iterator it = magazineList.begin(); it != magazineList.end();) {
 
-		it->x = it->x + 3;
-		App->render->Blit(graphics, it->x, it->y, &(it->animation).GetCurrentFrame());
+		if (it->x <= SCREEN_WIDTH) {
+			it->x = it->x + 3;
+			App->render->Blit(graphics, it->x, it->y, &(it->animation).GetCurrentFrame());
+			++it;
+		}
+		else {
+			it = magazineList.erase(it);
+
+		}
 	}
 	
 			

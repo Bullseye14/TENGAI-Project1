@@ -1,7 +1,4 @@
 #include "Bullet.h"
-#include "Application.h"
-#include "ModuleRender.h"
-
 
 
 Bullet::Bullet(Animation animation,int x, int y)
@@ -18,6 +15,7 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
+	//delete(this);
 }
 
 
