@@ -3,17 +3,11 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "ModulePlayer.h"
+#include "Bullet.h"
 #include "ModuleTextures.h"
+#include <list>
 
-
-enum bulletType
-{
-	bullet,
-	secondBullet,
-	bomb,
-	specialAttack
-
-};
 
 class ModulePlayerMotor : public Module
 {
@@ -27,8 +21,12 @@ public:
 
 
 public:
+	std::list<Bullet> magazineList;
 	SDL_Texture* graphics = nullptr;
-	Animation bullet;
+	ModulePlayer* thisPlayer = nullptr;
+
+	unsigned int lastTime = 0, currentTime;
+	Animation animation_bullet;;
 	Animation secondBullet;
 	Animation bomb;
 	Animation specialAttack;

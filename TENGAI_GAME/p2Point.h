@@ -38,6 +38,13 @@ public:
 		return(*this);
 	}
 
+	TYPE getX() {
+		return x;
+	}
+	TYPE getY() {
+		return y;
+	}
+
 	// Math ------------------------------------------------
 	p2Point operator -(const p2Point &v) const
 	{
