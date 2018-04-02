@@ -27,6 +27,7 @@ public:
 
 	SDL_Texture* miko_texture = nullptr;
 	SDL_Rect miko;
+
 	Animation* current_animation;
 	Animation idle;
 	Animation backward;
@@ -35,8 +36,10 @@ public:
 	Animation shield;
 	Animation bullet;
 	iPoint position;
+
 	bool alive;
 	int speed;
+	uint last_time, current_time;
 
 };
 

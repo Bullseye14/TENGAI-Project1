@@ -25,6 +25,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	ModulePlayer* thisPlayer = nullptr;
 
+	unsigned int lastTime = 0, currentTime;
 	Animation animation_bullet;;
 	Animation secondBullet;
 	Animation bomb;

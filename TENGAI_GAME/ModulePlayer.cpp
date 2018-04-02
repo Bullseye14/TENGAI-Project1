@@ -4,6 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "SDL/include/SDL_timer.h"
 #include "ModulePlayerMotor.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -66,8 +67,9 @@ bool ModulePlayer::Start()
 	bool ret = true;
 	miko_texture = App->textures->Load("mikoSpritesheet.png"); // arcade version
 
+	last_time = 0;
 	alive = true;
-	speed = 1;
+	speed = 3;
 	current_animation = &idle;
 
 	return ret;
@@ -76,45 +78,45 @@ bool ModulePlayer::Start()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	if (alive) {
-		current_animation = &idle;
-		if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
-		{
-			if (position.y >= 120) current_animation = &run;
-			else current_animation = &idle;
-			position.x += speed;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
-		{
-			current_animation = &backward;
-			position.x -= speed;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_UP] == 1)
-		{
-			current_animation = &backward;
-			position.y -= speed;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1)
-		{
-			current_animation = &idle;
-			position.y += speed;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_R] == 1)
-		{
-			current_animation = &run;
-		}
-		
-		if (App->input->keyboard[SDL_SCANCODE_S] == 1)
-		{
-			current_animation = &shield;
-		}
+	current_time = SDL_GetTicks();
 
-		// Better if placed in a separated module with poll event and event key down, so firing is semiautomatic 
-		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
-		{
-			//Shoot();
-		}
+	if (alive) {
 		
+		//current_animation = &idle;
+		if (current_time > last_time + 15) {
+			if (App->input->keyboard[SDL_SCANCODE_RIGHT] == 1)
+			{
+				if (position.y >= 120) current_animation = &run;
+				else current_animation = &idle;
+				position.x += speed;
+
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == 1)
+			{
+				current_animation = &backward;
+				position.x -= speed;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && position.y - speed > 30)
+			{
+				current_animation = &backward;
+				position.y -= speed;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_DOWN] == 1 && position.y + speed < SCREEN_HEIGHT)
+			{
+				current_animation = &idle;
+				position.y += speed;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_R] == 1)
+			{
+				current_animation = &run;
+			}
+
+			if (App->input->keyboard[SDL_SCANCODE_S] == 1)
+			{
+				current_animation = &shield;
+			}
+		last_time = current_time;		
+		}
 	}
 	if (App->input->keyboard[SDL_SCANCODE_D] == 1)
 		{
