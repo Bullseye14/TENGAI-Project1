@@ -21,10 +21,11 @@ public:
 
 
 public:
-	std::list<Bullet> magazineList;
+	Bullet magazineList [50];
 	SDL_Texture* graphics = nullptr;
 	ModulePlayer* thisPlayer = nullptr;
 
+	int bullets_shot, last_bullet_iterator,i_temp;
 	unsigned int lastTime = 0, currentTime;
 	Animation animation_bullet;;
 	Animation secondBullet;
