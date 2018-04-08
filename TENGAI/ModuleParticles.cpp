@@ -30,10 +30,24 @@ bool ModuleParticles::Start()
 	start.anim.speed = 0.5f;
 
 	Mshot.anim.PushBack({ 11,50,10,12 });
+	Mshot.anim.PushBack({ 34,50,11,11 });
+	Mshot.anim.PushBack({ 58,51,11,10 });
+	Mshot.anim.PushBack({ 82,51,12,10 });
+	Mshot.anim.PushBack({ 106,53,11,6 });
+	Mshot.anim.PushBack({ 129,49,12,14 });
+	Mshot.anim.PushBack({ 153,49,14,14 });
+	Mshot.anim.PushBack({ 177,49,14,13 });
+	Mshot.anim.PushBack({ 201,50,14,12 });
+	Mshot.anim.PushBack({ 225,52,13,7 });
+	Mshot.anim.PushBack({ 249,49,12,14 });
+	Mshot.anim.PushBack({ 273,49,14,14 });
+	Mshot.anim.PushBack({ 297,49,14,13 });
+	Mshot.anim.PushBack({ 321,50,14,12 });
+	Mshot.anim.PushBack({ 345,52,13,17 });
 	Mshot.anim.loop = true;
-	Mshot.anim.speed = 0.1f;
-	Mshot.speed = iPoint(4, 0);
-	Mshot.life = 1500;
+	Mshot.anim.speed = 0.05f;
+	Mshot.speed = iPoint(7, 0);
+	Mshot.life = 150000;
 
 
 	/*
