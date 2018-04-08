@@ -27,6 +27,8 @@ public:
 	Animation die;
 	Animation shield;
 	iPoint position;
+
+	uint offsetCamera;
 };
 
 #endif

@@ -61,8 +61,11 @@ update_status ModuleSceneForest::Update()
 	// Move camera forward -----------------------------
 	int scroll_speed = 1;
 
+	//Player auto scroll
 	App->player->position.x += 1;
-	App->render->camera.x -= 3;
+
+	App->render->camera.x -= 2;
+	App->player->offsetCamera += 2;
 
 
 	// Draw everything --------------------------------------
