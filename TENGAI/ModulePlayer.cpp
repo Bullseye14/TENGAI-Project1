@@ -22,18 +22,6 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 472, 10, 31, 27 });
 	idle.loop = true;
 	idle.speed = 0.1f;
-
-	// move upwards
-	up.PushBack({100, 1, 32, 14});
-	up.PushBack({132, 0, 32, 14});
-	up.loop = false;
-	up.speed = 0.1f;
-
-	// Move down
-	down.PushBack({33, 1, 32, 14});
-	down.PushBack({0, 1, 32, 14});
-	down.loop = false;
-	down.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -77,21 +65,11 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y += speed;
-		if(current_animation != &down)
-		{
-			down.Reset();
-			current_animation = &down;
-		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
-		if(current_animation != &up)
-		{
-			up.Reset();
-			current_animation = &up;
-		}
 	}
 
 	// TODO 3: Shoot lasers when the player hits SPACE
