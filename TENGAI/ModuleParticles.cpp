@@ -29,7 +29,12 @@ bool ModuleParticles::Start()
 	start.anim.loop = true;
 	start.anim.speed = 0.5f;
 
-	Mshot.anim.PushBack({});
+	Mshot.anim.PushBack({ 11,50,10,12 });
+	Mshot.anim.loop = true;
+	Mshot.anim.speed = 0.1f;
+	Mshot.speed = iPoint(4, 0);
+	Mshot.life = 1500;
+
 
 	/*
 	// Explosion particle
