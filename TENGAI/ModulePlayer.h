@@ -22,8 +22,10 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
-	Animation up;
-	Animation down;
+	Animation backward;
+	Animation run;
+	Animation die;
+	Animation shield;
 	iPoint position;
 };
 
