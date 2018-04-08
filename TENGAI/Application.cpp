@@ -3,7 +3,7 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleSceneSpace.h"
+#include "ModuleSceneForest.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
@@ -16,7 +16,7 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[7] = scene_intro = new ModuleSceneIntro();
-	modules[4] = scene_space = new ModuleSceneSpace();
+	modules[4] = scene_space = new ModuleSceneForest();
 	modules[5] = player = new ModulePlayer();
 	modules[6] = particles = new ModuleParticles();
 	modules[8] = fade = new ModuleFadeToBlack();

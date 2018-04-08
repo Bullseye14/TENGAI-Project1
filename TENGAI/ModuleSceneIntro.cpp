@@ -6,7 +6,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleSceneSpace.h"
+#include "ModuleSceneForest.h"
 #include "ModuleParticles.h"
 
 ModuleSceneIntro::ModuleSceneIntro() : Module() { }
