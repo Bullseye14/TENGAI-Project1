@@ -17,7 +17,11 @@ ModulePlayer::ModulePlayer()
 	position.y = 120;
 
 	// idle animation (just the ship)
-	idle.PushBack({66, 1, 32, 14});
+	idle.PushBack({ 392, 10, 31, 27 });
+	idle.PushBack({ 432, 10, 31, 27 });
+	idle.PushBack({ 472, 10, 31, 27 });
+	idle.loop = true;
+	idle.speed = 0.1f;
 
 	// move upwards
 	up.PushBack({100, 1, 32, 14});
