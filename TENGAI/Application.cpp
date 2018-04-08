@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleSceneIntro.h"
+#include "ModuleAudio.h"
 
 Application::Application()
 {
@@ -15,11 +16,12 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[7] = scene_intro = new ModuleSceneIntro();
-	modules[4] = scene_space = new ModuleSceneForest();
-	modules[5] = player = new ModulePlayer();
-	modules[6] = particles = new ModuleParticles();
-	modules[8] = fade = new ModuleFadeToBlack();
+	modules[8] = scene_intro = new ModuleSceneIntro();
+	modules[5] = scene_space = new ModuleSceneForest();
+	modules[6] = player = new ModulePlayer();
+	modules[7] = particles = new ModuleParticles();
+	modules[9] = fade = new ModuleFadeToBlack();
+	modules[4] = audio = new ModuleAudio();
 	
 }	
 

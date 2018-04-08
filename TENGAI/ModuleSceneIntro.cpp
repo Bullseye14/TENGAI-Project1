@@ -8,6 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 ModuleSceneIntro::ModuleSceneIntro() : Module() { }
 
@@ -18,6 +19,10 @@ bool ModuleSceneIntro::Init()
 	LOG("Loading space scene");
 
 	background = App->textures->Load("tengai/intro.png");
+
+	intro = App->audio->LoadMusic("audio/audiointro.ogg");
+
+	Mix_PlayMusic(intro, -1);
 
 	App->particles->AddParticle(App->particles->start, 160, 112);
 
