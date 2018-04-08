@@ -29,6 +29,8 @@ bool ModuleParticles::Start()
 	start.anim.loop = true;
 	start.anim.speed = 0.5f;
 
+	Mshot.anim.PushBack({});
+
 	/*
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});

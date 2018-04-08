@@ -74,22 +74,9 @@ update_status ModulePlayer::Update()
 
 	// TODO 3: Shoot lasers when the player hits SPACE
 
-	if(App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
-	{
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
-		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 500);
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
-		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
-	}
-
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
-		App->particles->AddParticle(App->particles->laser, position.x + 31, position.y + 6);
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) 
-	{
-		App->particles->AddParticle(App->particles->ulti, position.x + 31, position.y + 6);
+		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6);
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE

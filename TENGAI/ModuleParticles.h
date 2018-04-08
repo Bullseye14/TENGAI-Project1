@@ -45,10 +45,8 @@ private:
 
 public:
 
-	Particle explosion;
-	Particle laser;
-	Particle ulti;
-
+	Particle Mshot;
+	
 	Particle start;
 };
 
