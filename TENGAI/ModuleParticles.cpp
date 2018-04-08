@@ -20,7 +20,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("tengai/spritesheetui.png");
+	graphics = App->textures->Load("tengai/spritesheet.png");
 
 	 //START BUTTON
 

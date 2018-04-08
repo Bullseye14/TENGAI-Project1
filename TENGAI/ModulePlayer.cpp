@@ -32,7 +32,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("tengai/mikoSpritesheet.png");
+	graphics = App->textures->Load("tengai/spritesheet.png");
 
 	return true;
 }
