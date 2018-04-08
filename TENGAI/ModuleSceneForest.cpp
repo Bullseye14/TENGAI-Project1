@@ -1,9 +1,14 @@
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleTextures.h"
+#include "ModuleSceneIntro.h"
 #include "ModuleRender.h"
+#include "ModuleTextures.h"
 #include "ModulePlayer.h"
+#include "ModuleInput.h"
+#include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
+#include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -38,6 +43,9 @@ bool ModuleSceneForest::Start()
 	LOG("Loading space scene");
 
 	graphics = App->textures->Load("tengai/background.png");
+
+	SceneForest = App->audio->LoadMusic("audio/audioforest.ogg");
+	Mix_PlayMusic(SceneForest, -1);
 
 	App->player->Enable();
 

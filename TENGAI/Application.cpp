@@ -17,7 +17,7 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[8] = scene_intro = new ModuleSceneIntro();
-	modules[5] = scene_space = new ModuleSceneForest();
+	modules[5] = scene_forest = new ModuleSceneForest();
 	modules[6] = player = new ModulePlayer();
 	modules[7] = particles = new ModuleParticles();
 	modules[9] = fade = new ModuleFadeToBlack();
@@ -37,7 +37,7 @@ bool Application::Init()
 
 	// Disable all stopped modules here
 	player->Disable();
-	scene_space->Disable();
+	scene_forest->Disable();
 	
 	// ---
 

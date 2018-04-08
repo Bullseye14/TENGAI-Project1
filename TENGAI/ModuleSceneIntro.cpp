@@ -22,7 +22,6 @@ bool ModuleSceneIntro::Init()
 
 	intro = App->audio->LoadMusic("audio/audiointro.ogg");
 
-
 	Mix_PlayMusic(intro, -1);
 
 	App->particles->AddParticle(App->particles->start, 160, 112);
@@ -34,7 +33,7 @@ bool ModuleSceneIntro::Init()
 
 bool ModuleSceneIntro::CleanUp() 
 { 
-	LOG("Unloading space scene");
+	LOG("Unloading forest scene");
 
 	App->textures->Unload(background);
 	App->player->Disable();
@@ -50,7 +49,7 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		App->fade->FadeToBlack(App->scene_intro, App->scene_space, 1.0);
+		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
 	}
 
 	return UPDATE_CONTINUE;

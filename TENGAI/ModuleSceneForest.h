@@ -3,6 +3,9 @@
 
 #include "Module.h"
 
+#include "SDL_mixer/include/SDL_mixer.h"
+#pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
+
 struct SDL_Texture;
 
 class ModuleSceneForest : public Module
@@ -21,6 +24,8 @@ public:
 	SDL_Rect BG_mid;
 	SDL_Rect BG_far;
 	SDL_Rect ground;
+
+	Mix_Music* SceneForest = nullptr;
 
 };
 

@@ -28,7 +28,7 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleSceneForest* scene_space;
+	ModuleSceneForest* scene_forest;
 	ModulePlayer* player;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
