@@ -24,8 +24,8 @@ bool ModuleParticles::Start()
 
 	 //START BUTTON
 
-	start.anim.PushBack({ 35,111,196,39 });
-	start.anim.PushBack({ 35,111,196,39 });
+	start.anim.PushBack({ 35,337,196,39 });
+	start.anim.PushBack({ 5,158,196,39 });
 	start.anim.loop = true;
 	start.anim.speed = 0.5f;
 

@@ -19,7 +19,7 @@ bool ModuleSceneIntro::Init()
 
 	background = App->textures->Load("tengai/intro.png");
 
-	  
+	App->particles->AddParticle(App->particles->start, 160, 112);
 
 	App->player->Enable();
 	
