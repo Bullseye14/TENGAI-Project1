@@ -46,6 +46,8 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
+		IntroFX = App->audio->LoadFx("audio/intro_miko.wav");
+		Mix_PlayChannel(-1, IntroFX, 0);
 		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
 	}
 

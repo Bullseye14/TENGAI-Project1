@@ -26,6 +26,8 @@ public:
 
 	Mix_Music* intro = nullptr;
 
+	Mix_Chunk* IntroFX = nullptr;
+
 };
 
 #endif //__ModuleSceneIntro_H__
