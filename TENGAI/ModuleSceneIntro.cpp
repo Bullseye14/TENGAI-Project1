@@ -22,12 +22,9 @@ bool ModuleSceneIntro::Init()
 	background = App->textures->Load("tengai/intro.png");
 
 	intro = App->audio->LoadMusic("audio/audiointro.ogg");
-
 	Mix_PlayMusic(intro, -1);
 
 	//App->particles->AddParticle(App->particles->start, 160, 112);
-
-	//App->player->Enable();
 	
 	return true;
 }
@@ -37,7 +34,6 @@ bool ModuleSceneIntro::CleanUp()
 	LOG("Unloading intro scene");
 
 	App->textures->Unload(background);
-	//App->player->Disable();
 	
 	return true;
 }

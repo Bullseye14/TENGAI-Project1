@@ -11,8 +11,6 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneForest::ModuleSceneForest()
 {
 	// ground
@@ -20,7 +18,6 @@ ModuleSceneForest::ModuleSceneForest()
 	ground.y = 153;
 	ground.w = 760;
 	ground.h = 11;
-
 
 	// Background Mid
 	BG_mid.x = 0;

@@ -24,8 +24,6 @@ bool ModuleSceneOutro::Init()
 	audiooutro = App->audio->LoadMusic("audio/audiooutro.ogg");
 	Mix_PlayMusic(audiooutro, -1);
 
-	//App->player->Enable();
-
 	return true;
 }
 
@@ -34,7 +32,6 @@ bool ModuleSceneOutro::CleanUp()
 	LOG("Unloading outro scene");
 
 	App->textures->Unload(outro);
-	//App->player->Disable();
 
 	return true;
 }
