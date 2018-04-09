@@ -75,9 +75,9 @@ update_status ModuleSceneForest::Update()
 
 	// Draw everything --------------------------------------
 	//App->render->Blit(background, 0, 0, NULL);
-	App->render->Blit(graphics, 0, 0, &BG_mid, 0.75f);
-	App->render->Blit(graphics, 0, 0, &BG_far, 0.25f);
-	App->render->Blit(graphics, 0, 152, &ground, 1.0f);
+	App->render->Blit(graphics, 0, 61, &BG_mid, 0.75f);
+	App->render->Blit(graphics, 0, 61, &BG_far, 0.25f);
+	App->render->Blit(graphics, 0, 213, &ground, 1.0f);
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
