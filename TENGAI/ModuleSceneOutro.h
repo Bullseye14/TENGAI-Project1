@@ -14,7 +14,7 @@ public:
 	ModuleSceneOutro();
 	~ModuleSceneOutro();
 
-	bool Init();
+	bool Start();
 
 	update_status Update();
 
@@ -24,7 +24,7 @@ public:
 	SDL_Texture * background_outro = nullptr;
 	SDL_Texture * stars = nullptr;
 
-	Mix_Music* audio_outro = nullptr;
+	Mix_Music* AudioOutro = nullptr;
 
 };
 

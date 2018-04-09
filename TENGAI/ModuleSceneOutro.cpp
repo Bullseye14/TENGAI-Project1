@@ -11,18 +11,19 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 
+
 ModuleSceneOutro::ModuleSceneOutro() : Module() { }
 
 ModuleSceneOutro::~ModuleSceneOutro() { }
 
-bool ModuleSceneOutro::Init()
+bool ModuleSceneOutro::Start()
 {
 	LOG("Loading outro scene");
 
 	background_outro = App->textures->Load("tengai/outro.png");
 
-	audio_outro = App->audio->LoadMusic("audio/audiooutro.ogg");
-	Mix_PlayMusic(audio_outro, -1);
+	AudioOutro = App->audio->LoadMusic("audio/audiooutro.ogg");
+	Mix_PlayMusic(AudioOutro, -1);
 
 	return true;
 }
