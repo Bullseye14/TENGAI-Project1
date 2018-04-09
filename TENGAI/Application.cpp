@@ -9,6 +9,7 @@
 #include "ModuleParticles.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneOutro.h"
 
 Application::Application()
 {
@@ -16,12 +17,13 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[8] = scene_intro = new ModuleSceneIntro();
-	modules[5] = scene_forest = new ModuleSceneForest();
-	modules[6] = player = new ModulePlayer();
-	modules[7] = particles = new ModuleParticles();
-	modules[9] = fade = new ModuleFadeToBlack();
+	modules[9] = scene_intro = new ModuleSceneIntro();
+	modules[6] = scene_forest = new ModuleSceneForest();
+	modules[7] = player = new ModulePlayer();
+	modules[8] = particles = new ModuleParticles();
+	modules[10] = fade = new ModuleFadeToBlack();
 	modules[4] = audio = new ModuleAudio();
+	modules[5] = scene_outro = new ModuleSceneOutro();
 	
 }	
 
@@ -38,6 +40,7 @@ bool Application::Init()
 	// Disable all stopped modules here
 	player->Disable();
 	scene_forest->Disable();
+	scene_outro->Disable();
 	
 	// ---
 

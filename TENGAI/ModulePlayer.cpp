@@ -133,7 +133,7 @@ update_status ModulePlayer::Update()
 
 		current_animation = &idle;
 
-		//if (position.x == )
+	
 
 	}
 

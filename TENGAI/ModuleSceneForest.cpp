@@ -9,6 +9,7 @@
 #include "ModuleSceneForest.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneOutro.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -75,12 +76,16 @@ update_status ModuleSceneForest::Update()
 	App->render->camera.x -= 2;
 	App->player->offsetCamera += 2;
 
-
 	// Draw everything --------------------------------------
 	//App->render->Blit(background, 0, 0, NULL);
 	App->render->Blit(graphics, 0, 0, &BG_mid, 0.75f);
 	App->render->Blit(graphics, 0, 0, &BG_far, 0.25f);
 	App->render->Blit(graphics, 0, 152, &ground, 1.0f);
+
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	{
+		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 1.0);
+	}
 
 	return UPDATE_CONTINUE;
 }

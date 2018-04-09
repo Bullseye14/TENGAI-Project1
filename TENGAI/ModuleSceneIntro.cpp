@@ -9,6 +9,7 @@
 #include "ModuleSceneForest.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleSceneOutro.h"
 
 ModuleSceneIntro::ModuleSceneIntro() : Module() { }
 
@@ -26,7 +27,7 @@ bool ModuleSceneIntro::Init()
 
 	//App->particles->AddParticle(App->particles->start, 160, 112);
 
-	App->player->Enable();
+	//App->player->Enable();
 	
 	return true;
 }
@@ -36,7 +37,7 @@ bool ModuleSceneIntro::CleanUp()
 	LOG("Unloading forest scene");
 
 	App->textures->Unload(background);
-	App->player->Disable();
+	//App->player->Disable();
 	
 	return true;
 }
@@ -47,7 +48,7 @@ update_status ModuleSceneIntro::Update()
 
 	App->render->Blit(background, 0, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
 		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
 	}
