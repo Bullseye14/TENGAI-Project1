@@ -88,29 +88,40 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
-		position.x -= speed;
+		
+		if (position.x - speed >= 0) 
+		{
+			position.x -= speed;
+		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &idle;
 		
-		position.x += speed;
+		if (position.x + speed <= SCREEN_WIDTH)
+		{
+			position.x += speed;
+		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &idle;
-		if (position.y + speed <= SCREEN_HEIGHT - 25)
+		if (position.y + speed <= SCREEN_HEIGHT - 27) 
+		{
 			position.y += speed;
+		}
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
 
-		if (position.y - speed >= 0)
+		if (position.y - speed >= 0) 
+		{
 			position.y -= speed;
+		}
 	}
 
 	// TODO 3: Shoot lasers when the player hits SPACE
