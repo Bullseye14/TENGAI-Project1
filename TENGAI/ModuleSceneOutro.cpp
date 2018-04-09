@@ -17,7 +17,7 @@ ModuleSceneOutro::~ModuleSceneOutro() { }
 
 bool ModuleSceneOutro::Init()
 {
-	LOG("Loading space scene");
+	LOG("Loading intro scene");
 
 	outro = App->textures->Load("tengai/outro.png");
 

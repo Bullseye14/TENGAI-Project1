@@ -41,7 +41,7 @@ ModuleSceneForest::~ModuleSceneForest()
 // Load assets5
 bool ModuleSceneForest::Start()
 {
-	LOG("Loading space scene");
+	LOG("Loading forest scene");
 
 	graphics = App->textures->Load("tengai/background.png");
 
@@ -56,7 +56,7 @@ bool ModuleSceneForest::Start()
 // UnLoad assets
 bool ModuleSceneForest::CleanUp()
 {
-	LOG("Unloading space scene");
+	LOG("Unloading forest scene");
 
 	App->textures->Unload(graphics);
 	App->player->Disable();

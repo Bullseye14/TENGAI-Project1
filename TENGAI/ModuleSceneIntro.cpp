@@ -17,7 +17,7 @@ ModuleSceneIntro::~ModuleSceneIntro() { }
 
 bool ModuleSceneIntro::Init() 
 { 
-	LOG("Loading space scene");
+	LOG("Loading intro scene");
 
 	background = App->textures->Load("tengai/intro.png");
 
@@ -34,7 +34,7 @@ bool ModuleSceneIntro::Init()
 
 bool ModuleSceneIntro::CleanUp() 
 { 
-	LOG("Unloading forest scene");
+	LOG("Unloading intro scene");
 
 	App->textures->Unload(background);
 	//App->player->Disable();
