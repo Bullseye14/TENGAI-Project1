@@ -21,10 +21,10 @@ public:
 	bool CleanUp();
 
 public:
-	SDL_Texture * outro = nullptr;
+	SDL_Texture * background_outro = nullptr;
 	SDL_Texture * stars = nullptr;
 
-	Mix_Music* audiooutro = nullptr;
+	Mix_Music* audio_outro = nullptr;
 
 };
 

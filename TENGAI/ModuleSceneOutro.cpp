@@ -17,12 +17,12 @@ ModuleSceneOutro::~ModuleSceneOutro() { }
 
 bool ModuleSceneOutro::Init()
 {
-	LOG("Loading intro scene");
+	LOG("Loading outro scene");
 
-	outro = App->textures->Load("tengai/outro.png");
+	background_outro = App->textures->Load("tengai/outro.png");
 
-	audiooutro = App->audio->LoadMusic("audio/audiooutro.ogg");
-	Mix_PlayMusic(audiooutro, -1);
+	audio_outro = App->audio->LoadMusic("audio/audiooutro.ogg");
+	Mix_PlayMusic(audio_outro, -1);
 
 	return true;
 }
@@ -31,7 +31,7 @@ bool ModuleSceneOutro::CleanUp()
 {
 	LOG("Unloading outro scene");
 
-	App->textures->Unload(outro);
+	App->textures->Unload(background_outro);
 
 	return true;
 }
@@ -40,7 +40,7 @@ update_status ModuleSceneOutro::Update()
 {
 	App->render->camera.x = 3;
 
-	App->render->Blit(outro, 0, 0, NULL);
+	App->render->Blit(background_outro, 0, 0, NULL);
 
 	return UPDATE_CONTINUE;
 }
