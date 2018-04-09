@@ -88,21 +88,13 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
-		
-		if (position.x - speed == 0)
-		{
-			position.x -= speed;
-		}
+		position.x -= speed;
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &idle;
-		
-		if (position.x + speed <= SCREEN_WIDTH)
-		{
-			position.x += speed;
-		}
+		position.x += speed;
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
