@@ -42,7 +42,7 @@ update_status ModuleSceneIntro::Update()
 {
 	App->render->camera.x = 3;
 
-	App->render->Blit(background, 0, 0, NULL);
+	App->render->Blit(background, -2, 0, NULL);
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
