@@ -49,44 +49,6 @@ bool ModuleParticles::Start()
 	Mshot.speed = iPoint(10, 0);
 	Mshot.life = 150000;
 
-
-	/*
-	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	// TODO 2: Create the template for a new particle "laser"
-
-	// Laser particle
-	laser.anim.PushBack({ 232, 103, 15, 11 });
-	laser.anim.PushBack({ 249, 105, 15, 7 });
-	laser.anim.loop = true;
-	laser.anim.speed = 0.2f;
-
-	laser.speed = iPoint(4, 0);
-	laser.life = 1500;
-
-
-	// Ulti particle
-	ulti.anim.PushBack({ 58,205,21,19 });
-	ulti.anim.PushBack({ 84,202,29,25 });
-	ulti.anim.PushBack({ 118,199,37,31 });
-	ulti.anim.PushBack({ 159,194,46,41 });
-	ulti.anim.PushBack({ 209,191,55,47 });
-
-	ulti.anim.loop = false;
-	ulti.anim.speed = 2.0f;
-
-	ulti.speed = iPoint(2, 0);
-	ulti.life = 1500;
-	*/
-
 	return true;
 }
 
