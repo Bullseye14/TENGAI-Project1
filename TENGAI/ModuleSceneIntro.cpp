@@ -24,7 +24,7 @@ bool ModuleSceneIntro::Init()
 
 	Mix_PlayMusic(intro, -1);
 
-	App->particles->AddParticle(App->particles->start, 160, 112);
+	//App->particles->AddParticle(App->particles->start, 160, 112);
 
 	App->player->Enable();
 	
