@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "SDL_mixer/include/SDL_mixer.h"
+#pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
 
 struct SDL_Texture;
 
@@ -29,6 +31,8 @@ public:
 	iPoint position;
 
 	uint offsetCamera;
+
+	Mix_Chunk* MikosShot = nullptr;
 };
 
 #endif
