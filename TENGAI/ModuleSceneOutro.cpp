@@ -42,5 +42,10 @@ update_status ModuleSceneOutro::Update()
 
 	App->render->Blit(background_outro, 0, 0, NULL);
 
+	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	{
+		App->fade->FadeToBlack(App->scene_outro, App->scene_intro, 1.0);
+	}
+
 	return UPDATE_CONTINUE;
 }
