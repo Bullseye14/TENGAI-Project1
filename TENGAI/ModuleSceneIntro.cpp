@@ -44,7 +44,7 @@ update_status ModuleSceneIntro::Update()
 
 	App->render->Blit(background, -2, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
 		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
 	}
