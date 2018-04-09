@@ -18,7 +18,7 @@ ModulePlayer::ModulePlayer()
 
 	offsetCamera = 3;
 
-	// idle animation (just the ship)
+	// idle animation
 	idle.PushBack({ 392, 10, 31, 27 });
 	idle.PushBack({ 432, 10, 31, 27 });
 	idle.PushBack({ 472, 10, 31, 27 });
@@ -89,7 +89,7 @@ update_status ModulePlayer::Update()
 	{
 		current_animation = &backward;
 		
-		if (position.x - speed >= 0) 
+		if (position.x - speed == 0)
 		{
 			position.x -= speed;
 		}
