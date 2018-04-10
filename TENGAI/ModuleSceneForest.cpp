@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
+#include "ModuleEnemy.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -48,6 +49,7 @@ bool ModuleSceneForest::Start()
 
 	App->player->Enable();
 	App->collision->Enable();
+	App->enemy->Enable();
 
 	return true;
 }
@@ -60,6 +62,7 @@ bool ModuleSceneForest::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->collision->Disable();
+	App->enemy->Disable();
 
 	return true;
 }
