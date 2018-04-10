@@ -3,6 +3,8 @@
 #include "ModuleRender.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleCollision.h"
+#include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender() : Module()
@@ -10,6 +12,7 @@ ModuleRender::ModuleRender() : Module()
 	camera.x = camera.y = 0;
 	camera.w = SCREEN_WIDTH;
 	camera.h = SCREEN_HEIGHT;
+
 }
 
 // Destructor
@@ -22,6 +25,9 @@ bool ModuleRender::Init()
 	LOG("Creating Renderer context");
 	bool ret = true;
 	Uint32 flags = 0;
+
+	camera_left_border = App->collision->AddCollider({camera.x - 70,0,1,SCREEN_HEIGHT},COLLIDER_ENEMY,App->player);
+	//camera_right_border = App->collision->AddCollider({SCREEN_WIDTH-50,0,1,SCREEN_HEIGHT }, COLLIDER_ENEMY, App->player);
 
 	if(REN_VSYNC == true)
 	{
@@ -50,6 +56,8 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::Update()	
 {
 	int speed = 3;
+	camera_left_border->SetPos(camera_left_border->rect.x + 1,0);
+	//camera_right_border->SetPos(camera_right_border->rect.x + 1, 0);
 
 	return update_status::UPDATE_CONTINUE;
 }

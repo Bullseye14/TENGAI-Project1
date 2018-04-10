@@ -93,13 +93,16 @@ update_status ModulePlayer::Update()
 
 	if(App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
+
 		current_animation = &backward;
-		position.x -= speed;
+		if (onScreen)		position.x -= speed;
+		//else position.x += speed;
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &idle;
+		//if (onScreen || position.x + SCREEN_WIDTH < SCREEN_WIDTH*1.5)
 		position.x += speed;
 	}
 
@@ -145,11 +148,18 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
+	onScreen = true;
 	return UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	int a = 1;
+	
+	//SHA DE CANVIAR PER COLLIDER_WALL SI MANTENIM AQUEST MODE 
+	//DE DETECTAR QUE ESTAR DINS LA PANTALLA, ESTA AMB COLLIDER_ENEMY 
+	//FOR TESTING PURPOSES
+	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY) {
+		onScreen = false;
+	}
 }

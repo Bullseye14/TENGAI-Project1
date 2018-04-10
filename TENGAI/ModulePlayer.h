@@ -34,6 +34,7 @@ public:
 	Collider* player_collider;
 	Collider* bullet_collider;
 
+	bool onScreen;
 	uint offsetCamera;
 
 	Mix_Chunk* MikosShot = nullptr;

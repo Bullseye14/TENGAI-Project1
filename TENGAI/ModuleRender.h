@@ -25,6 +25,8 @@ public:
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
+	Collider* camera_left_border = nullptr;
+	Collider* camera_right_border = nullptr;
 };
 
 #endif //__ModuleRenderer_H__
