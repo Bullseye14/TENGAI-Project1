@@ -73,8 +73,6 @@ bool ModulePlayer::Start()
 
 	return true;
 
-
-	return true;
 }
 
 // Unload assets

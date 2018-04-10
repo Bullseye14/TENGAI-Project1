@@ -19,9 +19,20 @@ ModuleEnemy::ModuleEnemy()
 
 	//animation
 	idle.PushBack({ 43,44,91,107 });
-	idle.PushBack({ 43,44,91,107 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 253,49,93,107 });
+	/*idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 157,46,96,109 });*/
 	idle.loop = true;
-	idle.speed = 0.2f;
+	idle.speed = 0.19f;
 }
 
 ModuleEnemy::~ModuleEnemy() {}
@@ -31,7 +42,6 @@ bool ModuleEnemy::Start()
 	LOG("Loading player");
 
 	enemy1 = App->textures->Load("tengai/Enemy.png");
-
 
 	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,91,107 }, COLLIDER_ENEMY);
 
