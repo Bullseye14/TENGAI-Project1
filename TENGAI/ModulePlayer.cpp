@@ -127,14 +127,13 @@ update_status ModulePlayer::Update()
 		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
 		MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
 		Mix_PlayChannel(-1, MikosShot, 0);
-	
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE) {
-
+		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE) 
+	{
 		current_animation = &idle;	
 	}
 	
