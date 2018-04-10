@@ -25,7 +25,7 @@ public:
 
 	SDL_Texture * enemy1 = nullptr;
 	Animation* current_animation = nullptr;
-	Animation enemyAnim;
+	Animation idle;
 	iPoint enemy_pos;
 	Collider* enemy_collider;
 

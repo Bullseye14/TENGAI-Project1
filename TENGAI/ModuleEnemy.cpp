@@ -18,8 +18,7 @@ ModuleEnemy::ModuleEnemy()
 	offsetCamera = 3;
 
 	//animation
-	enemyAnim.PushBack{ (43,44,91,107) };
-
+	idle.PushBack({ 43,44,91,107 });
 }
 
 ModuleEnemy::~ModuleEnemy() {}
