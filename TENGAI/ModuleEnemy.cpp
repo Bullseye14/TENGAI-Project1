@@ -21,16 +21,27 @@ ModuleEnemy::ModuleEnemy()
 	idle.PushBack({ 43,44,91,107 });
 	idle.PushBack({ 157,46,96,109 });
 	idle.PushBack({ 253,49,93,107 });
-	/*idle.PushBack({ 157,46,96,109 });
+	idle.PushBack({ 362,51,93,108 });
+	idle.PushBack({ 38,167,91,108 });
+	idle.PushBack({ 133,165,88,110 });
+	idle.PushBack({ 240,173,98,101 });
+	idle.PushBack({ 359,173,98,101 });
+	idle.PushBack({ 6,289,97,102 });
+	idle.PushBack({ 104,281,97,113 });
+	idle.PushBack({ 202,277,97,121 });
+	idle.PushBack({ 309,275,97,130 });
+	idle.PushBack({ 408,271,98,133 });
+	idle.PushBack({ 309,275,97,130 });
+	idle.PushBack({ 202,277,97,121 });
+	idle.PushBack({ 104,281,97,113 });
+	idle.PushBack({ 6,289,97,102 });
+	idle.PushBack({ 359,173,98,101 });
+	idle.PushBack({ 240,173,98,101 });
+	idle.PushBack({ 133,165,88,110 });
+	idle.PushBack({ 38,167,91,108 });
+	idle.PushBack({ 362,51,93,108 });
+	idle.PushBack({ 253,49,93,107 });
 	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 157,46,96,109 });*/
 	idle.loop = true;
 	idle.speed = 0.19f;
 }
@@ -43,7 +54,7 @@ bool ModuleEnemy::Start()
 
 	enemy1 = App->textures->Load("tengai/Enemy.png");
 
-	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,91,107 }, COLLIDER_ENEMY, this);
+	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,98,133 }, COLLIDER_ENEMY, this);
 
 	return true;
 }
