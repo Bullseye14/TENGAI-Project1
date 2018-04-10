@@ -66,6 +66,13 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("tengai/spritesheet.png");
+	position.x = 10;
+	position.y = 60;
+
+	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER);
+
+	return true;
+
 
 	return true;
 }
@@ -117,8 +124,6 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	// TODO 3: Shoot lasers when the player hits SPACE
-
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
 		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6);
@@ -131,11 +136,12 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE) {
 
-		current_animation = &idle;
-
-	
-
+		current_animation = &idle;	
 	}
+	
+	//Update collider position to player position
+
+	player_collider->SetPos(position.x, position.y);
 
 	// Draw everything --------------------------------------
 

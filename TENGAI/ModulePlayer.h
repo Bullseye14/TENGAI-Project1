@@ -31,6 +31,7 @@ public:
 	Animation die;
 	Animation shield;
 	iPoint position;
+	Collider* player_collider;
 
 	uint offsetCamera;
 
