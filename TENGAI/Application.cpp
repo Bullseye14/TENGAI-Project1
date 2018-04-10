@@ -10,6 +10,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
+#include "ModuleCollision.h"
 
 Application::Application()
 {
@@ -24,6 +25,7 @@ Application::Application()
 	modules[10] = fade = new ModuleFadeToBlack();
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = scene_outro = new ModuleSceneOutro();
+	modules[11] = collision = new ModuleCollision();
 	
 }	
 
