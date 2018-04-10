@@ -32,6 +32,7 @@ public:
 	Animation shield;
 	iPoint position;
 	Collider* player_collider;
+	Collider* bullet_collider;
 
 	uint offsetCamera;
 

@@ -126,9 +126,10 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
-		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6);
+		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
 		MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
 		Mix_PlayChannel(-1, MikosShot, 0);
+	
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -142,6 +143,7 @@ update_status ModulePlayer::Update()
 	//Update collider position to player position
 
 	player_collider->SetPos(position.x, position.y);
+
 
 	// Draw everything --------------------------------------
 
