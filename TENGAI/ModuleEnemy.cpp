@@ -12,7 +12,7 @@ ModuleEnemy::ModuleEnemy()
 	enemy1 = NULL;
 	current_animation = NULL;
 
-	enemy_pos.x = 250;
+	enemy_pos.x = 220;
 	enemy_pos.y = 10;
 
 	offsetCamera = 3;

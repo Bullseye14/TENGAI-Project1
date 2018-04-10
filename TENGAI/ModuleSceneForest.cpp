@@ -75,8 +75,10 @@ update_status ModuleSceneForest::Update()
 
 	//Player auto scroll
 	App->player->position.x += 1;
+	App->enemy->enemy_pos.x += 1;
 
 	App->render->camera.x -= 2;
+
 	App->player->offsetCamera += 2;
 
 	// Draw everything --------------------------------------
