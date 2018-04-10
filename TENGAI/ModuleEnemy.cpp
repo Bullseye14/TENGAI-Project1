@@ -43,7 +43,7 @@ bool ModuleEnemy::Start()
 
 	enemy1 = App->textures->Load("tengai/Enemy.png");
 
-	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,91,107 }, COLLIDER_ENEMY);
+	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,91,107 }, COLLIDER_ENEMY, this);
 
 	return true;
 }
