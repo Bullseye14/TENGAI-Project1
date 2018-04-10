@@ -17,8 +17,6 @@ ModulePlayer::ModulePlayer()
 	position.x = 0;
 	position.y = 120;
 
-	offsetCamera = 3;
-
 	// idle animation
 	idle.PushBack({ 392, 10, 31, 27 });
 	idle.PushBack({ 432, 10, 31, 27 });
@@ -55,6 +53,8 @@ ModulePlayer::ModulePlayer()
 	shield.PushBack({ 870,7,35,35 });
 	shield.PushBack({ 911,7,35,35 });
 	shield.speed = 0.15f;
+
+	
 }
 
 ModulePlayer::~ModulePlayer()
@@ -66,8 +66,17 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("tengai/spritesheet.png");
+
 	position.x = 10;
 	position.y = 60;
+	screen_position.x = 10;
+	screen_position.y = 60;
+
+	distance_backward = position.x;
+	distance_forward = SCREEN_WIDTH * SCREEN_SIZE - position.x;
+
+	distance_up = position.y;
+	distance_down = SCREEN_HEIGHT - position.y;
 
 	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER,this);
 
@@ -88,41 +97,46 @@ bool ModulePlayer::CleanUp()
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 2;
+	int speed = 5;
 	
 
-	if(App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 
 		current_animation = &backward;
-		if (onScreen)		position.x -= speed;
-		//else position.x += speed;
-	}
-
-	if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		current_animation = &idle;
-		//if (onScreen || position.x + SCREEN_WIDTH < SCREEN_WIDTH*1.5)
-		position.x += speed;
-	}
-
-	if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	{
-		current_animation = &idle;
-		if (position.y + speed <= SCREEN_HEIGHT - 27) 
-		{
-			position.y += speed;
+		if (screen_position.x - speed > -10) {
+			position.x -= speed;
+			screen_position.x -= speed;
 		}
+	}
+	//MUST HAVE ELSE
+	else if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	{
+		current_animation = &idle;
+		if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w) {
+				position.x += speed;
+				screen_position.x += speed;
+		}	
+		
 	}
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		current_animation = &backward;
+		if (screen_position.y - speed > 0) {
+				position.y -= speed;
+				screen_position.y -= speed;
+			}		
+	}
 
-		if (position.y - speed >= 0) 
-		{
-			position.y -= speed;
+    if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	{
+		current_animation = &idle;
+		if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h) {
+			position.y += speed;
+			screen_position.y += speed;
 		}
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
@@ -148,18 +162,18 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	onScreen = true;
+
 	return UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	int a = 1;
 	
 	//SHA DE CANVIAR PER COLLIDER_WALL SI MANTENIM AQUEST MODE 
 	//DE DETECTAR QUE ESTAR DINS LA PANTALLA, ESTA AMB COLLIDER_ENEMY 
 	//FOR TESTING PURPOSES
 	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY) {
-		onScreen = false;
+		int a = 1;
+
 	}
 }

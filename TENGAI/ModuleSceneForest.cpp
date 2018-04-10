@@ -79,8 +79,6 @@ update_status ModuleSceneForest::Update()
 
 	App->render->camera.x -= 2;
 
-	App->player->offsetCamera += 2;
-
 	// Draw everything --------------------------------------
 	//App->render->Blit(background, 0, 0, NULL);
 	App->render->Blit(graphics, 0, 0, &BG_mid, 0.75f);

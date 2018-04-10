@@ -34,8 +34,11 @@ public:
 	Collider* player_collider;
 	Collider* bullet_collider;
 
-	bool onScreen;
-	uint offsetCamera;
+	iPoint screen_position;
+	int distance_forward;
+	int distance_backward;
+	int distance_up;
+	int distance_down;
 
 	Mix_Chunk* MikosShot = nullptr;
 };

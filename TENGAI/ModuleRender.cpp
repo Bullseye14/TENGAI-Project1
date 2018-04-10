@@ -25,9 +25,7 @@ bool ModuleRender::Init()
 	LOG("Creating Renderer context");
 	bool ret = true;
 	Uint32 flags = 0;
-
-	camera_left_border = App->collision->AddCollider({camera.x - 70,0,1,SCREEN_HEIGHT},COLLIDER_ENEMY,App->player);
-	//camera_right_border = App->collision->AddCollider({SCREEN_WIDTH-50,0,1,SCREEN_HEIGHT }, COLLIDER_ENEMY, App->player);
+	int speed = 3;
 
 	if(REN_VSYNC == true)
 	{
@@ -55,9 +53,6 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()	
 {
-	int speed = 3;
-	camera_left_border->SetPos(camera_left_border->rect.x + 1,0);
-	//camera_right_border->SetPos(camera_right_border->rect.x + 1, 0);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -104,37 +99,6 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 	rect.h *= SCREEN_SIZE;
 
 	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
-	{
-		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
-		ret = false;
-	}
-
-	return ret;
-}
-
-bool ModuleRender::Blitt(SDL_Texture* texture, int x, int y, SDL_Rect* section, int &rect_x, float speed)
-{
-	bool ret = true;
-	SDL_Rect rect;
-	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
-	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
-
-	rect_x = rect.x;
-
-	if (section != NULL)
-	{
-		rect.w = section->w;
-		rect.h = section->h;
-	}
-	else
-	{
-		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
-	}
-
-	rect.w *= SCREEN_SIZE;
-	rect.h *= SCREEN_SIZE;
-
-	if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
