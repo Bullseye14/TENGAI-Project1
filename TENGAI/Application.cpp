@@ -22,10 +22,10 @@ Application::Application()
 	modules[6] = scene_forest = new ModuleSceneForest();
 	modules[7] = player = new ModulePlayer();
 	modules[8] = particles = new ModuleParticles();
-	modules[10] = fade = new ModuleFadeToBlack();
+	modules[11] = fade = new ModuleFadeToBlack();
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = scene_outro = new ModuleSceneOutro();
-	modules[11] = collision = new ModuleCollision();
+	modules[10] = collision = new ModuleCollision();
 	
 }	
 

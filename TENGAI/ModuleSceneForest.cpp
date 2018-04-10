@@ -10,6 +10,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
+#include "ModuleCollision.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -46,6 +47,9 @@ bool ModuleSceneForest::Start()
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->player->Enable();
+	App->collision->Enable();
+
+	App->collision->AddCollider({ 0, 224, 3930, 16 }, COLLIDER_WALL);
 
 	return true;
 }
