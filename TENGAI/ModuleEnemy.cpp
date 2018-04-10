@@ -12,13 +12,16 @@ ModuleEnemy::ModuleEnemy()
 	enemy1 = NULL;
 	current_animation = NULL;
 
-	enemy_pos.x = 0;
-	enemy_pos.y = 120;
+	enemy_pos.x = 50;
+	enemy_pos.y = 60;
 
 	offsetCamera = 3;
 
 	//animation
 	idle.PushBack({ 43,44,91,107 });
+	idle.PushBack({ 43,44,91,107 });
+	idle.loop = true;
+	idle.speed = 0.2f;
 }
 
 ModuleEnemy::~ModuleEnemy() {}
@@ -27,10 +30,8 @@ bool ModuleEnemy::Start()
 {
 	LOG("Loading player");
 
-	enemy1 = App->textures->Load("tengai/enemy.png");
+	enemy1 = App->textures->Load("tengai/Enemy.png");
 
-	enemy_pos.x = 70;
-	enemy_pos.y = 60;
 
 	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,91,107 }, COLLIDER_ENEMY);
 
@@ -48,6 +49,8 @@ bool ModuleEnemy::CleanUp()
 
 update_status ModuleEnemy::Update()
 {
+	current_animation = &idle;
+
 	enemy_collider->SetPos(enemy_pos.x, enemy_pos.y);
 
 	App->render->Blit(enemy1, enemy_pos.x, enemy_pos.y, &(current_animation->GetCurrentFrame()));
