@@ -186,11 +186,35 @@ update_status ModuleSceneForest::Update()
 
 	App->render->camera.x -= 2;
 
+	int pos = -9, postree = -10;
+
 	// Draw everything --------------------------------------
 	//App->render->Blit(background, 0, 0, NULL);
-	App->render->Blit(graphics, 0, 0, &BG_mid, 0.75f);
-	App->render->Blit(graphics, 0, 0, &BG_far, 0.25f);
+	for (int i = 0; i < 6; ++i) {
+		App->render->Blit(graphics, pos, 0, &BG_far, 0.25f);
+		App->render->Blit(graphics, pos+170, 25, &tree2, 0.75f);
+		App->render->Blit(graphics, pos+42, 45, &tree3, 0.75f);
+		App->render->Blit(graphics, pos, 58, &BG_mid, 0.75f);
+		App->render->Blit(graphics, postree, 82, &tree1, 0.75f);
+
+		pos += 320;
+		postree += 319;
+	}
+
+
+/*	App->render->Blit(graphics, 0, 0, &log2, 0.75f);
+	App->render->Blit(graphics, 0, 0, &log1, 0.9f);
 	App->render->Blit(graphics, 0, 152, &ground, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor1, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor2, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor3, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor4, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor5, 1.0f);
+	App->render->Blit(graphics, 0, 152, &floor6, 1.0f);
+	App->render->Blit(graphics, 0, 152, &ForestHouse1, 1.0f);
+	App->render->Blit(graphics, 0, 152, &ForestHouse2, 1.0f);
+	App->render->Blit(graphics, 0, 152, &TempleDoor, 1.0f);*/
+
 
 	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
 	{
