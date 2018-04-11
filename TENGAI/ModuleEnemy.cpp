@@ -56,7 +56,7 @@ bool ModuleEnemy::Start()
 
 	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,100,20 }, COLLIDER_ENEMY, this);
 	enemy_collider1 = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,66,37 }, COLLIDER_ENEMY, this);
-	enemy_collider2 = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,69,55 }, COLLIDER_ENEMY, this);
+	enemy_collider2 = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,69,75 }, COLLIDER_ENEMY, this);
 
 	return true;
 }
