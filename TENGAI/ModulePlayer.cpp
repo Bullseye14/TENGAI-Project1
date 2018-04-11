@@ -70,7 +70,7 @@ bool ModulePlayer::Start()
 	screen_position.y = 60;
 
 	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
-	bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
+	//bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
 
 	return true;
 
@@ -121,7 +121,7 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!Shield_Animation)current_animation = &backward;
-		if (screen_position.y - speed > 0) 
+		if (screen_position.y - speed > -5) 
 		{
 				position.y -= speed;
 				screen_position.y -= speed;

@@ -48,7 +48,7 @@ bool ModuleParticles::Start()
 	Mshot.anim.loop = true;
 	Mshot.anim.speed = 0.4f;
 	Mshot.speed = iPoint(10, 0);
-	Mshot.life = 150000;
+	Mshot.life = 2000;
 
 	return true;
 }
@@ -161,6 +161,8 @@ bool Particle::Update()
 
 	position.x += speed.x;
 	position.y += speed.y;
+
+	collider->SetPos(position.x, position.y);
 
 	return ret;
 }
