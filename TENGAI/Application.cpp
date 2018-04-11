@@ -19,15 +19,16 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[10] = scene_intro = new ModuleSceneIntro();
-	modules[6] = scene_forest = new ModuleSceneForest();
-	modules[7] = player = new ModulePlayer();
-	modules[9] = particles = new ModuleParticles();
-	modules[12] = fade = new ModuleFadeToBlack();
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = scene_outro = new ModuleSceneOutro();
+	modules[6] = scene_forest = new ModuleSceneForest();
+	modules[7] = enemy = new ModuleEnemy();
+	modules[8] = player = new ModulePlayer();
+	modules[9] = particles = new ModuleParticles();
+	modules[10] = scene_intro = new ModuleSceneIntro();
 	modules[11] = collision = new ModuleCollision();
-	modules[8] = enemy = new ModuleEnemy();
+	modules[12] = fade = new ModuleFadeToBlack();
+	
 	
 }	
 

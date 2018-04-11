@@ -153,6 +153,12 @@ update_status ModulePlayer::Update()
 	{
 		current_animation = &idle;	
 	}
+	if (Shield_Animation == true) {
+		current_animation = &shield;
+	}
+	else if (Shield_Animation == false) {
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	}
 	
 	//Update collider position to player position
 
@@ -173,7 +179,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	//DE DETECTAR QUE ESTAR DINS LA PANTALLA, ESTA AMB COLLIDER_ENEMY 
 	//FOR TESTING PURPOSES
 	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY) {
-		int a = 1;
-
+		Shield_Animation = true;
+	}
+	else {
+		Shield_Animation = false;
 	}
 }

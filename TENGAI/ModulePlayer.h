@@ -19,6 +19,7 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+	bool Shield_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
 
 public:

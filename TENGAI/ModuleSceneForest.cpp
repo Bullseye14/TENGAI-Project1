@@ -209,6 +209,7 @@ update_status ModuleSceneForest::Update()
 	App->render->Blit(graphics, 115, 0, &TempleDoor, 0.75f);
 	App->render->Blit(graphics, 938, 140, &ForestHouse1, 0.75f);
 	App->render->Blit(graphics, 1400, 92, &ForestHouse2, 0.75f);
+	
 	for (int i = 0; i < 5; i++) {
 		App->render->Blit(graphics, pos2, 204, &floor2, 0.75f);
 		pos2 += floor2.w;
