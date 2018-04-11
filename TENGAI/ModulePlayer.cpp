@@ -20,7 +20,7 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 432, 10, 31, 27 });
 	idle.PushBack({ 472, 10, 31, 27 });
 	idle.loop = true;
-	idle.speed = 0.12f;
+	idle.speed = 0.10f;
 
 	// backward animation (arcade sprite sheet)
 	backward.PushBack({ 514,7,41,31 });
