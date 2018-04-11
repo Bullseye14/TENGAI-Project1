@@ -41,6 +41,7 @@ public:
 	iPoint screen_position;
 
 	Mix_Chunk* MikosShot = nullptr;
+	Mix_Chunk* MikoCollision = nullptr;
 };
 
 #endif

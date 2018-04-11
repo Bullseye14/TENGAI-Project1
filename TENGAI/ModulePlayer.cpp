@@ -7,8 +7,6 @@
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModulePlayer::ModulePlayer()
 {
 	graphics = NULL;
@@ -53,7 +51,6 @@ ModulePlayer::ModulePlayer()
 	shield.PushBack({ 870,7,35,35 });
 	shield.PushBack({ 911,7,35,35 });
 	shield.speed = 0.1f;
-
 	
 }
 
@@ -72,7 +69,8 @@ bool ModulePlayer::Start()
 	screen_position.x = 10;
 	screen_position.y = 60;
 
-	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER,this);
+	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
+	bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
 
 	return true;
 
@@ -93,7 +91,8 @@ update_status ModulePlayer::Update()
 {
 	int speed = 5;
 	
-	if (shield.Finished()) {
+	if (shield.Finished()) 
+	{
 		Shield_Animation = false;
 		shield.Reset();
 	}
@@ -102,7 +101,8 @@ update_status ModulePlayer::Update()
 	{
 
 		if (!Shield_Animation)current_animation = &backward;
-		if (screen_position.x - speed > -10) {
+		if (screen_position.x - speed > -10) 
+		{
 			position.x -= speed;
 			screen_position.x -= speed;
 		}
@@ -110,7 +110,8 @@ update_status ModulePlayer::Update()
 	else if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!Shield_Animation)current_animation = &idle;
-		if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w) {
+		if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w) 
+		{
 				position.x += speed;
 				screen_position.x += speed;
 		}	
@@ -120,7 +121,8 @@ update_status ModulePlayer::Update()
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!Shield_Animation)current_animation = &backward;
-		if (screen_position.y - speed > 0) {
+		if (screen_position.y - speed > 0) 
+		{
 				position.y -= speed;
 				screen_position.y -= speed;
 			}		
@@ -129,11 +131,11 @@ update_status ModulePlayer::Update()
     else if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		if (!Shield_Animation)current_animation = &idle;
-		if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h) {
+		if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h) 
+		{
 			position.y += speed;
 			screen_position.y += speed;
 		}
-		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
@@ -155,7 +157,7 @@ update_status ModulePlayer::Update()
 	//Update collider position to player position
 
 	player_collider->SetPos(position.x, position.y);
-
+	//bullet_collider->SetPos(App->particles->Mshot.position.x, App->particles->Mshot.position.y);
 
 	// Draw everything --------------------------------------
 
@@ -167,5 +169,10 @@ update_status ModulePlayer::Update()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
-	if (Shield_Animation) current_animation = &shield;
+	if (Shield_Animation) 
+	{
+		current_animation = &shield;
+		//MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
+		//Mix_PlayChannel(-1, MikoCollision, 0);
+	}
 }
