@@ -24,6 +24,14 @@ public:
 	SDL_Rect BG_mid;
 	SDL_Rect BG_far;
 	SDL_Rect ground;
+	SDL_Rect TempleDoor;
+	SDL_Rect ForestHouse1, ForestHouse2;
+	SDL_Rect tree1, tree2, tree3, tree4, tree5, trees;
+	SDL_Rect log1, log2;
+	SDL_Rect floor1, floor2, floor3, floor4, floor5, floor6;
+	SDL_Rect sky;
+	SDL_Rect GreySquare, BlueSquare, BlackSquare;
+	SDL_Rect mountain;
 
 	Mix_Music* SceneForest = nullptr;
 
