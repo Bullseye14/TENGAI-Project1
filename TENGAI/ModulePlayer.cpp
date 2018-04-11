@@ -52,7 +52,7 @@ ModulePlayer::ModulePlayer()
 	shield.PushBack({ 830,7,35,35 });
 	shield.PushBack({ 870,7,35,35 });
 	shield.PushBack({ 911,7,35,35 });
-	shield.speed = 0.15f;
+	shield.speed = 0.1f;
 
 	
 }
@@ -71,12 +71,6 @@ bool ModulePlayer::Start()
 	position.y = 60;
 	screen_position.x = 10;
 	screen_position.y = 60;
-
-	distance_backward = position.x;
-	distance_forward = SCREEN_WIDTH * SCREEN_SIZE - position.x;
-
-	distance_up = position.y;
-	distance_down = SCREEN_HEIGHT - position.y;
 
 	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER,this);
 
@@ -99,20 +93,23 @@ update_status ModulePlayer::Update()
 {
 	int speed = 5;
 	
-
+	if (shield.Finished()) {
+		Shield_Animation = false;
+		shield.Reset();
+	}
+		
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 
-		current_animation = &backward;
+		if (!Shield_Animation)current_animation = &backward;
 		if (screen_position.x - speed > -10) {
 			position.x -= speed;
 			screen_position.x -= speed;
 		}
 	}
-	//MUST HAVE ELSE
 	else if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		current_animation = &idle;
+		if (!Shield_Animation)current_animation = &idle;
 		if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w) {
 				position.x += speed;
 				screen_position.x += speed;
@@ -122,16 +119,16 @@ update_status ModulePlayer::Update()
 
 	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
-		current_animation = &backward;
+		if (!Shield_Animation)current_animation = &backward;
 		if (screen_position.y - speed > 0) {
 				position.y -= speed;
 				screen_position.y -= speed;
 			}		
 	}
 
-    if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+    else if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		current_animation = &idle;
+		if (!Shield_Animation)current_animation = &idle;
 		if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h) {
 			position.y += speed;
 			screen_position.y += speed;
@@ -149,15 +146,10 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE) 
+		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+		&& !Shield_Animation)
 	{
 		current_animation = &idle;	
-	}
-	if (Shield_Animation == true) {
-		current_animation = &shield;
-	}
-	else if (Shield_Animation == false) {
-		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	
 	//Update collider position to player position
@@ -174,14 +166,6 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	
-	//SHA DE CANVIAR PER COLLIDER_WALL SI MANTENIM AQUEST MODE 
-	//DE DETECTAR QUE ESTAR DINS LA PANTALLA, ESTA AMB COLLIDER_ENEMY 
-	//FOR TESTING PURPOSES
-	if (c1->type == COLLIDER_ENEMY || c2->type == COLLIDER_ENEMY) {
-		Shield_Animation = true;
-	}
-	else {
-		Shield_Animation = false;
-	}
+	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
+	if (Shield_Animation) current_animation = &shield;
 }

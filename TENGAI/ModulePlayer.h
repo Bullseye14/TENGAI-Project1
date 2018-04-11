@@ -19,27 +19,26 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
+
 	bool Shield_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
 
 public:
 
 	SDL_Texture* graphics = nullptr;
+
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation backward;
 	Animation run;
 	Animation die;
 	Animation shield;
-	iPoint position;
+
 	Collider* player_collider;
 	Collider* bullet_collider;
 
+	iPoint position;
 	iPoint screen_position;
-	int distance_forward;
-	int distance_backward;
-	int distance_up;
-	int distance_down;
 
 	Mix_Chunk* MikosShot = nullptr;
 };
