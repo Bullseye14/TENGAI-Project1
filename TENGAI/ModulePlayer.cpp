@@ -26,7 +26,7 @@ ModulePlayer::ModulePlayer()
 	backward.PushBack({ 514,7,41,31 });
 	backward.PushBack({ 555,7,31,31 });
 	backward.PushBack({ 592,7,33,31 });
-	backward.speed = 0.19f;
+	backward.speed = 0.15f;
 
 	// run animation (arcade sprite sheet)
 	run.PushBack({ 72,7,33,35 });
