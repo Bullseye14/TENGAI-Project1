@@ -27,7 +27,7 @@ public:
 	Animation* current_animation = nullptr;
 	Animation idle;
 	iPoint enemy_pos;
-	Collider* enemy_collider;
+	Collider *enemy_collider, *enemy_collider1, *enemy_collider2;
 
 	uint offsetCamera;
 };

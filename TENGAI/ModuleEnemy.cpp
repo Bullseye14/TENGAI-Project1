@@ -54,7 +54,9 @@ bool ModuleEnemy::Start()
 
 	enemy1 = App->textures->Load("tengai/Enemy.png");
 
-	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,98,133 }, COLLIDER_ENEMY, this);
+	enemy_collider = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,100,20 }, COLLIDER_ENEMY, this);
+	enemy_collider1 = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,66,37 }, COLLIDER_ENEMY, this);
+	enemy_collider2 = App->collision->AddCollider({ enemy_pos.x,enemy_pos.y,69,55 }, COLLIDER_ENEMY, this);
 
 	return true;
 }
@@ -72,7 +74,9 @@ update_status ModuleEnemy::Update()
 {
 	current_animation = &idle;
 
-	enemy_collider->SetPos(enemy_pos.x, enemy_pos.y);
+	enemy_collider->SetPos(enemy_pos.x, enemy_pos.y + 37);
+	enemy_collider1->SetPos(enemy_pos.x + 15, enemy_pos.y);
+	enemy_collider2->SetPos(enemy_pos.x + 12, enemy_pos.y + 57);
 
 	App->render->Blit(enemy1, enemy_pos.x, enemy_pos.y, &(current_animation->GetCurrentFrame()));
 
