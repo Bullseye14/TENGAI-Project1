@@ -1,7 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
-#include "SDL/include/SDL.h"
+
 
 ModuleInput::ModuleInput() : Module()
 {
@@ -54,7 +54,10 @@ update_status ModuleInput::PreUpdate()
 				keyboard[i] = KEY_IDLE;
 		}
 	}
-
+	while (SDL_PollEvent(&Event)) {
+		if (Event.type == SDL_QUIT)
+			return update_status::UPDATE_STOP;
+	}
 	if(keyboard[SDL_SCANCODE_ESCAPE])
 		return update_status::UPDATE_STOP;
 

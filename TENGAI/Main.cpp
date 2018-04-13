@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
 
 			case MAIN_FINISH:
 			{
+				
 				LOG("Application CleanUp --------------");
 				if(App->CleanUp() == false)
 				{

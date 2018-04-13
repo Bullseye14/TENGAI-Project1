@@ -163,7 +163,9 @@ bool Particle::Update()
 	position.x += speed.x;
 	position.y += speed.y;
 
-	collider->SetPos(position.x, position.y);
+	//Aixi no peta amb molts dispars pero desparaeix el collider en comptes de petar
+	if (collider != nullptr && collider->type != COLLIDER_NONE)
+		collider->SetPos(position.x, position.y);
 
 	return ret;
 }
