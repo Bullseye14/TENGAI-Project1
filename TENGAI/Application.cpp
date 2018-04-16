@@ -11,7 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
-#include "ModuleEnemy.h"
+#include "ModuleEnemies.h"
 
 Application::Application()
 {
@@ -22,7 +22,7 @@ Application::Application()
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = scene_outro = new ModuleSceneOutro();
 	modules[6] = scene_forest = new ModuleSceneForest();
-	modules[7] = enemy = new ModuleEnemy();
+	modules[7] = enemies = new ModuleEnemies();
 	modules[8] = player = new ModulePlayer();
 	modules[9] = particles = new ModuleParticles();
 	modules[10] = scene_intro = new ModuleSceneIntro();
@@ -44,7 +44,7 @@ bool Application::Init()
 
 	// Disable all stopped modules here
 	player->Disable();
-	enemy->Disable();
+	enemies->Disable();
 	scene_forest->Disable();
 	scene_outro->Disable();
 	

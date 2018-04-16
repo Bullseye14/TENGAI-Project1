@@ -154,7 +154,7 @@ bool Particle::Update()
 	if(life > 0)
 	{
 		if((SDL_GetTicks() - born) > life)
-			ret = false;
+			return false;
 	}
 	else
 		if(anim.Finished())

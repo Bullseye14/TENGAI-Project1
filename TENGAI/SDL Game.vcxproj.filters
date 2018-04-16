@@ -12,6 +12,9 @@
     <Filter Include="Containers">
       <UniqueIdentifier>{78a7f487-1d77-4fdc-9f51-f067eccd6239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Enemies">
+      <UniqueIdentifier>{30cd8075-4e65-41d9-9510-f4d172d391a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -71,6 +74,15 @@
     <ClInclude Include="ModuleEnemy.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_BrownCookie.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -120,6 +132,15 @@
     </ClCompile>
     <ClCompile Include="ModuleEnemy.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_BrownCookie.cpp">
+      <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

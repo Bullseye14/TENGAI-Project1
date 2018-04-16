@@ -18,7 +18,7 @@ class ModuleSceneIntro;
 class ModuleAudio;
 class ModuleSceneOutro;
 class ModuleCollision;
-class ModuleEnemy;
+class ModuleEnemies;
 
 // TODO 1: Create an intro scene with rtype/intro.png that then fades to ModuleSpaceScene
 
@@ -39,7 +39,7 @@ public:
 	ModuleAudio* audio;
 	ModuleSceneOutro* scene_outro;
 	ModuleCollision* collision;
-	ModuleEnemy* enemy;
+	ModuleEnemies* enemies;
 
 public:
 

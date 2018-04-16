@@ -11,7 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
-#include "ModuleEnemy.h"
+#include "ModuleEnemies.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -154,9 +154,11 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH - 10, 50);
+
 	App->player->Enable();
 	App->collision->Enable();
-	App->enemy->Enable();
+	App->enemies->Enable();
 
 	return true;
 }
@@ -169,7 +171,7 @@ bool ModuleSceneForest::CleanUp()
 	App->textures->Unload(graphics);
 	App->player->Disable();
 	App->collision->Disable();
-	App->enemy->Disable();
+	App->enemies->Disable();
 
 	return true;
 }
@@ -182,7 +184,7 @@ update_status ModuleSceneForest::Update()
 
 	//Player auto scroll
 	App->player->position.x += 1;
-	App->enemy->enemy_pos.x += 1;
+//	App->enemies->enemy_pos.x += 1;
 
 	App->render->camera.x -= 2;
 

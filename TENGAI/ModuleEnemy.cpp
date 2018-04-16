@@ -77,6 +77,10 @@ update_status ModuleEnemy::Update()
 	enemy_collider->SetPos(enemy_pos.x, enemy_pos.y + 37);
 	enemy_collider1->SetPos(enemy_pos.x + 15, enemy_pos.y);
 	enemy_collider2->SetPos(enemy_pos.x + 12, enemy_pos.y + 57);
+	
+	/*if (App->input->keyboard[SDL_SCANCODE_E] == KEY_STATE::KEY_IDLE) {
+		App->particles->AddParticle(App->particles->Mshot, enemy_pos.x - 31, enemy_pos.y + 6, COLLIDER_ENEMY_SHOT);
+	}*/
 
 	App->render->Blit(enemy1, enemy_pos.x, enemy_pos.y, &(current_animation->GetCurrentFrame()));
 
