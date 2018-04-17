@@ -63,6 +63,7 @@ void Enemy_BrownCookie::Move()
 	position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	//position.x -= 1;
 }
-void OnCollision(){
+void OnCollision()
+{
 
 }
