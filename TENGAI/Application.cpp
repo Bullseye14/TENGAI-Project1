@@ -12,6 +12,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
+#include "ModuleSho.h"
 
 Application::Application()
 {
@@ -24,10 +25,11 @@ Application::Application()
 	modules[6] = scene_forest = new ModuleSceneForest();
 	modules[7] = enemies = new ModuleEnemies();
 	modules[8] = player = new ModulePlayer();
-	modules[9] = particles = new ModuleParticles();
-	modules[10] = scene_intro = new ModuleSceneIntro();
-	modules[11] = collision = new ModuleCollision();
-	modules[12] = fade = new ModuleFadeToBlack();
+	modules[9] = sho = new ModuleSho();
+	modules[10] = particles = new ModuleParticles();
+	modules[11] = scene_intro = new ModuleSceneIntro();
+	modules[12] = collision = new ModuleCollision();
+	modules[13] = fade = new ModuleFadeToBlack();
 	
 	
 }	
