@@ -50,6 +50,16 @@ bool ModuleParticles::Start()
 	Mshot.speed = iPoint(10, 0);
 	Mshot.life = 1500;
 
+	graphics2 = App->textures->Load("tengai/shoSpritesheet.png");
+
+	Sshot.anim.PushBack({ 73,151,26,3 });
+	Sshot.anim.PushBack({ 107,151,31,3 });
+	Sshot.anim.PushBack({ 148,151,31,3 });
+	Sshot.anim.loop = true;
+	Sshot.anim.speed = 0.4f;
+	Sshot.speed = iPoint(10, 0);
+	Sshot.life = 1500;
+
 	return true;
 }
 
@@ -58,6 +68,7 @@ bool ModuleParticles::CleanUp()
 {
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
+	App->textures->Unload(graphics2);
 
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{

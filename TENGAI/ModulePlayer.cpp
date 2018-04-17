@@ -184,4 +184,18 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY_SHOT) {
 		alive = false;
 	};
+
+	int Mlife = 3;
+	Die_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY);
+
+	if (Die_Animation)
+	{
+		if (Mlife < 3) { Mlife++; }
+		if (Mlife == 3) 
+		{
+			current_animation = &die;
+			player_collider->to_delete;
+			App->player->Disable();
+		}
+	}
 }

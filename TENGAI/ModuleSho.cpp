@@ -138,7 +138,7 @@ update_status ModuleSho::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_RSHIFT] == KEY_STATE::KEY_DOWN)
 	{
-		//App->particles->AddParticle(App->particles->Sshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->Sshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
 		ShosShot = App->audio->LoadFx("audio/ShosShot.wav");
 		Mix_PlayChannel(-1, ShosShot, 0);
 	}
