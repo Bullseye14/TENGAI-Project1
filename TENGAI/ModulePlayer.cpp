@@ -168,11 +168,12 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
+	
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation) 
 	{
 		current_animation = &shield;
-		//MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
-		//Mix_PlayChannel(-1, MikoCollision, 0);
+		MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
+		Mix_PlayChannel(-1, MikoCollision, 0);
 	}
 }
