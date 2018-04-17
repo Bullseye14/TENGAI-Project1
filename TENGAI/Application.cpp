@@ -46,6 +46,7 @@ bool Application::Init()
 
 	// Disable all stopped modules here
 	player->Disable();
+	sho->Disable();
 	enemies->Disable();
 	scene_forest->Disable();
 	scene_outro->Disable();

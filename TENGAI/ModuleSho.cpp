@@ -143,10 +143,10 @@ update_status ModuleSho::Update()
 		//Mix_PlayChannel(-1, MikosShot, 0);
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_IDLE
 		&& !Shield_Animation)
 	{
 		current_animation = &idle;
@@ -170,7 +170,6 @@ void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 	if (Shield_Animation)
 	{
 		current_animation = &shield;
-		//MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
-		//Mix_PlayChannel(-1, MikoCollision, 0);
+		
 	}
 }
