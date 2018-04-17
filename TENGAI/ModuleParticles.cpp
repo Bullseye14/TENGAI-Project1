@@ -48,7 +48,7 @@ bool ModuleParticles::Start()
 	Mshot.anim.loop = true;
 	Mshot.anim.speed = 0.4f;
 	Mshot.speed = iPoint(10, 0);
-	Mshot.life = 2000;
+	Mshot.life = 1500;
 
 	return true;
 }
@@ -83,6 +83,7 @@ update_status ModuleParticles::Update()
 
 		if(p->Update() == false)
 		{
+			p->collider->to_delete = true;
 			delete p;
 			active[i] = nullptr;
 		}
@@ -154,7 +155,7 @@ bool Particle::Update()
 	if(life > 0)
 	{
 		if((SDL_GetTicks() - born) > life)
-			return false;
+			ret = false;
 	}
 	else
 		if(anim.Finished())
