@@ -51,6 +51,7 @@ private:
 public:
 
 	Particle Mshot;
+	Particle Sshot;
 	
 	Particle start;
 };
