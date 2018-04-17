@@ -170,6 +170,7 @@ void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 	if (Shield_Animation)
 	{
 		current_animation = &shield;
-		
+		ShoCollision = App->audio->LoadFx("audio/ShoCollision.wav");
+		Mix_PlayChannel(-1, ShoCollision, 0);
 	}
 }

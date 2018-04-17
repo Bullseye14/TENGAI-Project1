@@ -42,6 +42,7 @@ public:
 
 	Mix_Chunk* MikosShot = nullptr;
 	Mix_Chunk* MikoCollision = nullptr;
+	Mix_Chunk* ShoCollision = nullptr;
 };
 
 #endif
