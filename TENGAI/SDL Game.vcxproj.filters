@@ -18,6 +18,9 @@
     <Filter Include="Modules\Characters">
       <UniqueIdentifier>{6a15c463-fbab-4fee-94c6-de5fdcd61c94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules\Scenes">
+      <UniqueIdentifier>{c5ee382e-07fa-4790-8652-c09499188a03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -56,16 +59,7 @@
     <ClInclude Include="ModuleParticles.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSceneIntro.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneForest.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleAudio.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleSceneOutro.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollision.h">
@@ -85,6 +79,15 @@
     </ClInclude>
     <ClInclude Include="ModuleSho.h">
       <Filter>Modules\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneOutro.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneForest.h">
+      <Filter>Modules\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSceneIntro.h">
+      <Filter>Modules\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -115,16 +118,7 @@
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSceneIntro.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneForest.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleSceneOutro.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollision.cpp">
@@ -144,6 +138,15 @@
     </ClCompile>
     <ClCompile Include="ModuleSho.cpp">
       <Filter>Modules\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneForest.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneIntro.cpp">
+      <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSceneOutro.cpp">
+      <Filter>Modules\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -43,6 +43,9 @@ public:
 	Mix_Chunk* MikosShot = nullptr;
 	Mix_Chunk* MikoCollision = nullptr;
 	Mix_Chunk* ShoCollision = nullptr;
+
+	bool alive = true;
+	int power_ups = 1;
 };
 
 #endif

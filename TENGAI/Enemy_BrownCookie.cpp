@@ -31,27 +31,6 @@ Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 	idle.PushBack({ 157,46,96,109 });
 	idle.speed = 0.19f;
 
-	/*
-	//fly.PushBack({ 5,72,21,22 });
-	fly.PushBack({ 5,39,24,24 });
-	fly.PushBack({ 38, 39, 24, 24 });
-	fly.PushBack({ 71, 39, 24, 24 });
-	fly.PushBack({ 104, 39, 24, 24 });
-	fly.PushBack({ 137, 39, 24, 24 });
-	fly.PushBack({ 170, 39, 24, 24 });
-	fly.PushBack({ 203, 39, 24, 24 });
-	fly.PushBack({ 236, 39, 24, 24 });
-	fly.PushBack({ 5,72,24,24 });
-	fly.PushBack({ 38, 72, 24, 24 });
-	fly.PushBack({ 71, 72, 24, 24 });
-	fly.PushBack({ 104, 72, 24, 24 });
-	fly.PushBack({ 137, 72, 24, 24 });
-	fly.PushBack({ 170, 72, 24, 24 });
-	fly.PushBack({ 203, 72, 24, 24 });
-	fly.PushBack({ 236, 72, 24, 24 });
-	fly.speed = 0.2f;
-	animation = &fly;*/
-
 	animation = &idle; 
 
 
@@ -83,4 +62,7 @@ void Enemy_BrownCookie::Move()
 
 	position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	position.x -= 1;
+}
+void OnCollision(){
+
 }

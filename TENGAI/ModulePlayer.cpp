@@ -90,80 +90,84 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	int speed = 5;
-	
-	if (shield.Finished()) 
-	{
-		Shield_Animation = false;
-		shield.Reset();
-	}
-		
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-
-		if (!Shield_Animation)current_animation = &backward;
-		if (screen_position.x - speed > -10) 
+	if (alive) {
+		if (shield.Finished())
 		{
-			position.x -= speed;
-			screen_position.x -= speed;
+			Shield_Animation = false;
+			shield.Reset();
 		}
-	}
-	else if(App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		if (!Shield_Animation)current_animation = &idle;
-		if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w) 
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 		{
+
+			if (!Shield_Animation)current_animation = &backward;
+			if (screen_position.x - speed > -10)
+			{
+				position.x -= speed;
+				screen_position.x -= speed;
+			}
+		}
+		else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		{
+			if (!Shield_Animation)current_animation = &idle;
+			if (screen_position.x + speed < SCREEN_WIDTH - current_animation->GetCurrentFrame().w)
+			{
 				position.x += speed;
 				screen_position.x += speed;
-		}	
-		
-	}
+			}
 
-	if(App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-	{
-		if (!Shield_Animation)current_animation = &backward;
-		if (screen_position.y - speed > -5) 
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 		{
+			if (!Shield_Animation)current_animation = &backward;
+			if (screen_position.y - speed > -5)
+			{
 				position.y -= speed;
 				screen_position.y -= speed;
-			}		
-	}
-
-    else if(App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	{
-		if (!Shield_Animation)current_animation = &idle;
-		if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h) 
-		{
-			position.y += speed;
-			screen_position.y += speed;
+			}
 		}
+
+		else if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+		{
+			if (!Shield_Animation)current_animation = &idle;
+			if (screen_position.y + speed < SCREEN_HEIGHT - current_animation->GetCurrentFrame().h)
+			{
+				position.y += speed;
+				screen_position.y += speed;
+			}
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+		{
+			App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
+			MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
+			Mix_PlayChannel(-1, MikosShot, 0);
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+			&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
+			&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+			&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+			&& !Shield_Animation)
+		{
+			current_animation = &idle;
+		}
+
+		//Update collider position to player position
+
+		player_collider->SetPos(position.x, position.y);
+		//bullet_collider->SetPos(App->particles->Mshot.position.x, App->particles->Mshot.position.y);
+
+		// Draw everything --------------------------------------
+
+		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
-	{
-		App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
-		MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
-		Mix_PlayChannel(-1, MikosShot, 0);
+	else {
+		current_animation = &die;
 	}
-
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-		&& !Shield_Animation)
-	{
-		current_animation = &idle;	
-	}
-	
-	//Update collider position to player position
-
-	player_collider->SetPos(position.x, position.y);
-	//bullet_collider->SetPos(App->particles->Mshot.position.x, App->particles->Mshot.position.y);
-
-	// Draw everything --------------------------------------
-
-	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
 	return UPDATE_CONTINUE;
+
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
@@ -176,4 +180,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
 		Mix_PlayChannel(-1, MikoCollision, 0);
 	}
+
+	if (c1->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY_SHOT) {
+		alive = false;
+	};
 }
