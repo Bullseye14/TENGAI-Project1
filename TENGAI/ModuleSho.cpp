@@ -169,8 +169,11 @@ void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
-		current_animation = &shield;
+		//current_animation = &shield;
+		
 		ShoCollision = App->audio->LoadFx("audio/ShoCollision.wav");
 		Mix_PlayChannel(-1, ShoCollision, 0);
+		player_collider->to_delete = true;
+		App->sho->Disable();
 	}
 }

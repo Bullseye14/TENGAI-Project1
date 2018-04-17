@@ -155,7 +155,7 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH +10, SCREEN_HEIGHT/2);
+	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
 	App->player->Enable();
 	App->sho->Enable();

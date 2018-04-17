@@ -3,6 +3,8 @@
 
 #include "p2Point.h"
 #include "Animation.h"
+#include "SDL\include\SDL_timer.h"
+
 
 struct SDL_Texture;
 struct Collider;
@@ -12,6 +14,8 @@ class Enemy
 protected:
 	Animation* animation = nullptr;
 	Collider* collider = nullptr;
+	uint current_time;
+	uint last_time;
 
 public:
 	iPoint position;

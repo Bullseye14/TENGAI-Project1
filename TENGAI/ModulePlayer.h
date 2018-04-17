@@ -20,6 +20,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void Die();
+
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);

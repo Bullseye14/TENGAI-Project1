@@ -68,7 +68,7 @@ bool ModulePlayer::Start()
 	position.y = 60;
 	screen_position.x = 10;
 	screen_position.y = 60;
-
+	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
 	//bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
 
@@ -84,6 +84,16 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(graphics);
 
 	return true;
+}
+
+void ModulePlayer::Die() {
+	alive = false;
+	current_animation = &die;
+	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
+	Mix_PlayChannel(-1, MikoCollision, 0);
+
+	player_collider->to_delete = true;
+	//App->player->Disable();
 }
 
 // Update: draw background
@@ -154,6 +164,19 @@ update_status ModulePlayer::Update()
 			current_animation = &idle;
 		}
 
+		// DEBUG INPUT
+		if (App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_REPEAT)
+		{
+			power_ups--;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT)
+		{
+			power_ups++;
+		}
+		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT)
+		{
+			alive = true;
+		}
 		//Update collider position to player position
 
 		player_collider->SetPos(position.x, position.y);
@@ -161,39 +184,36 @@ update_status ModulePlayer::Update()
 
 		// Draw everything --------------------------------------
 
-		App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	}
+	// if dead
 	else {
 		current_animation = &die;
+
 	}
+
+	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+
 	return UPDATE_CONTINUE;
 
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	
+
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
-	if (Shield_Animation) 
+	if (Shield_Animation)
 	{
-		current_animation = &shield;
-		MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
-		Mix_PlayChannel(-1, MikoCollision, 0);
+		if (power_ups > 0) {
+			current_animation = &shield;
+		}
+		else if (alive) {
+			Die();
+		}
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY_SHOT) {
-		alive = false;
-	};
-
-	Die_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY);
-	int Mlife = 3;
-
-	if (Die_Animation && Mlife > 0) { --Mlife; }
-	else if (Die_Animation && Mlife == 0)
-		{
-			current_animation = &die;
-			player_collider->to_delete = true;
-			App->player->Disable();
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) {
+		if (alive) {
+			Die();
 		}
-	
+	}
 }

@@ -30,6 +30,10 @@ bool ModuleParticles::Start()
 	start.anim.loop = true;
 	start.anim.speed = 0.5f;
 
+	Eshot.anim.PushBack({ 11,50,10,12 });
+	Eshot.life = 2000;
+	Eshot.speed = iPoint(-2, 0);
+
 	Mshot.anim.PushBack({ 11,50,10,12 });
 	Mshot.anim.PushBack({ 34,50,11,11 });
 	Mshot.anim.PushBack({ 58,51,11,10 });
