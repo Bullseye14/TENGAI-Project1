@@ -215,6 +215,7 @@ update_status ModuleMiko::Update()
 }
 
 void ModuleMiko::Die() {
+	path_die.Reset();
 	alive = false;
 	current_animation = &die;
 	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
@@ -228,21 +229,20 @@ bool ModuleMiko::Spawn() {
 //		*SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN
 	//first time is called, spawn behind camera
 	if (!Spawn_Animation) {
-		path_die.Reset();
 		path_spawn.Reset();
-		Spawn_Animation = true;
-		alive = true;
 		current_animation = &touch;
 		position = iPoint(-App->render->camera.x/2, 50);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 },COLLIDER_TYPE::COLLIDER_PLAYER, this);
+				
+		Spawn_Animation = true;
+		alive = true;
 	}
 	//Actually moving behind the camera
 	else {
 		position = position + path_spawn.GetCurrentSpeed();
 	}
 	//if is finished
-	if (path_spawn.loop) return false;
-	return true;
+	return !path_spawn.loop;
 }
 
 void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
