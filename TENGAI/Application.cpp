@@ -4,7 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleSceneForest.h"
-#include "ModulePlayer.h"
+#include "ModuleMiko.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleSceneIntro.h"
@@ -24,7 +24,7 @@ Application::Application()
 	modules[5] = scene_outro = new ModuleSceneOutro();
 	modules[6] = scene_forest = new ModuleSceneForest();
 	modules[7] = enemies = new ModuleEnemies();
-	modules[8] = player = new ModulePlayer();
+	modules[8] = miko = new ModuleMiko();
 	modules[9] = junis = new ModuleJunis();
 	modules[10] = particles = new ModuleParticles();
 	modules[11] = scene_intro = new ModuleSceneIntro();
@@ -45,7 +45,7 @@ bool Application::Init()
 	bool ret = true;
 
 	// Disable all stopped modules here
-	player->Disable();
+	miko->Disable();
 	junis->Disable();
 	enemies->Disable();
 	scene_forest->Disable();

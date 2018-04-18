@@ -1,5 +1,5 @@
-#ifndef __ModulePlayer_H__
-#define __ModulePlayer_H__
+#ifndef __ModuleMiko_H__
+#define __ModuleMiko_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -10,11 +10,11 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModulePlayer : public Module
+class ModuleMiko : public Module
 {
 public:
-	ModulePlayer();
-	~ModulePlayer();
+	ModuleMiko();
+	~ModuleMiko();
 
 	bool Start();
 	update_status Update();

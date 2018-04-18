@@ -3,7 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
-#include "ModulePlayer.h"
+#include "ModuleMiko.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"

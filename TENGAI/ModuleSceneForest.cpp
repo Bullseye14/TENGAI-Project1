@@ -3,7 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
-#include "ModulePlayer.h"
+#include "ModuleMiko.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
@@ -157,7 +157,7 @@ bool ModuleSceneForest::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
-	App->player->Enable();
+	App->miko->Enable();
 	App->junis->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
@@ -171,7 +171,7 @@ bool ModuleSceneForest::CleanUp()
 	LOG("Unloading forest scene");
 
 	App->textures->Unload(graphics);
-	App->player->Disable();
+	App->miko->Disable();
 	App->junis->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
@@ -186,7 +186,7 @@ update_status ModuleSceneForest::Update()
 	int scroll_speed = 1;
 
 	//Player auto scroll
-	App->player->position.x += 1;
+	App->miko->position.x += 1;
 	App->junis->position.x += 1;
 //	App->enemies->enemy_pos.x += 1;
 

@@ -3,7 +3,7 @@
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
 #include "ModuleSceneForest.h"
-#include "ModulePlayer.h"
+#include "ModuleMiko.h"
 #include "ModuleParticles.h"
 
 ModuleCollision::ModuleCollision()

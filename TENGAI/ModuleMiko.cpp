@@ -4,10 +4,10 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
+#include "ModuleMiko.h"
 #include "ModuleAudio.h"
 
-ModulePlayer::ModulePlayer()
+ModuleMiko::ModuleMiko()
 {
 	graphics = NULL;
 	current_animation = NULL;
@@ -72,11 +72,11 @@ ModulePlayer::ModulePlayer()
 	
 }
 
-ModulePlayer::~ModulePlayer()
+ModuleMiko::~ModuleMiko()
 {}
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModuleMiko::Start()
 {
 	LOG("Loading player");
 
@@ -87,14 +87,14 @@ bool ModulePlayer::Start()
 	screen_position.x = 10;
 	screen_position.y = 60;
 	alive = true;
-	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
+	player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_PLAYER, this);
 
 	return true;
 
 }
 
 // Unload assets
-bool ModulePlayer::CleanUp()
+bool ModuleMiko::CleanUp()
 {
 	LOG("Unloading player");
 
@@ -103,7 +103,7 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
-void ModulePlayer::Die() {
+void ModuleMiko::Die() {
 	alive = false;
 	current_animation = &die;
 	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
@@ -114,7 +114,7 @@ void ModulePlayer::Die() {
 }
 
 // Update: draw background
-update_status ModulePlayer::Update()
+update_status ModuleMiko::Update()
 {
 	if (alive) {
 		if (shield.Finished())
@@ -210,7 +210,7 @@ update_status ModulePlayer::Update()
 
 }
 
-void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 {
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)

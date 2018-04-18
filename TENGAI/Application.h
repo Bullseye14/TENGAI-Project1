@@ -11,7 +11,7 @@ class ModuleTextures;
 class ModuleRender;
 class ModuleParticles;
 class ModuleSceneForest;
-class ModulePlayer;
+class ModuleMiko;
 class ModuleFadeToBlack;
 class Module;
 class ModuleSceneIntro;
@@ -33,7 +33,7 @@ public:
 	ModuleInput* input;
 	ModuleTextures* textures;
 	ModuleSceneForest* scene_forest;
-	ModulePlayer* player;
+	ModuleMiko* miko;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
 	ModuleSceneIntro* scene_intro;
