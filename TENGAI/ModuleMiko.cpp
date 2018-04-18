@@ -199,6 +199,9 @@ update_status ModuleMiko::Update()
 		if (!path_die.loop) {
 			position = position + path_die.GetCurrentSpeed();
 		}
+		else {
+			Spawn();
+		}
 
 		//DEBUG INPUT
 		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
