@@ -19,7 +19,6 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 392, 10, 31, 27 });
 	idle.PushBack({ 432, 10, 31, 27 });
 	idle.PushBack({ 472, 10, 31, 27 });
-	
 	idle.speed = 0.10f;
 
 	// miko touched animation
@@ -84,12 +83,11 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("tengai/spritesheet.png");
 
 	position.x = 10;
-	position.y = 60;
+	position.y = 50;
 	screen_position.x = 10;
 	screen_position.y = 60;
 	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
-	//bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
 
 	return true;
 
@@ -105,10 +103,6 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
-void ModulePlayer::Touched() {
-	current_animation = &touch;
-}
-
 void ModulePlayer::Die() {
 	alive = false;
 	current_animation = &die;
@@ -122,7 +116,6 @@ void ModulePlayer::Die() {
 // Update: draw background
 update_status ModulePlayer::Update()
 {
-	int speed = 5;
 	if (alive) {
 		if (shield.Finished())
 		{
@@ -196,22 +189,18 @@ update_status ModulePlayer::Update()
 		{
 			power_ups++;
 		}
-		
 
 		player_collider->SetPos(position.x, position.y);
-
-
 	}
 	// if dead
 	else {
-		
 		current_animation = &die;
 		//DEBUG INPUT
-		/*if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
 		{
 			alive = true;
 			player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
-		}*/
+		}
 
 	}
 
@@ -223,18 +212,11 @@ update_status ModulePlayer::Update()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
 		if (power_ups > 0) { current_animation = &shield; }
 		else if (alive) { Die(); }
-	}
-
-	Touch_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT);
-	if (Touch_Animation) 
-	{
-		Touched();
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
@@ -244,6 +226,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			if (alive) 
 			{
 				Die();
+				Mlife = 3;
 			}			
 		}
 		else 
@@ -251,5 +234,4 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			Mlife--; 
 		}
 	}
-	
 }

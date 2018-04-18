@@ -12,14 +12,22 @@ private:
 	int original_x = 0;
 	iPoint original_position;
 	Animation idle;
+	Animation* current_animation = nullptr;
+	Animation die;
 	Path path;
 
 public:
 
 	Enemy_BrownCookie(int x, int y);
+	Collider* enemy_collider;
 
+	//void Die();
 	void Move();
 	void Shoot();
+	//void OnCollision(Collider* c1, Collider* c2);
+
+	int Elife = 20;
+	bool alive = true;
 };
 
 #endif // __ENEMY_BROWNCOOKIE_H__

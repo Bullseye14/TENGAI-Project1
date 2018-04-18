@@ -29,7 +29,10 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
-	virtual void OnCollision(Collider* collider);
+	void OnCollision(Collider* collider);
+
+	int Elife = 20;
+	bool alive = true;
 };
 
 #endif // __ENEMY_H__

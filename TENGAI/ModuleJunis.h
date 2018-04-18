@@ -21,9 +21,7 @@ public:
 	bool CleanUp();
 
 	void Die();
-	void Touched();
 
-	bool Touch_Animation = false;
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
@@ -40,8 +38,6 @@ public:
 	Animation touch;
 	Animation shield;
 
-	int Jlife = 3;
-
 	Collider* player_collider;
 	Collider* bullet_collider;
 
@@ -52,8 +48,9 @@ public:
 	Mix_Chunk* JunisCollision = nullptr;
 
 	bool alive = true;
-	bool touched = false;
+	int speed = 5;
 	int power_ups = 1;
+	int Jlife = 3;
 };
 
 #endif

@@ -39,6 +39,20 @@ Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 	idle.PushBack({ 157,46,96,109 });
 	idle.speed = 0.19f;
 
+	// die animation 
+	die.PushBack({ 43,44,91,107 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 43,44,91,107 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 43,44,91,107 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 43,44,91,107 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 43,44,91,107 });
+	die.PushBack({ 1,1,1,1 });
+	die.loop = false;
+	die.speed = 0.1f;
+
 	animation = &idle; 
 
 
@@ -85,6 +99,31 @@ void Enemy_BrownCookie::Move()
 	//position.x += 1;
 	position = original_position + path.GetCurrentSpeed();
 }
-void OnCollision(){
+
+/*void Enemy_BrownCookie::Die() {
+	alive = false;
+	current_animation = &die;
+
+	collider->to_delete = true;
 
 }
+
+void Enemy_BrownCookie::OnCollision(Collider* c1, Collider* c2)
+{
+	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+	if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER_SHOT)
+	{
+		if (Elife == 1)
+		{
+			if (alive)
+			{
+				Die();
+			}
+		}
+		else
+		{
+			Elife--;
+		}
+	}
+}*/
+
