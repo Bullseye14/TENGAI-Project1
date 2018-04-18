@@ -12,7 +12,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
-#include "ModuleSho.h"
+#include "ModuleJunis.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -158,7 +158,7 @@ bool ModuleSceneForest::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
 	App->player->Enable();
-	App->sho->Enable();
+	App->junis->Enable();
 	App->collision->Enable();
 	App->enemies->Enable();
 
@@ -172,7 +172,7 @@ bool ModuleSceneForest::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->player->Disable();
-	App->sho->Disable();
+	App->junis->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -187,7 +187,7 @@ update_status ModuleSceneForest::Update()
 
 	//Player auto scroll
 	App->player->position.x += 1;
-	App->sho->position.x += 1;
+	App->junis->position.x += 1;
 //	App->enemies->enemy_pos.x += 1;
 
 	App->render->camera.x -= 2;

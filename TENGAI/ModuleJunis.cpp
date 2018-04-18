@@ -4,10 +4,10 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
-#include "ModuleSho.h"
+#include "ModuleJunis.h"
 #include "ModuleAudio.h"
 
-ModuleSho::ModuleSho()
+ModuleJunis::ModuleJunis()
 {
 	graphics = NULL;
 	current_animation = NULL;
@@ -16,18 +16,18 @@ ModuleSho::ModuleSho()
 	position.y = 120;
 
 	// idle animation
-	idle.PushBack({ 36, 8, 29, 27 });
-	idle.PushBack({ 73, 9, 29, 26 });
-	idle.PushBack({ 110, 9, 29, 27 });
+	idle.PushBack({ 4, 0, 27, 24 });
+	idle.PushBack({ 46, 0, 27, 24 });
+	idle.PushBack({ 89, 1, 27, 24 });
 	idle.loop = true;
 	idle.speed = 0.10f;
 
 	// backward animation (arcade sprite sheet)
-	backward.PushBack({ 147,8,24,27 });
+	backward.PushBack({ 79,33,16,28 });
 	backward.speed = 0.15f;
 
 	// run animation (arcade sprite sheet)
-	run.PushBack({ 72,7,33,35 });
+	/*run.PushBack({ 72,7,33,35 });
 	run.PushBack({ 108,7,33,35 });
 	run.PushBack({ 145,7,33,35 });
 	run.PushBack({ 190,7,33,35 });
@@ -35,32 +35,30 @@ ModuleSho::ModuleSho()
 	run.PushBack({ 270,7,33,35 });
 	run.PushBack({ 308,7,33,35 });
 	run.PushBack({ 349,7,33,35 });
-	run.speed = 0.19f;
+	run.speed = 0.19f;*/
 
 	// die animation 
-	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,73,23,25 });
 
 	// shield animation
-	shield.PushBack({ 673,7,35,35 });
-	shield.PushBack({ 713,7,35,35 });
-	shield.PushBack({ 750,7,35,35 });
-	shield.PushBack({ 795,7,35,35 });
-	shield.PushBack({ 830,7,35,35 });
-	shield.PushBack({ 870,7,35,35 });
-	shield.PushBack({ 911,7,35,35 });
+	shield.PushBack({ 37,111,19,26 });
+	shield.PushBack({ 71,112,14,24 });
+	shield.PushBack({ 102,110,19,26 });
+	shield.PushBack({ 5,110,15,26 });
+	shield.PushBack({ 37,111,19,26 });
 	shield.speed = 0.1f;
 
 }
 
-ModuleSho::~ModuleSho()
+ModuleJunis::~ModuleJunis()
 {}
 
 // Load assets
-bool ModuleSho::Start()
+bool ModuleJunis::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("tengai/shoSpritesheet.png");
+	graphics = App->textures->Load("tengai/junisSpritesheet.png");
 
 	position.x = 10;
 	position.y = 150;
@@ -75,7 +73,7 @@ bool ModuleSho::Start()
 }
 
 // Unload assets
-bool ModuleSho::CleanUp()
+bool ModuleJunis::CleanUp()
 {
 	LOG("Unloading player");
 
@@ -85,7 +83,7 @@ bool ModuleSho::CleanUp()
 }
 
 // Update: draw background
-update_status ModuleSho::Update()
+update_status ModuleJunis::Update()
 {
 	int speed = 5;
 
@@ -139,8 +137,8 @@ update_status ModuleSho::Update()
 	if (App->input->keyboard[SDL_SCANCODE_RSHIFT] == KEY_STATE::KEY_DOWN)
 	{
 		App->particles->AddParticle(App->particles->Sshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
-		ShosShot = App->audio->LoadFx("audio/ShosShot.wav");
-		Mix_PlayChannel(-1, ShosShot, 0);
+		JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
+		Mix_PlayChannel(-1, JunisShot, 0);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
@@ -164,16 +162,16 @@ update_status ModuleSho::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSho::OnCollision(Collider* c1, Collider* c2)
+void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 {
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
 		//current_animation = &shield;
 		
-		ShoCollision = App->audio->LoadFx("audio/ShoCollision.wav");
-		Mix_PlayChannel(-1, ShoCollision, 0);
+		JunisCollision = App->audio->LoadFx("audio/ShoCollision.wav");
+		Mix_PlayChannel(-1, JunisCollision, 0);
 		player_collider->to_delete = true;
-		App->sho->Disable();
+		App->junis->Disable();
 	}
 }

@@ -1,5 +1,5 @@
-#ifndef __ModuleSho_H__
-#define __ModuleSho_H__
+#ifndef __ModuleJunis_H__
+#define __ModuleJunis_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -10,11 +10,11 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModuleSho : public Module
+class ModuleJunis : public Module
 {
 public:
-	ModuleSho();
-	~ModuleSho();
+	ModuleJunis();
+	~ModuleJunis();
 
 	bool Start();
 	update_status Update();
@@ -45,8 +45,8 @@ public:
 	iPoint position;
 	iPoint screen_position;
 
-	Mix_Chunk* ShosShot = nullptr;
-	Mix_Chunk* ShoCollision = nullptr;
+	Mix_Chunk* JunisShot = nullptr;
+	Mix_Chunk* JunisCollision = nullptr;
 
 	bool alive = true;
 	bool touched = false;

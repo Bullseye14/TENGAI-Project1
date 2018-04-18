@@ -77,9 +77,6 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleSho.h">
-      <Filter>Modules\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleSceneOutro.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
@@ -91,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleJunis.h">
+      <Filter>Modules\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -139,9 +139,6 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleSho.cpp">
-      <Filter>Modules\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleSceneForest.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
@@ -150,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneOutro.cpp">
       <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleJunis.cpp">
+      <Filter>Modules\Characters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

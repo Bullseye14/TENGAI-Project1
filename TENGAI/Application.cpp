@@ -12,7 +12,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
-#include "ModuleSho.h"
+#include "ModuleJunis.h"
 
 Application::Application()
 {
@@ -25,7 +25,7 @@ Application::Application()
 	modules[6] = scene_forest = new ModuleSceneForest();
 	modules[7] = enemies = new ModuleEnemies();
 	modules[8] = player = new ModulePlayer();
-	modules[9] = sho = new ModuleSho();
+	modules[9] = junis = new ModuleJunis();
 	modules[10] = particles = new ModuleParticles();
 	modules[11] = scene_intro = new ModuleSceneIntro();
 	modules[12] = collision = new ModuleCollision();
@@ -46,7 +46,7 @@ bool Application::Init()
 
 	// Disable all stopped modules here
 	player->Disable();
-	sho->Disable();
+	junis->Disable();
 	enemies->Disable();
 	scene_forest->Disable();
 	scene_outro->Disable();
