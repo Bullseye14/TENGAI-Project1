@@ -89,7 +89,7 @@
     <ClInclude Include="ModuleSceneIntro.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Downloads\SDL9_Handout\SDL9_Handout\Path.h">
+    <ClInclude Include="Path.h">
       <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
