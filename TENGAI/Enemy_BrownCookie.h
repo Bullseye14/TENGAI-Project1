@@ -9,8 +9,10 @@ private:
 	float wave = -1.0f;
 	bool going_up = true;
 	int original_y = 0;
-	//iPoint position;
+	int original_x = 0;
+	iPoint original_position;
 	Animation idle;
+	Path path;
 
 public:
 

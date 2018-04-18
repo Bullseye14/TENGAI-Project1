@@ -173,21 +173,22 @@ update_status ModulePlayer::Update()
 		{
 			power_ups++;
 		}
-		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_REPEAT)
-		{
-			alive = true;
-		}
-		//Update collider position to player position
+		
 
 		player_collider->SetPos(position.x, position.y);
-		//bullet_collider->SetPos(App->particles->Mshot.position.x, App->particles->Mshot.position.y);
 
-		// Draw everything --------------------------------------
 
 	}
 	// if dead
 	else {
+		
 		current_animation = &die;
+		//DEBUG INPUT
+		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		{
+			alive = true;
+			player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
+		}
 
 	}
 

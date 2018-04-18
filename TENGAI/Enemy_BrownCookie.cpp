@@ -7,6 +7,11 @@
 
 Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 {
+	path.PushBack({ 0.0f, 0.0f }, 30);
+	path.PushBack({ 2.0f, 0.0f }, 30);
+	path.PushBack({ 1.0f, 1.0f }, 40);
+	path.PushBack({ 1.0f, -1.0f }, 40);
+	path.PushBack({ 1.0f, 0.0f }, 25);
 
 	idle.PushBack({ 43,44,91,107 });
 	idle.PushBack({ 157,46,96,109 });
@@ -43,7 +48,7 @@ Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 
 	//collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	original_y = y;
+	original_position = iPoint(x,y);
 }
 
 void Enemy_BrownCookie::Shoot() {
@@ -76,8 +81,9 @@ void Enemy_BrownCookie::Move()
 			wave -= 0.05f;
 	}
 
-	position.y = int(float(original_y) + (25.0f * sinf(wave)));
-	position.x += 1;
+	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
+	//position.x += 1;
+	position = original_position + path.GetCurrentSpeed();
 }
 void OnCollision(){
 
