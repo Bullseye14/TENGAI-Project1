@@ -21,7 +21,9 @@ public:
 	bool CleanUp();
 
 	void Die();
+	void Touched();
 
+	bool Touch_Animation = false;
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
@@ -32,6 +34,7 @@ public:
 
 	Animation* current_animation = nullptr;
 	Animation idle;
+	Animation touch;
 	Animation backward;
 	Animation run;
 	Animation die;
@@ -47,9 +50,10 @@ public:
 
 	Mix_Chunk* MikosShot = nullptr;
 	Mix_Chunk* MikoCollision = nullptr;
-	Mix_Chunk* ShoCollision = nullptr;
+
 
 	bool alive = true;
+	bool touched = false;
 	int power_ups = 1;
 };
 

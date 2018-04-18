@@ -19,8 +19,16 @@ ModulePlayer::ModulePlayer()
 	idle.PushBack({ 392, 10, 31, 27 });
 	idle.PushBack({ 432, 10, 31, 27 });
 	idle.PushBack({ 472, 10, 31, 27 });
-	idle.loop = true;
+	
 	idle.speed = 0.10f;
+
+	// miko touched animation
+	touch.PushBack({ 392, 10, 31, 27 });
+	touch.PushBack({ 1,1,1,1 });
+	touch.PushBack({ 432, 10, 31, 27 });
+	touch.PushBack({ 1,1,1,1 });
+	touch.PushBack({ 472, 10, 31, 27 });
+	touch.speed = 0.1f;
 
 	// backward animation (arcade sprite sheet)
 	backward.PushBack({ 514,7,41,31 });
@@ -97,6 +105,10 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+void ModulePlayer::Touched() {
+	current_animation = &touch;
+}
+
 void ModulePlayer::Die() {
 	alive = false;
 	current_animation = &die;
@@ -104,7 +116,7 @@ void ModulePlayer::Die() {
 	Mix_PlayChannel(-1, MikoCollision, 0);
 
 	player_collider->to_delete = true;
-	//App->player->Disable();
+	
 }
 
 // Update: draw background
@@ -195,11 +207,11 @@ update_status ModulePlayer::Update()
 		
 		current_animation = &die;
 		//DEBUG INPUT
-		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		/*if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
 		{
 			alive = true;
 			player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
-		}
+		}*/
 
 	}
 
@@ -223,6 +235,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
+	Touch_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT);
+	if (Touch_Animation) 
+	{
+		Touched();
+	}
+
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
 	{
 		if (Mlife == 1) 
@@ -232,6 +250,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				Die();
 			}			
 		}
-		else { Mlife--; }
+		else 
+		{ 
+			Mlife--; 
+		}
 	}
+	
 }

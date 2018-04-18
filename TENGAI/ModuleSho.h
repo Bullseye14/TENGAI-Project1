@@ -20,7 +20,12 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void Die();
+	void Touched();
+
+	bool Touch_Animation = false;
 	bool Shield_Animation = false;
+	bool Die_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
 
 public:
@@ -42,6 +47,10 @@ public:
 
 	Mix_Chunk* ShosShot = nullptr;
 	Mix_Chunk* ShoCollision = nullptr;
+
+	bool alive = true;
+	bool touched = false;
+	int power_ups = 1;
 };
 
 #endif
