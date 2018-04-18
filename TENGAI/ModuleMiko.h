@@ -45,7 +45,6 @@ public:
 	Collider* bullet_collider;
 
 	iPoint position;
-	iPoint screen_position;
 	Path path_die;
 	Path path_spawn;
 

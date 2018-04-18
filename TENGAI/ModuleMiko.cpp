@@ -95,8 +95,6 @@ bool ModuleMiko::Start()
 
 	position.x = 10;
 	position.y = 50;
-	screen_position.x = 10;
-	screen_position.y = 60;
 	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 },COLLIDER_TYPE::COLLIDER_PLAYER, this);
 
@@ -119,7 +117,7 @@ bool ModuleMiko::CleanUp()
 // Update: draw background
 update_status ModuleMiko::Update()
 {
-	int camera_x = (-App->render->camera.x / 2);
+	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
 
 	
 	if (alive) {
@@ -134,42 +132,38 @@ update_status ModuleMiko::Update()
 			else {
 				if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 				{
-
 					if (!Shield_Animation)current_animation = &backward;
-					if (position.x - speed > -10 + camera_x)// Divided by camera.speed;
+					if (position.x - speed > camera_x - 2)
 					{
 						position.x -= speed;
-						screen_position.x -= speed;
 					}
 				}
-				else if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+				if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 				{
 					if (!Shield_Animation)current_animation = &idle;
+					if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+
 					if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
 					{
 						position.x += speed;
-						screen_position.x += speed;
 					}
-
 				}
 
 				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 				{
 					if (!Shield_Animation)current_animation = &backward;
-					if (screen_position.y - speed > 0)
-					{
-						position.y -= speed;
-						screen_position.y -= speed;
+					if (position.y - speed > -2)
+					{	
+						position.y -= speed;		
 					}
 				}
 
-				else if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+				 if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 				{
 					if (!Shield_Animation)current_animation = &idle;
-					if (screen_position.y + speed < SCREEN_HEIGHT)
+					if (position.y + 31 + speed < SCREEN_HEIGHT)
 					{
 						position.y += speed;
-						screen_position.y += speed;
 					}
 				}
 
@@ -186,7 +180,8 @@ update_status ModuleMiko::Update()
 					&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
 					&& !Shield_Animation)
 				{
-					current_animation = &idle;
+					if (position.y > SCREEN_HEIGHT-43) current_animation = &run;
+					else current_animation = &idle;
 				}
 
 				// DEBUG INPUT
@@ -194,16 +189,12 @@ update_status ModuleMiko::Update()
 				{
 					Die();
 				}
-				if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_REPEAT)
-				{
-					power_ups++;
-				}
 			}
 
 			player_collider->SetPos(position.x, position.y);
 	}
 	// if dead 
-	else if (!alive){
+	else {
 		current_animation = &die;
 		if (!path_die.loop) {
 			position = position + path_die.GetCurrentSpeed();
