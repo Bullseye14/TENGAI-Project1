@@ -39,6 +39,17 @@ ModuleJunis::ModuleJunis()
 
 	// die animation 
 	die.PushBack({ 1,73,23,25 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 1,73,23,25 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 1,73,23,25 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 1,73,23,25 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 1,73,23,25 });
+	die.PushBack({ 1,1,1,1 });
+	die.loop = false;
+	die.speed = 0.1f;
 
 	// shield animation
 	shield.PushBack({ 37,111,19,26 });
@@ -65,7 +76,7 @@ bool ModuleJunis::Start()
 	screen_position.x = 10;
 	screen_position.y = 150;
 
-	player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_PLAYER, this);
+	player_collider = App->collision->AddCollider({ position.x, position.y, 27, 28 }, COLLIDER_PLAYER, this);
 	//bullet_collider = App->collision->AddCollider({ position.x + 31, position.y + 6,12,12 }, COLLIDER_PLAYER_SHOT);
 
 	return true;
@@ -80,6 +91,19 @@ bool ModuleJunis::CleanUp()
 	App->textures->Unload(graphics);
 
 	return true;
+}
+
+void ModuleJunis::Touched() {
+	current_animation = &touch;
+}
+
+void ModuleJunis::Die() {
+	alive = false; 
+	current_animation = &die;
+	JunisCollision = App->audio->LoadFx("audio/JunisCollision.wav");
+	Mix_PlayChannel(-1, JunisCollision, 0);
+
+	player_collider->to_delete = true;
 }
 
 // Update: draw background
@@ -134,7 +158,7 @@ update_status ModuleJunis::Update()
 		}
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_RSHIFT] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
 	{
 		App->particles->AddParticle(App->particles->Sshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
 		JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
@@ -167,11 +191,28 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
-		//current_animation = &shield;
-		
-		JunisCollision = App->audio->LoadFx("audio/ShoCollision.wav");
-		Mix_PlayChannel(-1, JunisCollision, 0);
-		player_collider->to_delete = true;
-		App->junis->Disable();
+		if (power_ups > 0) { current_animation = &shield; }
+		else if (alive) { Die(); }
+	}
+
+	//Touch_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT);
+	/*if (Touch_Animation) 
+	{
+		Touched();
+	}*/
+
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT)
+	{
+		if (Jlife == 1)
+		{
+			if (alive)
+			{
+				Die();
+			}
+		}
+		else
+		{
+			Jlife--;
+		}
 	}
 }

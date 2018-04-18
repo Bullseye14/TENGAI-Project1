@@ -227,12 +227,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
-		if (power_ups > 0) {
-			current_animation = &shield;
-		}
-		else if (alive) {
-			Die();
-		}
+		if (power_ups > 0) { current_animation = &shield; }
+		else if (alive) { Die(); }
 	}
 
 	Touch_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT);

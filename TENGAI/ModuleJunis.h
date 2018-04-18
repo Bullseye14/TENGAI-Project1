@@ -37,7 +37,10 @@ public:
 	Animation backward;
 	Animation run;
 	Animation die;
+	Animation touch;
 	Animation shield;
+
+	int Jlife = 3;
 
 	Collider* player_collider;
 	Collider* bullet_collider;
