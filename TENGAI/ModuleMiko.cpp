@@ -15,10 +15,6 @@ ModuleMiko::ModuleMiko()
 
 	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
 
-	//path_spawn.PushBack({ -0.02f, 0.0f }, 50, &touch);
-	//path_spawn.PushBack({ 0.09f, 0.0f }, 9, &touch);
-	//path_spawn.PushBack({ 0.1f, 0.0f }, 5, &touch);
-
 	path_die.PushBack({ 0.0f, 0.0f }, 2);
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
@@ -59,17 +55,6 @@ ModuleMiko::ModuleMiko()
 
 	// die animation 
 	die.PushBack({ 630,7,35,35 });
-	//die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 630,7,35,35 });
-	//die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 630,7,35,35 });
-	//die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 630,7,35,35 });
-	//die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 630,7,35,35 });
-	//die.PushBack({ 1,1,1,1 });
-	die.loop = false;
-	die.speed = 0.1f;
 
 	// shield animation
 	shield.PushBack({ 673,7,35,35 });
@@ -92,6 +77,9 @@ bool ModuleMiko::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("tengai/spritesheet.png");
+	MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
+	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
+
 
 	position.x = 10;
 	position.y = 50;
@@ -170,7 +158,6 @@ update_status ModuleMiko::Update()
 				if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 				{
 					App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
-					MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
 					Mix_PlayChannel(-1, MikosShot, 0);
 				}
 
@@ -195,7 +182,6 @@ update_status ModuleMiko::Update()
 	}
 	// if dead 
 	else {
-		current_animation = &die;
 		if (!path_die.loop) {
 			position = position + path_die.GetCurrentSpeed();
 		}
@@ -221,7 +207,6 @@ void ModuleMiko::Die() {
 	path_die.Reset();
 	alive = false;
 	current_animation = &die;
-	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
 	Mix_PlayChannel(-1, MikoCollision, 0);
 
 	player_collider->to_delete = true;
@@ -229,9 +214,9 @@ void ModuleMiko::Die() {
 }
 
 bool ModuleMiko::Spawn() {
-//		*SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN
 	//first time is called, spawn behind camera
 	if (!Spawn_Animation) {
+
 		path_spawn.Reset();
 		current_animation = &touch;
 		position = iPoint(-App->render->camera.x/2, 50);
@@ -254,8 +239,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 	if (Shield_Animation)
 	{
 		current_animation = &shield;
-		//if (power_ups > 0) {  }
-		//else if (alive) { Die(); }
+		//if (power_ups > 0) { power_ups--; SPAWN POWER DOWN}
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 

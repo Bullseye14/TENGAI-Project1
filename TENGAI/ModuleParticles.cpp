@@ -12,18 +12,7 @@ ModuleParticles::ModuleParticles()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-}
-
-ModuleParticles::~ModuleParticles()
-{}
-
-// Load assets
-bool ModuleParticles::Start()
-{
-	LOG("Loading particles");
-	graphics = App->textures->Load("tengai/spritesheet.png");
-
-	 //START BUTTON
+	//START BUTTON
 
 	start.anim.PushBack({ 35,337,196,39 });
 	start.anim.PushBack({ 5,158,196,39 });
@@ -54,7 +43,6 @@ bool ModuleParticles::Start()
 	Mshot.speed = iPoint(10, 0);
 	Mshot.life = 1500;
 
-	graphics2 = App->textures->Load("tengai/shoSpritesheet.png");
 
 	Sshot.anim.PushBack({ 73,151,26,3 });
 	Sshot.anim.PushBack({ 107,151,31,3 });
@@ -63,6 +51,19 @@ bool ModuleParticles::Start()
 	Sshot.anim.speed = 0.4f;
 	Sshot.speed = iPoint(10, 0);
 	Sshot.life = 1500;
+
+}
+
+ModuleParticles::~ModuleParticles()
+{}
+
+// Load assets
+bool ModuleParticles::Start()
+{
+	LOG("Loading particles");
+	graphics = App->textures->Load("tengai/spritesheet.png");
+
+	graphics2 = App->textures->Load("tengai/shoSpritesheet.png");
 
 	return true;
 }
