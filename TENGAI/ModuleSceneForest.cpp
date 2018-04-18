@@ -228,10 +228,9 @@ update_status ModuleSceneForest::Update()
 	App->render->Blit(graphics, 0, 0, &log1, 0.9f);
 	App->render->Blit(graphics, 0, 152, &floor6, 1.0f);*/
 
-
-	if (App->input->keyboard[SDL_SCANCODE_RETURN] == 1)
+	if (App->miko->alive == false && App->junis->alive == false)
 	{
-		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 1.0);
+		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
 	}
 
 	return UPDATE_CONTINUE;

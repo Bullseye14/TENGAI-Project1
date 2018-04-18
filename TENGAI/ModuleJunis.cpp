@@ -73,6 +73,7 @@ bool ModuleJunis::Start()
 
 	position.x = 10;
 	position.y = 150;
+	alive = true;
 	screen_position.x = 10;
 	screen_position.y = 150;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 27, 28 }, COLLIDER_PLAYER, this);

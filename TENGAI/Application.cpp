@@ -21,12 +21,12 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
-	modules[5] = scene_outro = new ModuleSceneOutro();
-	modules[6] = scene_forest = new ModuleSceneForest();
-	modules[7] = enemies = new ModuleEnemies();
-	modules[8] = miko = new ModuleMiko();
-	modules[9] = junis = new ModuleJunis();
-	modules[10] = particles = new ModuleParticles();
+	modules[10] = scene_outro = new ModuleSceneOutro();
+	modules[5] = scene_forest = new ModuleSceneForest();
+	modules[6] = enemies = new ModuleEnemies();
+	modules[7] = miko = new ModuleMiko();
+	modules[8] = junis = new ModuleJunis();
+	modules[9] = particles = new ModuleParticles();
 	modules[11] = scene_intro = new ModuleSceneIntro();
 	modules[12] = collision = new ModuleCollision();
 	modules[13] = fade = new ModuleFadeToBlack();
