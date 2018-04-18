@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Path.h"
 #include "SDL_mixer/include/SDL_mixer.h"
 #pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
 
@@ -20,10 +21,12 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool Spawn();
 	void Die();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
+	bool Spawn_Animation = false;
 	void OnCollision(Collider* c1, Collider* c2);
 
 public:
@@ -43,13 +46,15 @@ public:
 
 	iPoint position;
 	iPoint screen_position;
+	Path path_die;
+	Path path_spawn;
 
 	Mix_Chunk* MikosShot = nullptr;
 	Mix_Chunk* MikoCollision = nullptr;
 
 
 	bool alive = true;
-	int speed = 5;
+	int speed = 3;
 	int power_ups = 1;
 	int Mlife = 3;
 };

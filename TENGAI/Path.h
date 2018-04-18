@@ -14,9 +14,11 @@ struct Step
 class Path
 {
 public:
-	bool loop = true;
+	bool loop = false;
 	Step steps[MAX_STEPS];
 	fPoint accumulated_speed = {0.0f, 0.0f};
+	int loops;
+	uint total_frames = 0;
 
 private:
 	uint current_frame = 0;
@@ -29,6 +31,7 @@ public:
 		steps[last_step].animation = animation;
 		steps[last_step].frames = frames;
 		steps[last_step++].speed = speed;
+		total_frames += frames;
 	}
 
 	iPoint GetCurrentSpeed(Animation** current_animation = nullptr)
@@ -50,9 +53,10 @@ public:
 				break;
 			}
 		}
-
-		if(need_loop)
+		if (need_loop) {
+			loop = true;
 			current_frame = 0;
+		}
 
 		return iPoint((int)accumulated_speed.x, (int)accumulated_speed.y);
 	}
@@ -60,6 +64,8 @@ public:
 	void Reset()
 	{
 		current_frame = 0;
+		loop = false;
+		accumulated_speed = fPoint(0.0f, 0.0f);
 	}
 };
 
