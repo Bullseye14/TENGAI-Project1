@@ -41,6 +41,17 @@ ModulePlayer::ModulePlayer()
 
 	// die animation 
 	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,1,1,1 });
+	die.PushBack({ 630,7,35,35 });
+	die.PushBack({ 1,1,1,1 });
+	die.loop = false;
+	die.speed = 0.1f;
 
 	// shield animation
 	shield.PushBack({ 673,7,35,35 });
@@ -212,9 +223,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) {
-		if (alive) {
-			Die();
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
+	{
+		if (Mlife == 1) 
+		{ 
+			if (alive) 
+			{
+				Die();
+			}			
 		}
+		else { Mlife--; }
 	}
 }

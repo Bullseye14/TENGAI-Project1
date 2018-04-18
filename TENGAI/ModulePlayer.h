@@ -37,6 +37,8 @@ public:
 	Animation die;
 	Animation shield;
 
+	int Mlife = 3;
+
 	Collider* player_collider;
 	Collider* bullet_collider;
 
