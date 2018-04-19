@@ -9,9 +9,9 @@
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	REDBIRD,
+	RED_SHIP,
 	BROWN_COOKIES,
-	METH,
+	BLUE_NINJA,
 };
 
 class Enemy;

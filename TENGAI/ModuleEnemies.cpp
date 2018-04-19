@@ -6,6 +6,8 @@
 #include "ModuleTextures.h"
 #include "Enemy.h"
 #include "Enemy_BrownCookie.h"
+#include "Enemy_BlueNinja.h"
+#include "Enemy_RedShip.h"
 
 #define SPAWN_MARGIN 50
 
@@ -129,6 +131,14 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			case ENEMY_TYPES::BROWN_COOKIES:
 			enemies[i] = new Enemy_BrownCookie(info.x, info.y);
 			break;
+
+			case ENEMY_TYPES::RED_SHIP:
+			enemies[i] = new Enemy_RedShip(info.x, info.y);
+				break;
+
+			case ENEMY_TYPES::BLUE_NINJA:
+			enemies[i] = new Enemy_BlueNinja(info.x, info.y);
+				break;
 		}
 	}
 }
