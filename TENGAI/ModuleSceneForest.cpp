@@ -157,6 +157,10 @@ bool ModuleSceneForest::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 150, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 140, 30);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 170, 90);
+
 	App->miko->Enable();
 	App->junis->Enable();
 	App->collision->Enable();
@@ -188,7 +192,7 @@ update_status ModuleSceneForest::Update()
 	//Player auto scroll
 	App->miko->position.x += 1;
 	App->junis->position.x += 1;
-//	App->enemies->enemy_pos.x += 1;
+
 
 	App->render->camera.x -= 2;
 

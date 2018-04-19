@@ -23,7 +23,6 @@ public:
 
 	//void Die();
 	void Move();
-	void Shoot();
 	//void OnCollision(Collider* c1, Collider* c2);
 
 	int Elife = 20;

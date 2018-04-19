@@ -13,17 +13,17 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 	path.PushBack({ 1.0f, -1.0f }, 40);
 	path.PushBack({ 1.0f, 0.0f }, 25);
 
-	idle.PushBack({ 4,0,25,38 });
-	idle.PushBack({ 1,79,25,38 });
-	idle.PushBack({ 0,156,25,38 });
+	idle.PushBack({ 85,498,32,38 });
+	idle.PushBack({ 83,578,32,38 });
+	idle.PushBack({ 81,654,32,38 });
 	idle.speed = 0.19f;
 
 	// die animation 
-	die.PushBack({ 4,0,25,38 });
+	die.PushBack({ 85,498,32,38 });
 	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 1,79,25,38 });
+	die.PushBack({ 83,578,32,38 });
 	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 0,156,25,38 });
+	die.PushBack({ 81,654,32,38 });
 	die.PushBack({ 1,1,1,1 });
 	die.loop = false;
 	die.speed = 0.1f;
@@ -31,7 +31,7 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 	animation = &idle;
 
 
-	collider = App->collision->AddCollider({ x,y,100,150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
@@ -40,21 +40,14 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 	original_position = iPoint(x, y);
 }
 
-void Enemy_RedShip::Shoot() {
-	App->particles->AddParticle(App->particles->Eshot, position.x - 10, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
-}
-
 void Enemy_RedShip::Move()
 {
-	//if (current_time > last_time + 50) {
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
-		Shoot();
-	}
+	//if (current_time > last_time + 50)
 	if (going_up)
 	{
 		if (wave > 4.0f) {
 			going_up = false;
-			Shoot();
+
 		}
 		else
 			wave += 0.05f;
@@ -63,7 +56,6 @@ void Enemy_RedShip::Move()
 	{
 		if (wave < 3.0f) {
 			going_up = true;
-			Shoot();
 		}
 
 		else

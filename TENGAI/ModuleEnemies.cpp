@@ -134,11 +134,11 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 			case ENEMY_TYPES::RED_SHIP:
 			enemies[i] = new Enemy_RedShip(info.x, info.y);
-				break;
+			break;
 
 			case ENEMY_TYPES::BLUE_NINJA:
 			enemies[i] = new Enemy_BlueNinja(info.x, info.y);
-				break;
+			break;
 		}
 	}
 }
