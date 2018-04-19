@@ -25,7 +25,7 @@ Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 	idle.PushBack({ 104,281,97,113 });
 	idle.PushBack({ 202,277,97,121 });
 	idle.PushBack({ 309,275,97,130 });
-	idle.PushBack({ 408,271,98,133 });
+	idle.PushBack({ 412,307,98,133 });
 	idle.PushBack({ 309,275,97,130 });
 	idle.PushBack({ 202,277,97,121 });
 	idle.PushBack({ 104,281,97,113 });

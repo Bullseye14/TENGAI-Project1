@@ -7,7 +7,6 @@
 #include "ModuleMiko.h"
 #include "ModuleAudio.h"
 
-
 ModuleMiko::ModuleMiko()
 {
 	graphics = NULL;
@@ -80,7 +79,6 @@ bool ModuleMiko::Start()
 	MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
 	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
 
-
 	position.x = 10;
 	position.y = 50;
 	alive = true;
@@ -107,7 +105,6 @@ update_status ModuleMiko::Update()
 {
 	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
 
-	
 	if (alive) {
 			if (shield.Finished())
 			{
@@ -194,7 +191,6 @@ update_status ModuleMiko::Update()
 		{
 			Spawn();
 		}
-
 	}
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -210,7 +206,6 @@ void ModuleMiko::Die() {
 	Mix_PlayChannel(-1, MikoCollision, 0);
 
 	player_collider->to_delete = true;
-
 }
 
 bool ModuleMiko::Spawn() {
@@ -219,9 +214,9 @@ bool ModuleMiko::Spawn() {
 
 		path_spawn.Reset();
 		current_animation = &touch;
-		position = iPoint(-App->render->camera.x/2, 50);
-		player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 },COLLIDER_TYPE::COLLIDER_PLAYER, this);
-				
+		position = iPoint(-App->render->camera.x / 2, 50);
+		player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
+
 		Spawn_Animation = true;
 		alive = true;
 	}
@@ -238,8 +233,8 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
-		current_animation = &shield;
-		//if (power_ups > 0) { power_ups--; SPAWN POWER DOWN}
+		if (power_ups > 0) { current_animation = &shield; }
+		else if (alive) { Die(); }
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
