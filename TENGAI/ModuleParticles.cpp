@@ -17,12 +17,11 @@ ModuleParticles::ModuleParticles()
 	start.anim.PushBack({ 5,158,196,39 });
 	start.anim.speed = 0.5f;
 
-	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.anim.speed = 0.4f;
+	Eshot.anim.PushBack({ 83,82,5,7 });
+	Eshot.anim.PushBack({ 98,82,6,5 });
+	Eshot.anim.PushBack({ 113,83,7,5 });
+	Eshot.anim.PushBack({ 129,83,7,5 });
+	Eshot.anim.speed = 0.3f;
 	Eshot.speed = iPoint(-2, 0);
 	Eshot.life = 2000;
 	
