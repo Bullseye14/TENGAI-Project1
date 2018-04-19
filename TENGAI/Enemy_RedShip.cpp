@@ -7,11 +7,11 @@
 
 Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ 0.0f, 0.0f }, 30);
+	/*path.PushBack({ 0.0f, 0.0f }, 30);
 	path.PushBack({ 2.0f, 0.0f }, 30);
 	path.PushBack({ 1.0f, 1.0f }, 40);
 	path.PushBack({ 1.0f, -1.0f }, 40);
-	path.PushBack({ 1.0f, 0.0f }, 25);
+	path.PushBack({ 1.0f, 0.0f }, 25);*/
 
 	idle.PushBack({ 85,498,32,38 });
 	idle.PushBack({ 83,578,32,38 });
@@ -42,29 +42,8 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 
 void Enemy_RedShip::Move()
 {
-	//if (current_time > last_time + 50)
-	if (going_up)
-	{
-		if (wave > 4.0f) {
-			going_up = false;
-
-		}
-		else
-			wave += 0.05f;
-	}
-	else
-	{
-		if (wave < 3.0f) {
-			going_up = true;
-		}
-
-		else
-			wave -= 0.05f;
-	}
-
-	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
-	//position.x += 1;
-	position = original_position + path.GetCurrentSpeed();
+	position.x -= 0.001;
+	position = original_position;
 }
 
 /*void Enemy_RedShip::Die() {

@@ -157,9 +157,10 @@ bool ModuleSceneForest::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 150, 60);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 140, 30);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 170, 90);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 300, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 320, 140);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 340, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 360, 100);
 
 	App->miko->Enable();
 	App->junis->Enable();
