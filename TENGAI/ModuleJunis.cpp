@@ -23,14 +23,26 @@ ModuleJunis::ModuleJunis()
 	idle.PushBack({ 4, 0, 27, 24 });
 	idle.PushBack({ 46, 0, 27, 24 });
 	idle.PushBack({ 89, 1, 27, 24 });
-	idle.loop = true;
 	idle.speed = 0.10f;
+
+	// junis touched animation
+	touch.PushBack({ 4, 0, 27, 24 });
+	touch.PushBack({ 1,1,1,1 });
+	touch.PushBack({ 46, 0, 27, 24 });
+	touch.PushBack({ 1,1,1,1 });
+	touch.PushBack({ 89, 1, 27, 24 });
+	touch.PushBack({ 1,1,1,1 });
+	touch.speed = 0.1f;
 
 	// backward animation (arcade sprite sheet)
 	backward.PushBack({ 79,33,16,28 });
 	backward.speed = 0.15f;
 
 	// run animation (arcade sprite sheet)
+	run.PushBack({ 4, 0, 27, 24 });
+	run.PushBack({ 46, 0, 27, 24 });
+	run.PushBack({ 89, 1, 27, 24 });
+	run.speed = 0.10f;
 	/*run.PushBack({ 72,7,33,35 });
 	run.PushBack({ 108,7,33,35 });
 	run.PushBack({ 145,7,33,35 });
@@ -112,7 +124,6 @@ update_status ModuleJunis::Update()
 		{
 			if (!Shield_Animation)current_animation = &idle;
 			if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
-
 			if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
 			{
 				position.x += speed;
@@ -139,7 +150,7 @@ update_status ModuleJunis::Update()
 
 		if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
 		{
-			App->particles->AddParticle(App->particles->Sshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
+			App->particles->AddParticle(App->particles->Jshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
 			Mix_PlayChannel(-1, JunisShot, 0);
 		}
 
@@ -161,7 +172,7 @@ update_status ModuleJunis::Update()
 	// if dead
 	else {
 		if (!path_die.loop) {
-			position = position + path_die.GetCurrentSpeed();
+			position += path_die.GetCurrentSpeed();
 		}
 		else {
 			Spawn();
@@ -190,19 +201,18 @@ void ModuleJunis::Die() {
 
 bool ModuleJunis::Spawn() {
 	//first time is called, spawn behind camera
-	if (!Spawn_Animation) {
-
+	if (!Spawn_Animation) 
+	{
 		path_spawn.Reset();
 		current_animation = &touch;
 		position = iPoint(-App->render->camera.x / 2, 50);
-		player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
-
+		player_collider = App->collision->AddCollider({ position.x, position.y, 27, 28 }, COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
 		alive = true;
 	}
 	//Actually moving behind the camera
 	else {
-		position = position + path_spawn.GetCurrentSpeed();
+		position += path_spawn.GetCurrentSpeed();
 	}
 	//if is finished
 	return !path_spawn.loop;

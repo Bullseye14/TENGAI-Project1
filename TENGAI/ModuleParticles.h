@@ -52,7 +52,7 @@ private:
 public:
 
 	Particle Mshot;
-	Particle Sshot;
+	Particle Jshot;
 	Particle Eshot;
 	
 	Particle start;

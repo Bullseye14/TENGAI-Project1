@@ -12,45 +12,35 @@ ModuleParticles::ModuleParticles()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-	//START BUTTON
 
 	start.anim.PushBack({ 35,337,196,39 });
 	start.anim.PushBack({ 5,158,196,39 });
-	start.anim.loop = true;
 	start.anim.speed = 0.5f;
 
 	Eshot.anim.PushBack({ 11,50,10,12 });
-	Eshot.life = 2000;
+	Eshot.anim.PushBack({ 11,50,10,12 });
+	Eshot.anim.PushBack({ 11,50,10,12 });
+	Eshot.anim.PushBack({ 11,50,10,12 });
+	Eshot.anim.PushBack({ 11,50,10,12 });
+	Eshot.anim.speed = 0.4f;
 	Eshot.speed = iPoint(-2, 0);
-
-	Mshot.anim.PushBack({ 11,50,10,12 });
-	Mshot.anim.PushBack({ 34,50,11,11 });
-	Mshot.anim.PushBack({ 58,51,11,10 });
-	Mshot.anim.PushBack({ 82,51,12,10 });
-	Mshot.anim.PushBack({ 106,53,11,6 });
-	/*Mshot.anim.PushBack({ 129,49,12,14 });
-	Mshot.anim.PushBack({ 153,49,14,14 });
-	Mshot.anim.PushBack({ 177,49,14,13 });
-	Mshot.anim.PushBack({ 201,50,14,12 });
-	Mshot.anim.PushBack({ 225,52,13,7 });
-	Mshot.anim.PushBack({ 249,49,12,14 });
-	Mshot.anim.PushBack({ 273,49,14,14 });
-	Mshot.anim.PushBack({ 297,49,14,13 });
-	Mshot.anim.PushBack({ 321,50,14,12 });
-	Mshot.anim.PushBack({ 345,52,13,17 });*/
-	Mshot.anim.loop = true;
+	Eshot.life = 2000;
+	
+	Mshot.anim.PushBack({ 0,13,10,12 });
+	Mshot.anim.PushBack({ 23,13,11,11 });
+	Mshot.anim.PushBack({ 47,14,11,10 });
+	Mshot.anim.PushBack({ 71,14,12,10 });
+	Mshot.anim.PushBack({ 95,16,11,6 });
 	Mshot.anim.speed = 0.4f;
 	Mshot.speed = iPoint(10, 0);
 	Mshot.life = 1500;
 
-
-	Sshot.anim.PushBack({ 73,151,26,3 });
-	Sshot.anim.PushBack({ 107,151,31,3 });
-	Sshot.anim.PushBack({ 148,151,31,3 });
-	Sshot.anim.loop = true;
-	Sshot.anim.speed = 0.4f;
-	Sshot.speed = iPoint(10, 0);
-	Sshot.life = 1500;
+	Jshot.anim.PushBack({ 8,38,30,8 });
+	Jshot.anim.PushBack({ 8,55,30,8 });
+	Jshot.anim.PushBack({ 47,55,30,8 });
+	Jshot.anim.speed = 0.4f;
+	Jshot.speed = iPoint(10, 0);
+	Jshot.life = 1500;
 
 }
 
@@ -61,9 +51,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("tengai/spritesheet.png");
-
-	graphics2 = App->textures->Load("tengai/shoSpritesheet.png");
+	graphics = App->textures->Load("tengai/ParticlesSpritesheet.png");
 
 	return true;
 }

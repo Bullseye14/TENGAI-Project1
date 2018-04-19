@@ -19,7 +19,6 @@ ModuleMiko::ModuleMiko()
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
 	path_die.PushBack({ -0.1f, 0.4f }, 40);
 	
-
 	// idle animation
 	idle.PushBack({ 392, 10, 31, 27 });
 	idle.PushBack({ 432, 10, 31, 27 });
@@ -180,7 +179,7 @@ update_status ModuleMiko::Update()
 	// if dead 
 	else {
 		if (!path_die.loop) {
-			position = position + path_die.GetCurrentSpeed();
+			position += path_die.GetCurrentSpeed();
 		}
 		else {
 			Spawn();
@@ -210,19 +209,18 @@ void ModuleMiko::Die() {
 
 bool ModuleMiko::Spawn() {
 	//first time is called, spawn behind camera
-	if (!Spawn_Animation) {
-
+	if (!Spawn_Animation) 
+	{
 		path_spawn.Reset();
 		current_animation = &touch;
 		position = iPoint(-App->render->camera.x / 2, 50);
-		player_collider = App->collision->AddCollider({ position.x, position.y, 35, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
-
+		player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
 		alive = true;
 	}
 	//Actually moving behind the camera
 	else {
-		position = position + path_spawn.GetCurrentSpeed();
+		position += path_spawn.GetCurrentSpeed();
 	}
 	//if is finished
 	return !path_spawn.loop;
