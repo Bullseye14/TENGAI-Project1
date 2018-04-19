@@ -7,56 +7,30 @@
 
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ 0.0f, 0.0f }, 30);
+	/*path.PushBack({ 0.0f, 0.0f }, 30);
 	path.PushBack({ 2.0f, 0.0f }, 30);
 	path.PushBack({ 1.0f, 1.0f }, 40);
 	path.PushBack({ 1.0f, -1.0f }, 40);
-	path.PushBack({ 1.0f, 0.0f }, 25);
+	path.PushBack({ 1.0f, 0.0f }, 25);*/
 
-	idle.PushBack({ 43,44,91,107 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.PushBack({ 253,49,93,107 });
-	idle.PushBack({ 362,51,93,108 });
-	idle.PushBack({ 38,167,91,108 });
-	idle.PushBack({ 133,165,88,110 });
-	idle.PushBack({ 240,173,98,101 });
-	idle.PushBack({ 359,173,98,101 });
-	idle.PushBack({ 6,289,97,102 });
-	idle.PushBack({ 104,281,97,113 });
-	idle.PushBack({ 202,277,97,121 });
-	idle.PushBack({ 309,275,97,130 });
-	idle.PushBack({ 412,307,98,133 });
-	idle.PushBack({ 309,275,97,130 });
-	idle.PushBack({ 202,277,97,121 });
-	idle.PushBack({ 104,281,97,113 });
-	idle.PushBack({ 6,289,97,102 });
-	idle.PushBack({ 359,173,98,101 });
-	idle.PushBack({ 240,173,98,101 });
-	idle.PushBack({ 133,165,88,110 });
-	idle.PushBack({ 38,167,91,108 });
-	idle.PushBack({ 362,51,93,108 });
-	idle.PushBack({ 253,49,93,107 });
-	idle.PushBack({ 157,46,96,109 });
-	idle.speed = 0.19f;
+	fly.PushBack({ 206,567,26,35 });
+	fly.speed = 0.19f;
 
-	// die animation 
-	die.PushBack({ 43,44,91,107 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 43,44,91,107 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 43,44,91,107 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 43,44,91,107 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 43,44,91,107 });
-	die.PushBack({ 1,1,1,1 });
-	die.loop = false;
-	die.speed = 0.1f;
+	// floor animation 
+	floor.PushBack({ 239,570,27,31 });
+	floor.PushBack({ 239,570,27,31 });
 
-	animation = &idle;
+	// run animation
+	run.PushBack({ 277,568,24,33 });
+	run.PushBack({ 209,611,24,33 });
+	run.PushBack({ 241,611,33,35 });
+	run.PushBack({ 281,609,33,32 });
+	run.speed = 3.0f;
+
+	animation = &run;
 
 
-	collider = App->collision->AddCollider({ x,y,100,150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x,y,24,33 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 

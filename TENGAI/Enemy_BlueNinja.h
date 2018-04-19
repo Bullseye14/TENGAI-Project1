@@ -11,7 +11,9 @@ private:
 	int original_y = 0;
 	int original_x = 0;
 	iPoint original_position;
-	Animation idle;
+	Animation fly;
+	Animation floor;
+	Animation run;
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;

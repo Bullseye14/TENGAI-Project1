@@ -152,20 +152,22 @@ bool ModuleSceneForest::Start()
 
 	graphics = App->textures->Load("tengai/BG_Sprites.png");
 
+	App->miko->Enable();
+	App->junis->Enable();
+	App->collision->Enable();
+	App->enemies->Enable();
+
 	SceneForest = App->audio->LoadMusic("audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 300, 160);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 320, 140);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 340, 120);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, SCREEN_WIDTH + 360, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 300, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 340, 130);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 380, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 420, 70);
 
-	App->miko->Enable();
-	App->junis->Enable();
-	App->collision->Enable();
-	App->enemies->Enable();
+	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 100);
 
 	return true;
 }

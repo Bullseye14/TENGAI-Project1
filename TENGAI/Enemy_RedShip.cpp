@@ -30,20 +30,15 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 
 	animation = &idle;
 
-
 	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-
-	//collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x, y);
 }
 
 void Enemy_RedShip::Move()
 {
-	position.x -= 0.001;
-	position = original_position;
+	position.x -= 0.0000001;
+	//position = original_position;
 }
 
 /*void Enemy_RedShip::Die() {
