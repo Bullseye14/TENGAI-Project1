@@ -7,11 +7,7 @@
 
 Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 {
-	/*path.PushBack({ 0.0f, 0.0f }, 30);
-	path.PushBack({ 2.0f, 0.0f }, 30);
-	path.PushBack({ 1.0f, 1.0f }, 40);
-	path.PushBack({ 1.0f, -1.0f }, 40);
-	path.PushBack({ 1.0f, 0.0f }, 25);*/
+	path.PushBack({ 0.0f, 0.0f }, 500);
 
 	idle.PushBack({ 85,498,32,38 });
 	idle.PushBack({ 83,578,32,38 });
@@ -37,8 +33,7 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 
 void Enemy_RedShip::Move()
 {
-	position.x -= 0.0000001;
-	//position = original_position;
+	position = original_position + path.GetCurrentSpeed();
 }
 
 /*void Enemy_RedShip::Die() {

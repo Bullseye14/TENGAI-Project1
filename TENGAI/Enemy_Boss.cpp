@@ -66,20 +66,32 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 }
 
 void Enemy_Boss::Shoot() {
-	App->particles->AddParticle(App->particles->Eshot, position.x - 10, position.y+animation->GetCurrentFrame().h/2, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(App->particles->Eshot1, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(App->particles->Eshot2, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.1f);
+	App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.2f);
+	App->particles->AddParticle(App->particles->Eshot4, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.3f);
+	App->particles->AddParticle(App->particles->Eshot5, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.4f);
+	App->particles->AddParticle(App->particles->Eshot6, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot7, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.6f);
+	App->particles->AddParticle(App->particles->Eshot8, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.7f);
+	App->particles->AddParticle(App->particles->Eshot9, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.8f);
+	App->particles->AddParticle(App->particles->Eshot10, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.9f);
+	App->particles->AddParticle(App->particles->Eshot11, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 1.0f);
+	App->particles->AddParticle(App->particles->Eshot12, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 1.1f);
 }
 
 void Enemy_Boss::Move()
 {
 	//if (current_time > last_time + 50) {
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) 
+	{
 		Shoot();
 	}
+	/*
 	if (going_up)
 	{
 		if (wave > 4.0f) {
 			going_up = false;
-			Shoot();
 		}
 		else
 			wave += 0.05f;
@@ -97,7 +109,7 @@ void Enemy_Boss::Move()
 
 	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	//position.x += 1;
-	position = original_position + path.GetCurrentSpeed();
+	position = original_position + path.GetCurrentSpeed();*/
 }
 
 /*void Enemy_Boss::Die() {

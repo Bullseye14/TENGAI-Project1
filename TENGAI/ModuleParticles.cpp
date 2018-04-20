@@ -17,13 +17,141 @@ ModuleParticles::ModuleParticles()
 	start.anim.PushBack({ 5,158,196,39 });
 	start.anim.speed = 0.5f;
 
-	Eshot.anim.PushBack({ 83,82,5,7 });
-	Eshot.anim.PushBack({ 98,82,6,5 });
-	Eshot.anim.PushBack({ 113,83,7,5 });
-	Eshot.anim.PushBack({ 129,83,7,5 });
-	Eshot.anim.speed = 0.3f;
-	Eshot.speed = iPoint(-2, 0);
-	Eshot.life = 2000;
+	Eshot1.anim.PushBack({ 83,82,5,7 });
+	Eshot1.anim.PushBack({ 98,82,6,5 });
+	Eshot1.anim.PushBack({ 113,83,7,5 });
+	Eshot1.anim.PushBack({ 129,83,7,5 });
+	Eshot1.anim.speed = 0.3f;
+	Eshot1.speed = iPoint(3, 0);
+	Eshot1.life = 2000;
+
+	Eshot2.anim.PushBack({ 83,82,5,7 });
+	Eshot2.anim.PushBack({ 98,82,6,5 });
+	Eshot2.anim.PushBack({ 113,83,7,5 });
+	Eshot2.anim.PushBack({ 129,83,7,5 });
+	Eshot2.anim.speed = 0.3f;
+	Eshot2.speed = iPoint(2, 1);
+	Eshot2.life = 2000;
+
+	Eshot3.anim.PushBack({ 83,82,5,7 });
+	Eshot3.anim.PushBack({ 98,82,6,5 });
+	Eshot3.anim.PushBack({ 113,83,7,5 });
+	Eshot3.anim.PushBack({ 129,83,7,5 });
+	Eshot3.anim.speed = 0.3f;
+	Eshot3.speed = iPoint(1, 2);
+	Eshot3.life = 2000;
+
+	Eshot4.anim.PushBack({ 83,82,5,7 });
+	Eshot4.anim.PushBack({ 98,82,6,5 });
+	Eshot4.anim.PushBack({ 113,83,7,5 });
+	Eshot4.anim.PushBack({ 129,83,7,5 });
+	Eshot4.anim.speed = 0.3f;
+	Eshot4.speed = iPoint(0, 3);
+	Eshot4.life = 2000;
+
+	Eshot5.anim.PushBack({ 83,82,5,7 });
+	Eshot5.anim.PushBack({ 98,82,6,5 });
+	Eshot5.anim.PushBack({ 113,83,7,5 });
+	Eshot5.anim.PushBack({ 129,83,7,5 });
+	Eshot5.anim.speed = 0.3f;
+	Eshot5.speed = iPoint(-0.67, 2);
+	Eshot5.life = 2000;
+
+	Eshot5.anim.PushBack({ 83,82,5,7 });
+	Eshot5.anim.PushBack({ 98,82,6,5 });
+	Eshot5.anim.PushBack({ 113,83,7,5 });
+	Eshot5.anim.PushBack({ 129,83,7,5 });
+	Eshot5.anim.speed = 0.3f;
+	Eshot5.speed = iPoint(-1.33, 1);
+	Eshot5.life = 2000;
+
+	Eshot6.anim.PushBack({ 83,82,5,7 });
+	Eshot6.anim.PushBack({ 98,82,6,5 });
+	Eshot6.anim.PushBack({ 113,83,7,5 });
+	Eshot6.anim.PushBack({ 129,83,7,5 });
+	Eshot6.anim.speed = 0.3f;
+	Eshot6.speed = iPoint(-2, 0);
+	Eshot6.life = 2000;
+
+	Eshot7.anim.PushBack({ 83,82,5,7 });
+	Eshot7.anim.PushBack({ 98,82,6,5 });
+	Eshot7.anim.PushBack({ 113,83,7,5 });
+	Eshot7.anim.PushBack({ 129,83,7,5 });
+	Eshot7.anim.speed = 0.3f;
+	Eshot7.speed = iPoint(-1.33, -1);
+	Eshot7.life = 2000;
+	
+	Eshot8.anim.PushBack({ 83,82,5,7 });
+	Eshot8.anim.PushBack({ 98,82,6,5 });
+	Eshot8.anim.PushBack({ 113,83,7,5 });
+	Eshot8.anim.PushBack({ 129,83,7,5 });
+	Eshot8.anim.speed = 0.3f;
+	Eshot8.speed = iPoint(-0.67, -2);
+	Eshot8.life = 2000;
+
+	Eshot9.anim.PushBack({ 83,82,5,7 });
+	Eshot9.anim.PushBack({ 98,82,6,5 });
+	Eshot9.anim.PushBack({ 113,83,7,5 });
+	Eshot9.anim.PushBack({ 129,83,7,5 });
+	Eshot9.anim.speed = 0.3f;
+	Eshot9.speed = iPoint(0, -3);
+	Eshot9.life = 2000;
+
+	Eshot10.anim.PushBack({ 83,82,5,7 });
+	Eshot10.anim.PushBack({ 98,82,6,5 });
+	Eshot10.anim.PushBack({ 113,83,7,5 });
+	Eshot10.anim.PushBack({ 129,83,7,5 });
+	Eshot10.anim.speed = 0.3f;
+	Eshot10.speed = iPoint(1, -2);
+	Eshot10.life = 2000;
+
+	Eshot11.anim.PushBack({ 83,82,5,7 });
+	Eshot11.anim.PushBack({ 98,82,6,5 });
+	Eshot11.anim.PushBack({ 113,83,7,5 });
+	Eshot11.anim.PushBack({ 129,83,7,5 });
+	Eshot11.anim.speed = 0.3f;
+	Eshot11.speed = iPoint(2, -1);
+	Eshot11.life = 2000;
+
+	Eshot12.anim.PushBack({ 83,82,5,7 });
+	Eshot12.anim.PushBack({ 98,82,6,5 });
+	Eshot12.anim.PushBack({ 113,83,7,5 });
+	Eshot12.anim.PushBack({ 129,83,7,5 });
+	Eshot12.anim.speed = 0.3f;
+	Eshot12.speed = iPoint(3, 0);
+	Eshot12.life = 2000;
+
+	/*Eshot13.anim.PushBack({ 83,82,5,7 });
+	Eshot13.anim.PushBack({ 98,82,6,5 });
+	Eshot13.anim.PushBack({ 113,83,7,5 });
+	Eshot13.anim.PushBack({ 129,83,7,5 });
+	Eshot13.anim.speed = 0.3f;
+	Eshot13.speed = iPoint(-2, 0);
+	Eshot13.life = 2000;
+
+	Eshot14.anim.PushBack({ 83,82,5,7 });
+	Eshot14.anim.PushBack({ 98,82,6,5 });
+	Eshot14.anim.PushBack({ 113,83,7,5 });
+	Eshot14.anim.PushBack({ 129,83,7,5 });
+	Eshot14.anim.speed = 0.3f;
+	Eshot14.speed = iPoint(-2, 0);
+	Eshot14.life = 2000;
+
+	Eshot15.anim.PushBack({ 83,82,5,7 });
+	Eshot15.anim.PushBack({ 98,82,6,5 });
+	Eshot15.anim.PushBack({ 113,83,7,5 });
+	Eshot15.anim.PushBack({ 129,83,7,5 });
+	Eshot15.anim.speed = 0.3f;
+	Eshot15.speed = iPoint(-2, 0);
+	Eshot15.life = 2000;
+
+	Eshot16.anim.PushBack({ 83,82,5,7 });
+	Eshot16.anim.PushBack({ 98,82,6,5 });
+	Eshot16.anim.PushBack({ 113,83,7,5 });
+	Eshot16.anim.PushBack({ 129,83,7,5 });
+	Eshot16.anim.speed = 0.3f;
+	Eshot16.speed = iPoint(-2, 0);
+	Eshot16.life = 2000;*/
 	
 	Mshot.anim.PushBack({ 0,13,10,12 });
 	Mshot.anim.PushBack({ 23,13,11,11 });

@@ -7,7 +7,7 @@
 
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ 0.0f, 0.0f }, 300);
+	//path.PushBack({ 0.0f, 0.0f }, 300);
 	path.PushBack({ 0.0f, 2.0f }, 93);
 	path.PushBack({ -2.0f, 0.0f }, 30);
 	path.PushBack({ 4.0f, -4.0f }, 100);
@@ -16,11 +16,9 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 206,567,26,35 });
 	fly.speed = 0.19f;
 
-	// floor animation 
-	floor.PushBack({ 239,570,27,31 });
-	floor.PushBack({ 239,570,27,31 });
-
 	// run animation
+	floor.PushBack({ 239,570,27,31 });
+	floor.PushBack({ 239,570,27,31 });
 	run.PushBack({ 277,568,24,33 });
 	run.PushBack({ 209,611,24,33 });
 	run.PushBack({ 241,611,33,35 });
@@ -30,20 +28,29 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	animation = &fly;
 
 	collider = App->collision->AddCollider({ x,y,24,33 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	//collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	original_position = iPoint(x, y);
 	
 }
 
 void Enemy_BlueNinja::Shoot() {
-	App->particles->AddParticle(App->particles->Eshot, position.x - 10, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(App->particles->Eshot1, position.x - 10, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
 }
 
 void Enemy_BlueNinja::Move()
 {
+	if (running) 
+	{ 
+		air = false;
+		animation = &run;
+	}
+	else 
+	{
+		air = true;
+		running = false;
+		animation = &fly;
+	}
+
 	position = original_position + path.GetCurrentSpeed();	
 }
 

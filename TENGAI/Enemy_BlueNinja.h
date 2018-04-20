@@ -29,6 +29,8 @@ public:
 	//void OnCollision(Collider* c1, Collider* c2);
 
 	int Elife = 20;
+	bool air = true;
+	bool running = false;
 	bool alive = true;
 };
 

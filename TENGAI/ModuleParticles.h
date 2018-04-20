@@ -53,7 +53,22 @@ public:
 
 	Particle Mshot;
 	Particle Jshot;
-	Particle Eshot;
+	Particle Eshot1;
+	Particle Eshot2;
+	Particle Eshot3;
+	Particle Eshot4;
+	Particle Eshot5;
+	Particle Eshot6;
+	Particle Eshot7;
+	Particle Eshot8;
+	Particle Eshot9;
+	Particle Eshot10;
+	Particle Eshot11;
+	Particle Eshot12;
+	/*Particle Eshot13;
+	Particle Eshot14;
+	Particle Eshot15;
+	Particle Eshot16;*/
 	
 	Particle start;
 };
