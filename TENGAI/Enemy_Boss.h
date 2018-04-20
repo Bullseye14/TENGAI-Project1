@@ -19,7 +19,6 @@ private:
 public:
 
 	Enemy_Boss(int x, int y);
-	Collider* enemy_collider;
 
 	//void Die();
 	void Move();

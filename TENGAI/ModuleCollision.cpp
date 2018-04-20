@@ -5,6 +5,7 @@
 #include "ModuleSceneForest.h"
 #include "ModuleMiko.h"
 #include "ModuleParticles.h"
+#include "ModuleJunis.h"
 
 ModuleCollision::ModuleCollision()
 {
@@ -99,6 +100,26 @@ void ModuleCollision::DebugDraw()
 
 	if (debug == false)
 		return;
+
+
+	// God Mode
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
+	{
+		if (!f5) {
+			App->miko->player_collider->to_delete = true;
+			App->junis->player_collider->to_delete = true;
+			f5 = true;
+		}
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_DOWN)
+	{
+		if (f5) 
+		{
+			App->miko->player_collider = App->collision->AddCollider({ App->miko->position.x, App->miko->position.y, 31, 31 }, COLLIDER_PLAYER, this);
+			App->junis->player_collider = App->collision->AddCollider({ App->junis->position.x, App->junis->position.y, 27, 28 }, COLLIDER_PLAYER, this);
+			f5 = false;
+		}
+	}
 
 	Uint8 alpha = 80;
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)

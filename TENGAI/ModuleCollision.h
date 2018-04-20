@@ -57,6 +57,7 @@ private:
 	Collider * colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = true;
+	bool f5 = false;
 };
 
 #endif // __ModuleCollision_H__
