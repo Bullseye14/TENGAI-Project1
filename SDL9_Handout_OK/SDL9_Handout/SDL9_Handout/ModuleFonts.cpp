@@ -3,6 +3,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleFonts.h"
+#include "ModuleTextures.h"
 
 #include<string.h>
 
@@ -49,15 +50,16 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	fonts[id].len = strlen(characters); // len: length of the table
 
 	// TODO 1: Finish storing font data
-	strcpy_s(fonts[id].table, characters);
-	fonts[id].row_chars = 48;
-	fonts[id].char_h = 7;
-	fonts[id].char_w = 8;
-
+	
 	// table: array of chars to have the list of characters
+	strcpy_s(fonts[id].table, characters);
 	// row_chars: amount of chars per row of the texture
+	fonts[id].row_chars = strlen(characters) / rows;
 	// char_w: width of each character
 	// char_h: height of each character
+	App->textures->GetSize(tex, fonts[id].char_w, fonts[id].char_h);
+	fonts[id].char_w /= fonts[id].row_chars;
+	fonts[id].char_h /= rows;
 	
 	LOG("Successfully loaded BMP font from %s", texture_path);
 
@@ -92,14 +94,20 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 
 	for(uint i = 0; i < len; ++i)
 	{
-		for (uint j = 0; j < strlen(font->table); ++j) {
 		// TODO 2: Find the character in the table and its position in the texture, then Blit
-			if (text[i] == font->table[j]) {
-				rect.x = j * rect.w;
+		int c = 0;
+		for (; c < fonts[font_id].len; ++c) 
+		{
+			if (text[i] == fonts[font_id].table[c])
 				break;
-			}
 		}
+
+		uint col = c % fonts[font_id].row_chars; 
+		uint row = c / fonts[font_id].row_chars;
+
+		rect.x = col * fonts[font_id].char_w;
+		rect.y = row * fonts[font_id].char_h;
 		
+		App->render->Blit(font->graphic, x + (i*font->char_w) , y, &rect, 1.0f, false);
 	}
-	
 }

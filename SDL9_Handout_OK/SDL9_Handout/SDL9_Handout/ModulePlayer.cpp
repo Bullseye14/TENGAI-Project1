@@ -52,6 +52,8 @@ bool ModulePlayer::Start()
 	font_score = App->fonts->Load("fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
+	// En este todo solo tienes que ir a la funcion de arriba font_score = Load(...) y cambiar el 
+	//nombre de la imagen PNG y cambiar el ultimo parametro rows por un 2
 
 	return true;
 }
@@ -126,8 +128,7 @@ update_status ModulePlayer::Update()
 	sprintf_s(score_text, 10, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-
-	App->fonts->BlitText(0, SCREEN_HEIGHT- 10, 0,score_text);
+	App->fonts->BlitText(10, 10, font_score, "rtype");
 
 	return UPDATE_CONTINUE;
 }
