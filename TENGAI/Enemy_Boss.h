@@ -1,9 +1,9 @@
-#ifndef __ENEMY_BROWNCOOKIE_H__
-#define __ENEMY_BROWNCOOKIE_H__
+#ifndef __ENEMY_BOSS_H__
+#define __ENEMY_BOSS_H__
 
 #include "Enemy.h"
 
-class Enemy_BrownCookie : public Enemy
+class Enemy_Boss : public Enemy
 {
 private:
 	float wave = -1.0f;
@@ -18,7 +18,7 @@ private:
 
 public:
 
-	Enemy_BrownCookie(int x, int y);
+	Enemy_Boss(int x, int y);
 	Collider* enemy_collider;
 
 	//void Die();
@@ -30,4 +30,4 @@ public:
 	bool alive = true;
 };
 
-#endif // __ENEMY_BROWNCOOKIE_H__
+#endif // __ENEMY_BOSS_H__

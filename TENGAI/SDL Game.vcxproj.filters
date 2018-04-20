@@ -68,9 +68,6 @@
     <ClInclude Include="Enemy.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BrownCookie.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_BlueNinja.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Boss.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
@@ -136,9 +136,6 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BrownCookie.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
@@ -161,6 +158,9 @@
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_BlueNinja.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Boss.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>

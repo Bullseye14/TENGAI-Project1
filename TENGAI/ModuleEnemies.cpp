@@ -5,7 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy.h"
-#include "Enemy_BrownCookie.h"
+#include "Enemy_Boss.h"
 #include "Enemy_BlueNinja.h"
 #include "Enemy_RedShip.h"
 
@@ -129,7 +129,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		switch(info.type)
 		{
 			case ENEMY_TYPES::BROWN_COOKIES:
-			enemies[i] = new Enemy_BrownCookie(info.x, info.y);
+			enemies[i] = new Enemy_Boss(info.x, info.y);
 			break;
 
 			case ENEMY_TYPES::RED_SHIP:

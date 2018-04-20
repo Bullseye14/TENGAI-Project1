@@ -1,11 +1,11 @@
 #include "Application.h"
 #include "ModuleParticles.h"
-#include "Enemy_BrownCookie.h"
+#include "Enemy_Boss.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
 
-Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
+Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 {
 	path.PushBack({ 0.0f, 0.0f }, 30);
 	path.PushBack({ 2.0f, 0.0f }, 30);
@@ -60,16 +60,16 @@ Enemy_BrownCookie::Enemy_BrownCookie(int x, int y) : Enemy(x, y)
 	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
-	//collider = App->collision->AddCollider({ 0, 0, 24, 24 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	//collider = App->collision->AddCollider({ 0, 0, 24, 24 },COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x,y);
 }
 
-void Enemy_BrownCookie::Shoot() {
+void Enemy_Boss::Shoot() {
 	App->particles->AddParticle(App->particles->Eshot, position.x - 10, position.y+animation->GetCurrentFrame().h/2, COLLIDER_ENEMY_SHOT);
 }
 
-void Enemy_BrownCookie::Move()
+void Enemy_Boss::Move()
 {
 	//if (current_time > last_time + 50) {
 	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) {
@@ -100,7 +100,7 @@ void Enemy_BrownCookie::Move()
 	position = original_position + path.GetCurrentSpeed();
 }
 
-/*void Enemy_BrownCookie::Die() {
+/*void Enemy_Boss::Die() {
 	alive = false;
 	current_animation = &die;
 
@@ -108,7 +108,7 @@ void Enemy_BrownCookie::Move()
 
 }
 
-void Enemy_BrownCookie::OnCollision(Collider* c1, Collider* c2)
+void Enemy_Boss::OnCollision(Collider* c1, Collider* c2)
 {
 	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER_SHOT)
