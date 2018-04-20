@@ -32,7 +32,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-
+	int font_score = -1;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation touch;

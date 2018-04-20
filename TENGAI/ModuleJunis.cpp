@@ -6,6 +6,9 @@
 #include "ModuleRender.h"
 #include "ModuleJunis.h"
 #include "ModuleAudio.h"
+#include "ModuleFonts.h"
+
+#include <stdio.h>
 
 ModuleJunis::ModuleJunis()
 {
@@ -83,6 +86,9 @@ bool ModuleJunis::Start()
 	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 27, 28 }, COLLIDER_PLAYER, this);
 
+	// l'útlim número significa quantes rows te la spritesheet
+	font_score = App->fonts->Load("tengai/fonts1.png", "abcdefghijklmnopqrstuvwxyz(),-./0123456", 3);
+
 	return true;
 
 }
@@ -93,6 +99,9 @@ bool ModuleJunis::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
+	App->fonts->UnLoad(font_score);
+	if (player_collider)
+		player_collider->to_delete = true;
 
 	return true;
 }
@@ -183,6 +192,10 @@ update_status ModuleJunis::Update()
 	}
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
+
+	sprintf_s(score_text, 10, "%7d", score);
+
+	App->fonts->BlitText(10, 10, font_score, "tengai");
 
 	return UPDATE_CONTINUE;	
 }
