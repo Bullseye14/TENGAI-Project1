@@ -14,6 +14,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleJunis.h"
 #include "ModuleSceneRanking.h"
+#include "ModuleFonts.h"
 
 Application::Application()
 {
@@ -32,6 +33,7 @@ Application::Application()
 	modules[13] = collision = new ModuleCollision();
 	modules[14] = fade = new ModuleFadeToBlack();
 	modules[11] = scene_ranking = new ModuleSceneRanking();
+	modules[15] = fonts = new ModuleFonts();
 	
 	
 }	

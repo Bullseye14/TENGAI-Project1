@@ -101,6 +101,9 @@
     <ClInclude Include="ModuleSceneRanking.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -168,6 +171,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneRanking.cpp">
       <Filter>Modules\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

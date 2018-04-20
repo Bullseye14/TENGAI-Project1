@@ -72,6 +72,7 @@
   <ItemGroup>
     <ClInclude Include="Enemy_BlueNinja.h" />
     <ClInclude Include="Enemy_RedShip.h" />
+    <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleSceneRanking.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Animation.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
+    <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleMiko.cpp" />
