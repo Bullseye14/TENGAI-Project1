@@ -166,7 +166,7 @@ bool ModuleSceneForest::Start()
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 380, 100);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 420, 70);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 0);
 
 	return true;
 }
