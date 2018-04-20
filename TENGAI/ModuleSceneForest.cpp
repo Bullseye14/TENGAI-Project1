@@ -13,6 +13,7 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleJunis.h"
+#include "ModuleSceneRanking.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -239,6 +240,10 @@ update_status ModuleSceneForest::Update()
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
 		App->miko->MikoLife = 1;
 		App->junis->JunisLife = 1;
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
+	{
+		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 2.0);
 	}
 
 	return UPDATE_CONTINUE;

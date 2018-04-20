@@ -87,11 +87,12 @@ void Enemy_Boss::Move()
 	{
 		Shoot();
 	}
-	/*
+	
 	if (going_up)
 	{
 		if (wave > 4.0f) {
 			going_up = false;
+			Shoot();
 		}
 		else
 			wave += 0.05f;
@@ -109,7 +110,7 @@ void Enemy_Boss::Move()
 
 	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	//position.x += 1;
-	position = original_position + path.GetCurrentSpeed();*/
+	position = original_position + path.GetCurrentSpeed();
 }
 
 /*void Enemy_Boss::Die() {
