@@ -56,6 +56,7 @@ public:
 	int speed = 3;
 	int power_ups = 1;
 	int Mlife = 3;
+	int MikoLife = 1;
 };
 
 #endif

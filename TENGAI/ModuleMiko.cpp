@@ -104,96 +104,88 @@ update_status ModuleMiko::Update()
 {
 	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
 
-	if (alive) {
-			if (shield.Finished())
+	if (alive) 
+	{
+		if (shield.Finished())
+		{
+			Shield_Animation = false;
+			shield.Reset();
+		}
+		else if (Spawn_Animation) {
+			Spawn_Animation = Spawn();
+		}
+		else 
+		{
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 			{
-				Shield_Animation = false;
-				shield.Reset();
-			}
-			else if (Spawn_Animation) {
-				Spawn_Animation = Spawn();
-			}
-			else {
-				if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+				if (!Shield_Animation)current_animation = &backward;
+				if (position.x - speed > camera_x - 2)
 				{
-					if (!Shield_Animation)current_animation = &backward;
-					if (position.x - speed > camera_x - 2)
-					{
-						position.x -= speed;
-					}
-				}
-				if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-				{
-					if (!Shield_Animation)current_animation = &idle;
-					if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
-
-					if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
-					{
-						position.x += speed;
-					}
-				}
-
-				if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-				{
-					if (!Shield_Animation)current_animation = &backward;
-					if (position.y - speed > -2)
-					{	
-						position.y -= speed;		
-					}
-				}
-
-				 if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-				{
-					if (!Shield_Animation)current_animation = &idle;
-					if (position.y + 31 + speed < SCREEN_HEIGHT)
-					{
-						position.y += speed;
-					}
-				}
-
-				if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-				{
-					App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
-					Mix_PlayChannel(-1, MikosShot, 0);
-				}
-
-				if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-					&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-					&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-					&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-					&& !Shield_Animation)
-				{
-					if (position.y > SCREEN_HEIGHT-43) current_animation = &run;
-					else current_animation = &idle;
-				}
-
-				// DEBUG INPUT
-				if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT)
-				{
-					Die();
+					position.x -= speed;
 				}
 			}
-
-			player_collider->SetPos(position.x, position.y);
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+			{
+				if (!Shield_Animation)current_animation = &idle;
+				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+									if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
+				{
+					position.x += speed;
+				}
+			}
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+			{
+				if (!Shield_Animation)current_animation = &backward;
+				if (position.y - speed > -2)
+				{	
+					position.y -= speed;		
+				}
+			}
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+			{
+				if (!Shield_Animation)current_animation = &idle;
+				if (position.y + 31 + speed < SCREEN_HEIGHT)
+				{
+					position.y += speed;
+				}
+			}
+			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+			{
+				App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
+				Mix_PlayChannel(-1, MikosShot, 0);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+				&& !Shield_Animation)
+			{
+				if (position.y > SCREEN_HEIGHT-43) current_animation = &run;
+				else current_animation = &idle;
+			}
+			// DEBUG INPUT
+			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
+			{
+				current_animation = &die;
+				player_collider->to_delete = true;
+				alive = false;
+			}
+		}
+		player_collider->SetPos(position.x, position.y);
 	}
 	// if dead 
 	else {
-		if (!path_die.loop) {
+		if (!path_die.loop) 
+		{
 			position += path_die.GetCurrentSpeed();
 		}
-		else {
-			Spawn();
-		}
-
-		//DEBUG INPUT
-		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		else if (MikoLife != 3)
 		{
+			MikoLife++;
 			Spawn();
 		}
 	}
-
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
 	return UPDATE_CONTINUE;
 
 }
@@ -203,13 +195,12 @@ void ModuleMiko::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, MikoCollision, 0);
-
 	player_collider->to_delete = true;
 }
 
 bool ModuleMiko::Spawn() {
 	//first time is called, spawn behind camera
-	if (!Spawn_Animation) 
+	if (!Spawn_Animation)
 	{
 		path_spawn.Reset();
 		current_animation = &touch;

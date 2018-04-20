@@ -161,7 +161,6 @@ bool ModuleSceneForest::Start()
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
-
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 300, 160);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 340, 130);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 380, 100);
@@ -238,6 +237,8 @@ update_status ModuleSceneForest::Update()
 	if (App->miko->alive == false && App->junis->alive == false)
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
+		App->miko->MikoLife = 1;
+		App->junis->JunisLife = 1;
 	}
 
 	return UPDATE_CONTINUE;

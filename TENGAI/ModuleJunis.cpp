@@ -111,76 +111,73 @@ update_status ModuleJunis::Update()
 		else if (Spawn_Animation) {
 			Spawn_Animation = Spawn();
 		}
-
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
+		else
 		{
-			if (!Shield_Animation)current_animation = &backward;
-			if (position.x - speed > camera_x - 2)
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 			{
-				position.x -= speed;
+				if (!Shield_Animation)current_animation = &backward;
+				if (position.x - speed > camera_x - 2)
+				{
+					position.x -= speed;
+				}
 			}
-		}
-		else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
-		{
-			if (!Shield_Animation)current_animation = &idle;
-			if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
-			if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
+			else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 			{
-				position.x += speed;
+				if (!Shield_Animation)current_animation = &idle;
+				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+				if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
+				{
+					position.x += speed;
+				}
 			}
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
-		{
-			if (!Shield_Animation)current_animation = &backward;
-			if (position.y - speed > -2)
+			if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
 			{
-				position.y -= speed;
+				if (!Shield_Animation)current_animation = &backward;
+				if (position.y - speed > -2)
+				{
+					position.y -= speed;
+				}
 			}
-		}
-
-		else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
-		{
-			if (!Shield_Animation)current_animation = &idle;
-			if (position.y + 31 + speed < SCREEN_HEIGHT)
+			else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
 			{
-				position.y += speed;
+				if (!Shield_Animation)current_animation = &idle;
+				if (position.y + 31 + speed < SCREEN_HEIGHT)
+				{
+					position.y += speed;
+				}
 			}
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
-		{
-			App->particles->AddParticle(App->particles->Jshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
-			Mix_PlayChannel(-1, JunisShot, 0);
-		}
-
-		if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
-			&& App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_IDLE
-			&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
-			&& App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_IDLE
-			&& !Shield_Animation)
-		{
-			if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
-			else current_animation = &idle;
-		}
-		if (App->input->keyboard[SDL_SCANCODE_Q] == KEY_STATE::KEY_REPEAT)
-		{
-			Die();
+			if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
+			{
+				App->particles->AddParticle(App->particles->Jshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT);
+				Mix_PlayChannel(-1, JunisShot, 0);
+			}
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_IDLE
+				&& !Shield_Animation)
+			{
+				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+				else current_animation = &idle;
+			}
+			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
+			{
+				current_animation = &die;
+				player_collider->to_delete = true;
+				alive = false;
+			}
 		}
 		player_collider->SetPos(position.x, position.y);
 	}
 	// if dead
 	else {
-		if (!path_die.loop) {
+		if (!path_die.loop) 
+		{
 			position += path_die.GetCurrentSpeed();
 		}
-		else {
-			Spawn();
-		}
-
-		//DEBUG INPUT
-		if (App->input->keyboard[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		else if (JunisLife != 3)
 		{
+			JunisLife++;
 			Spawn();
 		}
 	}
@@ -195,13 +192,12 @@ void ModuleJunis::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, JunisCollision, 0);
-
 	player_collider->to_delete = true;
 }
 
 bool ModuleJunis::Spawn() {
 	//first time is called, spawn behind camera
-	if (!Spawn_Animation) 
+	if (!Spawn_Animation)
 	{
 		path_spawn.Reset();
 		current_animation = &touch;

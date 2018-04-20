@@ -55,6 +55,7 @@ public:
 	int speed = 3;
 	int power_ups = 1;
 	int Jlife = 3;
+	int JunisLife = 1;
 };
 
 #endif
