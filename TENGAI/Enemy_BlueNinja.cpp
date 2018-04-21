@@ -8,17 +8,17 @@
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
 	//path.PushBack({ 0.0f, 0.0f }, 300);
-	path.PushBack({ 0.0f, 2.0f }, 93);
-	path.PushBack({ -2.0f, 0.0f }, 30);
-	path.PushBack({ 4.0f, -4.0f }, 100);
+	path.PushBack({ 0.0f, 2.0f }, 93, &fly);
+	path.PushBack({ -2.0f, 0.0f }, 30, &run);
+	path.PushBack({ 4.0f, -4.0f }, 100, &fly);
 	path.loop = false;
 
 	fly.PushBack({ 206,567,26,35 });
 	fly.speed = 0.19f;
 
 	// run animation
-	floor.PushBack({ 239,570,27,31 });
-	floor.PushBack({ 239,570,27,31 });
+	run.PushBack({ 239,570,27,31 });
+	run.PushBack({ 239,570,27,31 });
 	run.PushBack({ 277,568,24,33 });
 	run.PushBack({ 209,611,24,33 });
 	run.PushBack({ 241,611,33,35 });
@@ -39,17 +39,5 @@ void Enemy_BlueNinja::Shoot() {
 
 void Enemy_BlueNinja::Move()
 {
-	if (running) 
-	{ 
-		air = false;
-		animation = &run;
-	}
-	else 
-	{
-		air = true;
-		running = false;
-		animation = &fly;
-	}
-
 	position = original_position + path.GetCurrentSpeed();	
 }
