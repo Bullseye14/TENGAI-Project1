@@ -53,6 +53,7 @@ public:
 
 	Particle Mshot;
 	Particle Jshot;
+	Particle blueShot;
 	Particle Eshot1;
 	Particle Eshot2;
 	Particle Eshot3;
