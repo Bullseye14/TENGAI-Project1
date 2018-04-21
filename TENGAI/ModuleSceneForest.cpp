@@ -12,6 +12,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
+#include "Enemy_Boss.h"
 #include "ModuleJunis.h"
 #include "ModuleSceneRanking.h"
 
@@ -137,10 +138,6 @@ ModuleSceneForest::ModuleSceneForest()
 	mountain.w = 511;
 	mountain.h = 130;
 
-	//squares
-
-
-
 }
 
 ModuleSceneForest::~ModuleSceneForest()
@@ -161,7 +158,7 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BROWN_COOKIES, SCREEN_WIDTH -90, 50);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, SCREEN_WIDTH -90, 50);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 300, 160);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 340, 130);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 380, 100);

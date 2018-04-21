@@ -30,7 +30,7 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	collider = App->collision->AddCollider({ x,y,24,33 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x, y);
-	
+	EnemyLife = 2;
 }
 
 void Enemy_BlueNinja::Shoot() {
@@ -53,30 +53,3 @@ void Enemy_BlueNinja::Move()
 
 	position = original_position + path.GetCurrentSpeed();	
 }
-
-/*void Enemy_BlueNinja::Die() {
-alive = false;
-current_animation = &die;
-
-collider->to_delete = true;
-
-}
-
-void Enemy_BlueNinja::OnCollision(Collider* c1, Collider* c2)
-{
-//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER_SHOT)
-{
-if (Elife == 1)
-{
-if (alive)
-{
-Die();
-}
-}
-else
-{
-Elife--;
-}
-}
-}*/

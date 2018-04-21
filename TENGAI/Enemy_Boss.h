@@ -20,13 +20,8 @@ public:
 
 	Enemy_Boss(int x, int y);
 
-	//void Die();
 	void Move();
 	void Shoot();
-	//void OnCollision(Collider* c1, Collider* c2);
-
-	int Elife = 20;
-	bool alive = true;
 };
 
 #endif // __ENEMY_BOSS_H__

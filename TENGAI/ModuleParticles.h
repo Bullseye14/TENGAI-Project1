@@ -69,6 +69,7 @@ public:
 	Particle Eshot14;
 	Particle Eshot15;
 	Particle Eshot16;*/
+	Particle Explosion;
 	
 	Particle start;
 };

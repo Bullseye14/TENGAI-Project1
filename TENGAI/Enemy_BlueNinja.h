@@ -15,7 +15,6 @@ private:
 	Animation floor;
 	Animation run;
 	Animation* current_animation = nullptr;
-	Animation die;
 	Path path;
 
 public:
@@ -23,15 +22,12 @@ public:
 	Enemy_BlueNinja(int x, int y);
 	Collider* enemy_collider;
 
-	//void Die();
 	void Move();
 	void Shoot();
-	//void OnCollision(Collider* c1, Collider* c2);
+	void Death();
 
-	int Elife = 20;
 	bool air = true;
 	bool running = false;
-	bool alive = true;
 };
 
 #endif // __ENEMY_BROWNCOOKIE_H__

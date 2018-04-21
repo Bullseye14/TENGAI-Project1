@@ -76,7 +76,6 @@ update_status ModuleEnemies::PostUpdate()
 			}
 		}
 	}
-
 	return UPDATE_CONTINUE;
 }
 
@@ -128,16 +127,19 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch(info.type)
 		{
-			case ENEMY_TYPES::BROWN_COOKIES:
+			case ENEMY_TYPES::BOSS:
 			enemies[i] = new Enemy_Boss(info.x, info.y);
+			enemies[i]->alive = true;
 			break;
 
 			case ENEMY_TYPES::RED_SHIP:
 			enemies[i] = new Enemy_RedShip(info.x, info.y);
+			enemies[i]->alive = true;
 			break;
 
 			case ENEMY_TYPES::BLUE_NINJA:
 			enemies[i] = new Enemy_BlueNinja(info.x, info.y);
+			enemies[i]->alive = true;
 			break;
 		}
 	}
@@ -147,12 +149,19 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			enemies[i]->OnCollision(c2);
-			//delete enemies[i];
-			//enemies[i] = nullptr;
-			break;
+			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT)
+			{
+				//App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
+				enemies[i]->EnemyLife--;
+				if (enemies[i]->EnemyLife == 1) 
+				{
+					enemies[i]->alive = false;
+					delete enemies[i];
+					enemies[i] = nullptr;
+				}
+			}
 		}
 	}
 }

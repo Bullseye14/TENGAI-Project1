@@ -20,12 +20,7 @@ public:
 	Enemy_RedShip(int x, int y);
 	Collider* enemy_collider;
 
-	//void Die();
 	void Move();
-	//void OnCollision(Collider* c1, Collider* c2);
-
-	int Elife = 20;
-	bool alive = true;
 };
 
 #endif // __ENEMY_BROWNCOOKIE_H__

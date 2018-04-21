@@ -29,36 +29,10 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x, y);
+	EnemyLife = 2;
 }
 
 void Enemy_RedShip::Move()
 {
 	position = original_position + path.GetCurrentSpeed();
 }
-
-/*void Enemy_RedShip::Die() {
-alive = false;
-current_animation = &die;
-
-collider->to_delete = true;
-
-}
-
-void Enemy_RedShip::OnCollision(Collider* c1, Collider* c2)
-{
-//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER_SHOT)
-{
-if (Elife == 1)
-{
-if (alive)
-{
-Die();
-}
-}
-else
-{
-Elife--;
-}
-}
-}*/

@@ -2,6 +2,7 @@
 #include "ModuleParticles.h"
 #include "Enemy_Boss.h"
 #include "ModuleEnemies.h"
+#include "ModuleSceneForest.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
 
@@ -63,6 +64,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	//collider = App->collision->AddCollider({ 0, 0, 24, 24 },COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x,y);
+	EnemyLife = 20;
 }
 
 void Enemy_Boss::Shoot() {
@@ -107,36 +109,12 @@ void Enemy_Boss::Move()
 		else
 			wave -= 0.05f;
 	}
+	if (EnemyLife==1) 
+	{
+		current_animation = &die;
+	}
 
 	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	//position.x += 1;
 	position = original_position + path.GetCurrentSpeed();
 }
-
-/*void Enemy_Boss::Die() {
-	alive = false;
-	current_animation = &die;
-
-	collider->to_delete = true;
-
-}
-
-void Enemy_Boss::OnCollision(Collider* c1, Collider* c2)
-{
-	//App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	if (c1->type == COLLIDER_ENEMY && c2->type == COLLIDER_PLAYER_SHOT)
-	{
-		if (Elife == 1)
-		{
-			if (alive)
-			{
-				Die();
-			}
-		}
-		else
-		{
-			Elife--;
-		}
-	}
-}*/
-

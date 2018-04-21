@@ -169,6 +169,8 @@ ModuleParticles::ModuleParticles()
 	Jshot.speed = iPoint(10, 0);
 	Jshot.life = 1500;
 
+	//!!!CREAR PARTICULA EXPLOSIO!!!
+
 }
 
 ModuleParticles::~ModuleParticles()
