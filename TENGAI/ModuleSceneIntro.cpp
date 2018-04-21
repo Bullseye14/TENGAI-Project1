@@ -20,6 +20,7 @@ bool ModuleSceneIntro::Init()
 	LOG("Loading intro scene");
 
 	background = App->textures->Load("tengai/intro.png");
+	//clouds = App->textures->Load("tengai/waves_intro.png");
 
 	intro = App->audio->LoadMusic("audio/audiointro.ogg");
 	Mix_PlayMusic(intro, -1);

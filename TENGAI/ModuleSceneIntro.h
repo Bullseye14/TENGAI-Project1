@@ -22,7 +22,7 @@ public:
 
 public:
 	SDL_Texture * background = nullptr;
-	SDL_Texture * stars = nullptr;
+	SDL_Texture * clouds = nullptr;
 
 	Mix_Music* intro = nullptr;
 

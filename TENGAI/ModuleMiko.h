@@ -22,6 +22,7 @@ public:
 	bool CleanUp();
 
 	bool Spawn();
+	bool Shield();
 	void Die();
 	void Win();
 

@@ -178,6 +178,22 @@ ModuleParticles::ModuleParticles()
 	Jshot.speed = iPoint(10, 0);
 	Jshot.life = 1500;
 
+	//;
+	power_down.anim.PushBack({ 8,38,30,8 });
+	power_down.anim.PushBack({ 1,1,1,1 });
+	power_down.anim.PushBack({ 8,55,30,8 });
+	power_down.anim.PushBack({ 1,1,1,1 });
+	power_down.anim.PushBack({ 47,55,30,8 });
+	power_down.anim.PushBack({ 1,1,1,1 });
+	power_down.anim.speed = 0.1f;
+	power_down.life = 500;
+
+	power_up.anim.PushBack({ 8,38,30,8 });
+	power_up.anim.PushBack({ 8,55,30,8 });
+	power_up.anim.PushBack({ 47,55,30,8 });
+	power_up.anim.speed = 0.1f;
+	power_up.life = 3000;
+
 	//!!!CREAR PARTICULA EXPLOSIO!!!
 
 }
@@ -225,7 +241,7 @@ update_status ModuleParticles::Update()
 
 		if(p->Update() == false)
 		{
-			p->collider->to_delete = true;
+			if (p->collider) 	p->collider->to_delete = true;
 			delete p;
 			active[i] = nullptr;
 		}

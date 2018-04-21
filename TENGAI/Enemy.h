@@ -29,7 +29,7 @@ public:
 
 	virtual void Move() {};
 	virtual void Draw(SDL_Texture* sprites);
-
+	virtual void PowerUp();
 	int EnemyLife;
 	bool alive;
 };

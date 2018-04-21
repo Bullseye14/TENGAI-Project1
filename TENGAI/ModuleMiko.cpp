@@ -120,16 +120,16 @@ update_status ModuleMiko::Update()
 
 	if (alive) 
 	{
-		if (shield.Finished())
-		{
-			Shield_Animation = false;
-			shield.Reset();
-		}
-		else if (Spawn_Animation) {
+		
+		if (Spawn_Animation) {
 			Spawn_Animation = Spawn();
 		}
 		else 
-		{
+		{	
+			if (Shield_Animation)
+			{
+				Shield_Animation = Shield();
+			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 			{
 				if (!Shield_Animation)current_animation = &backward;
@@ -142,7 +142,7 @@ update_status ModuleMiko::Update()
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
-									if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
+				if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
 				{
 					position.x += speed;
 				}
@@ -247,13 +247,35 @@ bool ModuleMiko::Spawn() {
 	return !path_spawn.loop;
 }
 
+bool ModuleMiko::Shield() {
+	if (!Shield_Animation)
+	{
+		if (power_ups > 0) {
+		power_ups--;		
+		//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
+		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+		}
+		shield.Reset();
+		current_animation = &shield;
+		Shield_Animation = true;
+	}
+	return !shield.Finished();
+}
+
 void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 {
-	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
-	if (Shield_Animation)
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY)
 	{
-		if (power_ups > 0) { current_animation = &shield; }
-		else if (alive) { Die(); }
+		//if (Shield_Animation) Shield();
+		Shield();
+	}
+
+
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
+		power_ups++;
+
+		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
+		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
@@ -271,4 +293,6 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 			Mlife--; 
 		}
 	}
+
+
 }

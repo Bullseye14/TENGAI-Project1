@@ -38,6 +38,7 @@ public:
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y);
 
+
 private:
 
 	void SpawnEnemy(const EnemyInfo& info);

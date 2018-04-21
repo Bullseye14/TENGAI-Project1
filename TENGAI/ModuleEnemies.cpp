@@ -160,23 +160,26 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				if (enemies[i]->EnemyLife <= 1)
 				{
 					App->miko->score += 100;
+					enemies[i]->PowerUp();
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
 				}
 			}
 			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2)
-		 {
-			//App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
-			enemies[i]->EnemyLife--;
-			if (enemies[i]->EnemyLife <= 1)
 			{
-				App->junis->score += 100;
-				enemies[i]->alive = false;
-				delete enemies[i];
-				enemies[i] = nullptr;
+				//App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
+				enemies[i]->EnemyLife--;
+				if (enemies[i]->EnemyLife <= 1)
+				{
+					App->junis->score += 100;
+					enemies[i]->PowerUp();
+					enemies[i]->alive = false;
+					delete enemies[i];
+					enemies[i] = nullptr;
+				}
 			}
 		}
 	}
-	}
+	
 }
