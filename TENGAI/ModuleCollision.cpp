@@ -14,22 +14,32 @@ ModuleCollision::ModuleCollision()
 
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
-	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
+	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT_P1] = false;
+	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT_P2] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER_SHOT_P1] = true;
+	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER_SHOT_P2] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY_SHOT] = false;
 
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PLAYER] = false;
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY] = true;
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_PLAYER_SHOT] = false;
-	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P1][COLLIDER_PLAYER] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P1][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER_SHOT_P1][COLLIDER_PLAYER_SHOT_P1] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P1][COLLIDER_PLAYER_SHOT_P2] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P1][COLLIDER_ENEMY_SHOT] = false;
+
+	matrix[COLLIDER_PLAYER_SHOT_P2][COLLIDER_PLAYER] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P2][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER_SHOT_P2][COLLIDER_PLAYER_SHOT_P2] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P2][COLLIDER_PLAYER_SHOT_P1] = false;
+	matrix[COLLIDER_PLAYER_SHOT_P2][COLLIDER_ENEMY_SHOT] = false;
 
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY] = false;
-	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT_P1] = false;
+	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_PLAYER_SHOT_P2] = false;
 	matrix[COLLIDER_ENEMY_SHOT][COLLIDER_ENEMY_SHOT] = false;
 }
 
@@ -135,8 +145,11 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_ENEMY: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
-		case COLLIDER_PLAYER_SHOT: // yellow
+		case COLLIDER_PLAYER_SHOT_P1: // yellow
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+			break;
+		case COLLIDER_PLAYER_SHOT_P2: // pink
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 255, alpha);
 			break;
 		case COLLIDER_ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);

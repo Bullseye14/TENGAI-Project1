@@ -8,6 +8,8 @@
 #include "Enemy_Boss.h"
 #include "Enemy_BlueNinja.h"
 #include "Enemy_RedShip.h"
+#include "ModuleMiko.h"
+#include "ModuleJunis.h"
 
 #define SPAWN_MARGIN 50
 
@@ -147,21 +149,34 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT)
+			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
 			{
 				//App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
 				enemies[i]->EnemyLife--;
-				if (enemies[i]->EnemyLife == 1) 
+				if (enemies[i]->EnemyLife <= 1)
 				{
+					App->miko->score += 100;
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
 				}
 			}
+			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2)
+		 {
+			//App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
+			enemies[i]->EnemyLife--;
+			if (enemies[i]->EnemyLife <= 1)
+			{
+				App->junis->score += 100;
+				enemies[i]->alive = false;
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 		}
+	}
 	}
 }

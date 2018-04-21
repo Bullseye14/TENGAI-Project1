@@ -7,7 +7,6 @@
 #include "ModuleJunis.h"
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
-#include "ModuleMiko.h"
 
 #include <stdio.h>
 
@@ -22,10 +21,6 @@ ModuleJunis::ModuleJunis()
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
 	path_die.PushBack({ -0.1f, 0.4f }, 40);
-
-	path_win.PushBack({ 0.3f, 0.0f }, 7);
-	path_win.PushBack({ 0.5f, 0.0f }, 15);
-	path_win.PushBack({ 0.7f, 0.0f }, 40);
 
 	// idle animation
 	idle.PushBack({ 4, 0, 27, 24 });
@@ -86,6 +81,8 @@ bool ModuleJunis::Start()
 	JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
 	JunisCollision = App->audio->LoadFx("audio/JunisCollision.wav");
 
+	// l'útlim número significa quantes rows te la spritesheet
+	//font_score = App->fonts->Load("tengai/fonts1.png", "abcdefghijklmnopqrstuvwxyz(),-./0123456", 3);
 	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);
 
@@ -114,7 +111,7 @@ bool ModuleJunis::CleanUp()
 // Update: draw background
 update_status ModuleJunis::Update()
 {
-	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
+	int camera_x = (-App->render->camera.x / 2); // Divided by camera.speed;
 
 	if (alive) {
 		if (shield.Finished())
@@ -194,15 +191,13 @@ update_status ModuleJunis::Update()
 		}
 	}
 
-	if (position.x == 2500) { Win(); }
-
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
-	score_x = camera_x + (SCREEN_WIDTH) * 2 / 3;
+	score_x = camera_x + (SCREEN_WIDTH)*2/3;
 
-	App->fonts->BlitText(score_x, 5, font_score, score_text);
-	App->fonts->BlitText(score_x - 25, 5, font_players, "2");// 1 = P1: , 2 = P2:
+	App->fonts->BlitText(score_x,5, font_score, score_text);
+	App->fonts->BlitText(score_x - 25,5, font_players, "2");// 1 = P1: , 2 = P2:
 	
 
 	return UPDATE_CONTINUE;	
@@ -213,15 +208,6 @@ void ModuleJunis::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, JunisCollision, 0);
-	player_collider->to_delete = true;
-}
-
-void ModuleJunis::Win() 
-{
-	position += path_win.GetCurrentSpeed();
-	won = true;
-	App->miko->won = true;
-	current_animation = &idle;
 	player_collider->to_delete = true;
 }
 

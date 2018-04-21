@@ -23,7 +23,6 @@ public:
 
 	bool Spawn();
 	void Die();
-	void Win();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
@@ -32,7 +31,7 @@ public:
 
 public:
 
-	SDL_Texture * graphics = nullptr;
+	SDL_Texture* graphics = nullptr;
 	int score_x = 60;
 	int font_score = -1;
 	int font_players = -1;
@@ -52,7 +51,6 @@ public:
 
 	iPoint position;
 	Path path_die;
-	Path path_win;
 	Path path_spawn;
 
 	Mix_Chunk* MikosShot = nullptr;
@@ -60,7 +58,6 @@ public:
 
 
 	bool alive = true;
-	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
 	int Mlife = 3;

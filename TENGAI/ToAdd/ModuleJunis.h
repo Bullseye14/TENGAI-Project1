@@ -1,5 +1,5 @@
-#ifndef __ModuleMiko_H__
-#define __ModuleMiko_H__
+#ifndef __ModuleJunis_H__
+#define __ModuleJunis_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -11,11 +11,11 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModuleMiko : public Module
+class ModuleJunis : public Module
 {
 public:
-	ModuleMiko();
-	~ModuleMiko();
+	ModuleJunis();
+	~ModuleJunis();
 
 	bool Start();
 	update_status Update();
@@ -23,7 +23,6 @@ public:
 
 	bool Spawn();
 	void Die();
-	void Win();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
@@ -32,7 +31,7 @@ public:
 
 public:
 
-	SDL_Texture * graphics = nullptr;
+	SDL_Texture* graphics = nullptr;
 	int score_x = 60;
 	int font_score = -1;
 	int font_players = -1;
@@ -52,19 +51,16 @@ public:
 
 	iPoint position;
 	Path path_die;
-	Path path_win;
 	Path path_spawn;
 
-	Mix_Chunk* MikosShot = nullptr;
-	Mix_Chunk* MikoCollision = nullptr;
-
+	Mix_Chunk* JunisShot = nullptr;
+	Mix_Chunk* JunisCollision = nullptr;
 
 	bool alive = true;
-	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
-	int Mlife = 3;
-	int MikoLife = 1;
+	int Jlife = 3;
+	int JunisLife = 1;
 };
 
 #endif

@@ -6,10 +6,9 @@
 #include "ModuleRender.h"
 #include "ModuleMiko.h"
 #include "ModuleAudio.h"
-#include "ModuleJunis.h"
 #include "ModuleFonts.h"
 
-#include <stdio.h>
+#include "stdio.h"
 
 ModuleMiko::ModuleMiko()
 {
@@ -22,10 +21,6 @@ ModuleMiko::ModuleMiko()
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
 	path_die.PushBack({ -0.1f, 0.4f }, 40);
-
-	path_win.PushBack({ 0.3f, 0.0f }, 7);
-	path_win.PushBack({ 0.5f, 0.0f }, 15);
-	path_win.PushBack({ 0.7f, 0.0f }, 40);
 	
 	// idle animation
 	idle.PushBack({ 392, 10, 31, 27 });
@@ -87,7 +82,7 @@ bool ModuleMiko::Start()
 	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
 
 	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
-	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
+	font_players = App->fonts->Load("tengai/p1p2.png", "12",1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
 	position.y = 50;
@@ -197,15 +192,12 @@ update_status ModuleMiko::Update()
 			Spawn();
 		}
 	}
-
-	if (position.x == 2500) { Win(); }
-
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
-
+	
 	sprintf_s(score_text, 10, "%7d", score);
 	score_x = camera_x + 30;
 	App->fonts->BlitText(score_x, 5, font_score, score_text);
-	App->fonts->BlitText(score_x - 25, 5, font_players, "1");
+	App->fonts->BlitText(score_x - 25,5, font_players, "1");
 
 	return UPDATE_CONTINUE;
 
@@ -216,15 +208,6 @@ void ModuleMiko::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, MikoCollision, 0);
-	player_collider->to_delete = true;
-}
-
-void ModuleMiko::Win()
-{
-	position += path_win.GetCurrentSpeed();
-	won = true;
-	App->junis->won = true;
-	current_animation = &idle;
 	player_collider->to_delete = true;
 }
 

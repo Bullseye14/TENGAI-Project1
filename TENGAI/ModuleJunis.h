@@ -36,6 +36,7 @@ public:
 	int score_x = 10;
 	int score_y = 10;
 	int font_score = -1;
+	int font_players = -1;
 	char score_text[10];
 	uint score = 0;
 	Animation* current_animation = nullptr;
