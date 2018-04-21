@@ -24,7 +24,7 @@ bool ModuleSceneRanking::Start()
 	background_ranking = App->textures->Load("tengai/WIN.png");
 
 	AudioRanking = App->audio->LoadMusic("audio/audiowin.ogg");
-	Mix_PlayMusic(AudioRanking, -1);
+	Mix_PlayMusic(AudioRanking, 0);
 
 	return true;
 }
