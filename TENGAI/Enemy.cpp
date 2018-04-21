@@ -29,5 +29,7 @@ void Enemy::Draw(SDL_Texture* sprites)
 
 void Enemy::PowerUp()
 {
+	// "Random" powerup spawn
+	if (position.x % 6 == 0)
 	App->particles->AddParticle(App->particles->power_up, position.x, position.y,COLLIDER_TYPE::COLLIDER_POWER_UP);
 }

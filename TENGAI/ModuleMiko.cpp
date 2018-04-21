@@ -165,7 +165,8 @@ update_status ModuleMiko::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 			{
-				App->particles->AddParticle(App->particles->Mshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Mshot, position.x, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, MikosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -266,7 +267,6 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY)
 	{
-		//if (Shield_Animation) Shield();
 		Shield();
 	}
 

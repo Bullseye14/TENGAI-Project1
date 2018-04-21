@@ -64,6 +64,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	//collider = App->collision->AddCollider({ 0, 0, 24, 24 },COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x,y);
+	
 	EnemyLife = 20;
 }
 
