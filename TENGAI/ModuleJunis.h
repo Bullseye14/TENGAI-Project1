@@ -23,6 +23,7 @@ public:
 
 	bool Spawn();
 	void Die();
+	void Win();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
@@ -50,12 +51,14 @@ public:
 
 	iPoint position;
 	Path path_die;
+	Path path_win;
 	Path path_spawn;
 
 	Mix_Chunk* JunisShot = nullptr;
 	Mix_Chunk* JunisCollision = nullptr;
 
 	bool alive = true;
+	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
 	int Jlife = 3;

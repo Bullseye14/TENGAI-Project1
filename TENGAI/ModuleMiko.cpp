@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleMiko.h"
 #include "ModuleAudio.h"
+#include "ModuleJunis.h"
 
 ModuleMiko::ModuleMiko()
 {
@@ -18,6 +19,10 @@ ModuleMiko::ModuleMiko()
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
 	path_die.PushBack({ -0.1f, 0.4f }, 40);
+
+	path_win.PushBack({ 0.3f, 0.0f }, 7);
+	path_win.PushBack({ 0.5f, 0.0f }, 15);
+	path_win.PushBack({ 0.7f, 0.0f }, 40);
 	
 	// idle animation
 	idle.PushBack({ 392, 10, 31, 27 });
@@ -185,6 +190,9 @@ update_status ModuleMiko::Update()
 			Spawn();
 		}
 	}
+
+	if (position.x == 2500) { Win(); }
+
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	return UPDATE_CONTINUE;
 
@@ -195,6 +203,15 @@ void ModuleMiko::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, MikoCollision, 0);
+	player_collider->to_delete = true;
+}
+
+void ModuleMiko::Win()
+{
+	position += path_win.GetCurrentSpeed();
+	won = true;
+	App->junis->won = true;
+	current_animation = &idle;
 	player_collider->to_delete = true;
 }
 

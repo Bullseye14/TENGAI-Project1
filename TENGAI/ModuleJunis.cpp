@@ -7,6 +7,7 @@
 #include "ModuleJunis.h"
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
+#include "ModuleMiko.h"
 
 #include <stdio.h>
 
@@ -21,6 +22,10 @@ ModuleJunis::ModuleJunis()
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
 	path_die.PushBack({ -0.25f, 0.25f }, 15);
 	path_die.PushBack({ -0.1f, 0.4f }, 40);
+
+	path_win.PushBack({ 0.3f, 0.0f }, 7);
+	path_win.PushBack({ 0.5f, 0.0f }, 15);
+	path_win.PushBack({ 0.7f, 0.0f }, 40);
 
 	// idle animation
 	idle.PushBack({ 4, 0, 27, 24 });
@@ -192,6 +197,8 @@ update_status ModuleJunis::Update()
 		}
 	}
 
+	if (position.x == 2500) { Win(); }
+
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
@@ -207,6 +214,15 @@ void ModuleJunis::Die() {
 	alive = false;
 	current_animation = &die;
 	Mix_PlayChannel(-1, JunisCollision, 0);
+	player_collider->to_delete = true;
+}
+
+void ModuleJunis::Win() 
+{
+	position += path_win.GetCurrentSpeed();
+	won = true;
+	App->miko->won = true;
+	current_animation = &idle;
 	player_collider->to_delete = true;
 }
 
