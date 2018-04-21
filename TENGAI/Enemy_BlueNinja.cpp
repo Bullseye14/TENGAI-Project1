@@ -37,6 +37,6 @@ void Enemy_BlueNinja::Shoot() {
 void Enemy_BlueNinja::Move()
 {
 	position = original_position + path.GetCurrentSpeed(&animation);
-
+ 
 	if (position.x == SCREEN_WIDTH - 100) { Shoot(); }
 }
