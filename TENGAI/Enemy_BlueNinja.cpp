@@ -24,8 +24,8 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	path2.PushBack({ 0.0f, 2.0f }, 2500, &fly);
 
 	path.PushBack({ 0.0f, 2.0f }, 93, &fly);
-	//path.PushBack({ 0.0f, 2.0f }, 1, &shot);
-	//path.PushBack({ 0.0f, 2.0f }, 45, &fly);
+	path.PushBack({ 0.0f, 2.0f }, 1, &shot);
+	path.PushBack({ 0.0f, 2.0f }, 45, &fly);
 	path.PushBack({ -2.0f, 0.0f }, 30, &run);
 	path.PushBack({ 4.0f, -4.0f }, 5000, &fly);
 
@@ -45,8 +45,8 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 void Enemy_BlueNinja::Move()
 {
 	/*if (position.x % 6 == 0); 
-	{ App->particles->AddParticle(App->particles->blueShot, position.x, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT); }*/
-	
+	{  }*/
+	if(this->animation == &shot) App->particles->AddParticle(App->particles->blueShot, position.x, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
 	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH)
 	{
 		position = original_position + path.GetCurrentSpeed(&animation);
