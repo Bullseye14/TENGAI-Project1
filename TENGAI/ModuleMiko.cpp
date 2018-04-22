@@ -165,8 +165,10 @@ update_status ModuleMiko::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 			{
-				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				for (int i = 0; i < power_ups; ++i) {
+				App->particles->AddParticle(App->particles->Mshot, position.x + i*30, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				}
+				//App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, MikosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -268,8 +270,10 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		power_ups++;
-
+		if (power_ups < 5) {
+			power_ups++;
+		}
+		score += 200;
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}

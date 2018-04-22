@@ -63,7 +63,7 @@ public:
 	bool alive = true;
 	bool won = false;
 	int speed = 3;
-	int power_ups = 1;
+	int power_ups = 3;
 	int Mlife = 3;
 	int MikoLife = 1;
 };
