@@ -13,12 +13,12 @@ struct Collider;
 class Enemy
 {
 protected:
-	Animation* animation = nullptr;
 	Collider* collider = nullptr;
 	uint current_time;
 	uint last_time;
 
 public:
+	Animation* animation = nullptr;
 	iPoint position;
 
 public:

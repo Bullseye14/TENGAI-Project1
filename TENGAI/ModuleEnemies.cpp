@@ -155,28 +155,23 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+			if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+				|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
 			{
-				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
-				//Mix_PlayChannel(-1, Explosion, 0);
 				enemies[i]->EnemyLife--;
 				if (enemies[i]->EnemyLife <= 1)
 				{
-					App->miko->score += 100;
-					enemies[i]->PowerUp();
-					enemies[i]->alive = false;
-					delete enemies[i];
-					enemies[i] = nullptr;
-				}
-			}
-			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2)
-			{
-				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
-				//Mix_PlayChannel(-1, Explosion, 0);
-				enemies[i]->EnemyLife--;
-				if (enemies[i]->EnemyLife <= 1)
-				{
-					App->junis->score += 100;
+					//Mix_PlayChannel(-1, Explosion, 0);
+					//Spawn at center of collider
+					App->particles->AddParticle(App->particles->explosion,
+						enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
+						enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
+
+					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+						App->miko->score += 100;
+					}
+					else App->junis->score += 100;
+
 					enemies[i]->PowerUp();
 					enemies[i]->alive = false;
 					delete enemies[i];
@@ -185,5 +180,5 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			}
 		}
 	}
-	
+
 }

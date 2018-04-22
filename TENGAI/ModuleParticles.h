@@ -70,7 +70,6 @@ public:
 	Particle Eshot14;
 	Particle Eshot15;
 	Particle Eshot16;*/
-	Particle Explosion;
 	Particle power_down;
 	Particle power_up;
 	Particle explosion;
