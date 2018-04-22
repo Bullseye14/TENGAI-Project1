@@ -23,6 +23,9 @@ bool ModuleSceneRanking::Start()
 {
 	LOG("Loading ranking scene");
 
+	App->miko->path_win.Reset();
+	App->junis->path_win.Reset();
+
 	background_ranking = App->textures->Load("assets/tengai/WIN.png");
 
 	AudioRanking = App->audio->LoadMusic("assets/audio/audiowin.ogg");
