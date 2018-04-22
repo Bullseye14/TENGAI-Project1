@@ -14,9 +14,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	path.PushBack({ 1.0f, 0.0f }, 50, &aftershot);
 	path.PushBack({ 1.0f, -0.25f }, 100, &close);
 	path.PushBack({ 1.0f, 0.25f }, 100, &idle);
-
 	path.loop = true;
-
 
 	//idle
 	idle.PushBack({ 43,138,91,107 });
@@ -54,13 +52,6 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	close.loop = false;
 	close.speed = 0.15f;
 
-	/*idle.PushBack({ 240,267,98,101 });
-	idle.PushBack({ 133,259,88,110 });
-	idle.PushBack({ 38,261,91,108 });
-	idle.PushBack({ 362,145,93,108 });
-	idle.PushBack({ 253,143,93,107 });
-	idle.PushBack({ 157,140,96,109 });*/
-
 	// die animation 
 	die.PushBack({ 43,44,91,107 });
 	die.PushBack({ 1,1,1,1 });
@@ -76,13 +67,8 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	die.speed = 0.1f;
 
 	animation = &idle; 
-
-
+	
 	collider = App->collision->AddCollider({ x,y,100,150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,66,37 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-	//App->collision->AddCollider({ x,y,69,75 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
-
-	//collider = App->collision->AddCollider({ 0, 0, 24, 24 },COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 
 	original_position = iPoint(x,y);
 	
@@ -112,39 +98,13 @@ void Enemy_Boss::Die()
 
 void Enemy_Boss::Move()
 {
-	//if (current_time > last_time + 50) {
-	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN) 
+	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN)
 	{
 		Shoot();
 	}
-	//if (animation == &shot) { Shoot(); }
-	
-	/*
-	if (going_up)
-	{
-		if (wave > 4.0f) {
-			going_up = false;
-			Shoot();
-		}
-		else
-			wave += 0.05f;
-	}
-	else
-	{
-		if (wave < 3.0f) {
-			going_up = true;
-			Shoot();
-		}
-
-		else
-			wave -= 0.05f;
-	}*/
 	if (EnemyLife==1) 
 	{
 		Die();
 	}
-
-	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
-	//position.x += 1;
 	position = original_position + path.GetCurrentSpeed(&animation);
 }

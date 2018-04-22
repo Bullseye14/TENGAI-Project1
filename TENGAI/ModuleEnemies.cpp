@@ -157,7 +157,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
 			{
-				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y); 
+				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
 				//Mix_PlayChannel(-1, Explosion, 0);
 				enemies[i]->EnemyLife--;
 				if (enemies[i]->EnemyLife <= 1)
