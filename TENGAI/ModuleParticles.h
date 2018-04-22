@@ -73,6 +73,7 @@ public:
 	Particle Explosion;
 	Particle power_down;
 	Particle power_up;
+	Particle explosion;
 
 	Particle start;
 };

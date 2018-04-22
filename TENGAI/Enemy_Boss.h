@@ -11,7 +11,7 @@ private:
 	int original_y = 0;
 	int original_x = 0;
 	iPoint original_position;
-	Animation idle;
+	Animation idle, open, shot, close, aftershot;
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;
@@ -22,6 +22,7 @@ public:
 
 	void Move();
 	void Shoot();
+	void Die();
 };
 
 #endif // __ENEMY_BOSS_H__

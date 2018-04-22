@@ -8,12 +8,17 @@
 
 Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ 0.0f, 0.0f }, 30);
-	path.PushBack({ 2.0f, 0.0f }, 30);
-	path.PushBack({ 1.0f, 1.0f }, 40);
-	path.PushBack({ 1.0f, -1.0f }, 40);
-	path.PushBack({ 1.0f, 0.0f }, 25);
+	path.PushBack({ 1.0f, -0.25f }, 100, &idle);
+	path.PushBack({ 1.0f, 0.25f }, 100, &open);
+	path.PushBack({ 1.0f, 0.0f }, 1, &shot);
+	path.PushBack({ 1.0f, 0.0f }, 50, &aftershot);
+	path.PushBack({ 1.0f, -0.25f }, 100, &close);
+	path.PushBack({ 1.0f, 0.25f }, 100, &idle);
 
+	path.loop = true;
+
+
+	//idle
 	idle.PushBack({ 43,138,91,107 });
 	idle.PushBack({ 157,140,96,109 });
 	idle.PushBack({ 253,143,93,107 });
@@ -21,24 +26,40 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	idle.PushBack({ 38,261,91,108 });
 	idle.PushBack({ 133,259,88,110 });
 	idle.PushBack({ 240,267,98,101 });
-	idle.PushBack({ 359,267,98,101 });
-	idle.PushBack({ 6,383,97,102 });
-	idle.PushBack({ 104,375,97,113 });
-	idle.PushBack({ 202,371,97,121 });
-	idle.PushBack({ 309,369,97,130 });
-	idle.PushBack({ 412,401,98,133 });
-	idle.PushBack({ 309,369,97,130 });
-	idle.PushBack({ 202,371,97,121 });
-	idle.PushBack({ 104,375,97,113 });
-	idle.PushBack({ 6,383,97,102 });
-	idle.PushBack({ 359,267,98,101 });
-	idle.PushBack({ 240,267,98,101 });
+	idle.loop = true;
+	idle.speed = 0.15f;
+	//open
+	open.PushBack({ 359,267,98,101 });
+	open.PushBack({ 6,383,97,102 });
+	open.PushBack({ 104,375,97,113 });
+	open.PushBack({ 202,371,97,121 });
+	open.PushBack({ 309,369,97,130 });
+	open.PushBack({ 412,401,98,133 });
+	open.PushBack({ 412,401,98,133 });
+	open.PushBack({ 412,401,98,133 });
+	open.PushBack({ 412,401,98,133 });
+	open.loop = false;
+	open.speed = 0.15f;
+	//shot
+	shot.PushBack({ 412,401,98,133 });
+	shot.loop = false;
+	//aftershot
+	aftershot.PushBack({ 412,401,98,133 });
+	//close
+	close.PushBack({ 309,369,97,130 });
+	close.PushBack({ 202,371,97,121 });
+	close.PushBack({ 104,375,97,113 });
+	close.PushBack({ 6,383,97,102 });
+	close.PushBack({ 359,267,98,101 });
+	close.loop = false;
+	close.speed = 0.15f;
+
+	/*idle.PushBack({ 240,267,98,101 });
 	idle.PushBack({ 133,259,88,110 });
 	idle.PushBack({ 38,261,91,108 });
 	idle.PushBack({ 362,145,93,108 });
 	idle.PushBack({ 253,143,93,107 });
-	idle.PushBack({ 157,140,96,109 });
-	idle.speed = 0.19f;
+	idle.PushBack({ 157,140,96,109 });*/
 
 	// die animation 
 	die.PushBack({ 43,44,91,107 });
@@ -70,8 +91,8 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 
 void Enemy_Boss::Shoot() {
 	App->particles->AddParticle(App->particles->Eshot1, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
-	/*App->particles->AddParticle(App->particles->Eshot2, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.1f);
-	App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.2f);
+	App->particles->AddParticle(App->particles->Eshot2, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	/*App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.2f);
 	App->particles->AddParticle(App->particles->Eshot4, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.3f);
 	App->particles->AddParticle(App->particles->Eshot5, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.4f);
 	App->particles->AddParticle(App->particles->Eshot6, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
@@ -84,6 +105,11 @@ void Enemy_Boss::Shoot() {
 	*/
 }
 
+void Enemy_Boss::Die() 
+{
+	animation = &die;
+}
+
 void Enemy_Boss::Move()
 {
 	//if (current_time > last_time + 50) {
@@ -91,7 +117,9 @@ void Enemy_Boss::Move()
 	{
 		Shoot();
 	}
+	//if (animation == &shot) { Shoot(); }
 	
+	/*
 	if (going_up)
 	{
 		if (wave > 4.0f) {
@@ -110,13 +138,13 @@ void Enemy_Boss::Move()
 
 		else
 			wave -= 0.05f;
-	}
+	}*/
 	if (EnemyLife==1) 
 	{
-		current_animation = &die;
+		Die();
 	}
 
 	//position.y = int(float(original_y) + (25.0f * sinf(wave)));
 	//position.x += 1;
-	position = original_position + path.GetCurrentSpeed();
+	position = original_position + path.GetCurrentSpeed(&animation);
 }
