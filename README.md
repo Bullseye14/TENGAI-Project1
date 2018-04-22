@@ -26,3 +26,9 @@ Art: _Albert Robles_
 
 _Group photo_
 
+## License & copyright
+
+© QUOKKAS, UPC School
+
+Licensed under the [MIT License]_(License)_.
+
