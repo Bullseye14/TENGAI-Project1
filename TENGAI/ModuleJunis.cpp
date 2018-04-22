@@ -176,6 +176,7 @@ update_status ModuleJunis::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
 			{
+				JunisLife = 3;
 				Die();
 			}
 		}
@@ -194,7 +195,7 @@ update_status ModuleJunis::Update()
 		}
 	}
 
-	if (position.x == 2500) { Win(); }
+	if (position.x == 2500) { won = true; App->miko->won = true; }
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -219,8 +220,6 @@ void ModuleJunis::Die() {
 void ModuleJunis::Win() 
 {
 	position += path_win.GetCurrentSpeed();
-	won = true;
-	App->miko->won = true;
 	current_animation = &idle;
 	player_collider->to_delete = true;
 }

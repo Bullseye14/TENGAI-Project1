@@ -233,7 +233,7 @@ update_status ModuleSceneForest::Update()
 	App->render->Blit(graphics, 0, 0, &log1, 0.9f);
 	App->render->Blit(graphics, 0, 152, &floor6, 1.0f);*/
 
-	if (App->miko->alive == false && App->junis->alive == false)
+	if (App->miko->MikoLife == 3 && App->junis->JunisLife == 3)
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
 		App->miko->MikoLife = 1;
@@ -241,7 +241,8 @@ update_status ModuleSceneForest::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
-		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 2.0);
+		App->miko->won=true;
+		App->junis->won=true;
 	}
 
 	if (App->miko->won == true || App->junis->won == true) 

@@ -31,7 +31,8 @@ public:
 	virtual void Draw(SDL_Texture* sprites);
 	virtual void PowerUp();
 	int EnemyLife;
-	bool alive;
+	bool alive = true;
+
 };
 
 #endif // __ENEMY_H__

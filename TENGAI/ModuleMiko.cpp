@@ -106,8 +106,9 @@ bool ModuleMiko::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(font_score);
 	if (player_collider)
+	{
 		player_collider->to_delete = true;
-
+	}
 	return true;
 }
 
@@ -120,7 +121,6 @@ update_status ModuleMiko::Update()
 
 	if (alive) 
 	{
-		
 		if (Spawn_Animation) {
 			Spawn_Animation = Spawn();
 		}
@@ -166,7 +166,7 @@ update_status ModuleMiko::Update()
 			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 			{
 				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				App->particles->AddParticle(App->particles->Mshot, position.x, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, MikosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -181,6 +181,7 @@ update_status ModuleMiko::Update()
 			// DEBUG INPUT
 			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
 			{
+				MikoLife = 3;
 				Die();
 			}
 		}
@@ -199,7 +200,7 @@ update_status ModuleMiko::Update()
 		}
 	}
 
-	if (position.x == 2500) { Win(); }
+	if (position.x == 2500) { won = true; App->junis->won = true; }
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -209,7 +210,6 @@ update_status ModuleMiko::Update()
 	App->fonts->BlitText(score_x - 25, 5, font_players, "1");
 
 	return UPDATE_CONTINUE;
-
 }
 
 void ModuleMiko::Die() {
@@ -223,8 +223,6 @@ void ModuleMiko::Die() {
 void ModuleMiko::Win()
 {
 	position += path_win.GetCurrentSpeed();
-	won = true;
-	App->junis->won = true;
 	current_animation = &idle;
 	player_collider->to_delete = true;
 }
@@ -269,8 +267,6 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 	{
 		Shield();
 	}
-
-
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
 		power_ups++;
 
