@@ -4,10 +4,11 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
+#include "ModuleRender.h"
 
 Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ -4.0f, 0.0f }, 15, &idle);
+	
 	path.PushBack({ -3.5f, 0.0f }, 15, &idle);
 	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
 	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
@@ -19,10 +20,9 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
 	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
 	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 2.5f, 0.0f }, 10, &idle);
-	path.PushBack({ 3.0f, 0.0f }, 10, &idle);
-	path.PushBack({ 3.5f, 0.0f }, 10, &idle);
-	path.PushBack({ 4.0f, 0.0f }, 1000, &idle);
+	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 15, &idle);
 
 	idle.PushBack({ 42,23,37,36 });
 	idle.PushBack({ 100,23,37,36 });
@@ -40,5 +40,5 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 
 void Enemy_GreenShip::Move()
 {
-	position = original_position + path.GetCurrentSpeed();
+	position = original_position + path.GetCurrentSpeed(&animation);
 }

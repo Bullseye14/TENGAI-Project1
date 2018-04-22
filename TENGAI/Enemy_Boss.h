@@ -13,7 +13,6 @@ private:
 	iPoint original_position;
 	Animation idle, open, shot, close, aftershot;
 	Animation* current_animation = nullptr;
-	Animation die;
 	Path path;
 	Path path2;
 
@@ -23,7 +22,6 @@ public:
 
 	void Move();
 	void Shoot();
-	void Die();
 };
 
 #endif // __ENEMY_BOSS_H__

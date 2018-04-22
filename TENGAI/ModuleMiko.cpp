@@ -123,7 +123,7 @@ bool ModuleMiko::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
-	App->fonts->UnLoad(font_score);
+	App->fonts->UnLoad(font_players);
 	if (player_collider)
 	{
 		player_collider->to_delete = true;
@@ -219,7 +219,7 @@ update_status ModuleMiko::Update()
 		}
 	}
 
-	if (position.x == 2500) { won = true; App->junis->won = true; }
+	if (position.x == 3000) { won = true; App->junis->won = true; }
 
 	if (power_ups >1) { Friend(); }
 
