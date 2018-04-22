@@ -7,22 +7,24 @@
 
 Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 {
-	path.PushBack({ 0.0f, 0.0f }, 500);
+	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
+	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.5f, 0.0f }, 10, &idle);
+	path.PushBack({ 3.0f, 0.0f }, 10, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 10, &idle);
+	path.PushBack({ 4.0f, 0.0f }, 1000, &idle);
 
 	idle.PushBack({ 85,498,32,38 });
 	idle.PushBack({ 83,578,32,38 });
 	idle.PushBack({ 81,654,32,38 });
-	idle.speed = 0.19f;
-
-	// die animation 
-	die.PushBack({ 85,498,32,38 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 83,578,32,38 });
-	die.PushBack({ 1,1,1,1 });
-	die.PushBack({ 81,654,32,38 });
-	die.PushBack({ 1,1,1,1 });
-	die.loop = false;
-	die.speed = 0.1f;
+	idle.speed = 0.2f;
 
 	animation = &idle;
 

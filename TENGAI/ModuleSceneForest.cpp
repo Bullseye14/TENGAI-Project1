@@ -160,10 +160,10 @@ bool ModuleSceneForest::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, SCREEN_WIDTH -90, 50);
 	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 300, 40);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 340, 50);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 200, 100);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 400, 70);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 500, 10);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 330, 80);
+	/*
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 360, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 390, 160);*/
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 0);
 
