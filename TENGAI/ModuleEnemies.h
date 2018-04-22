@@ -38,6 +38,7 @@ public:
 
 	bool AddEnemy(ENEMY_TYPES type, int x, int y);
 
+	//Mix_Chunk* Explosion = nullptr;
 
 private:
 
@@ -48,6 +49,7 @@ private:
 	EnemyInfo queue[MAX_ENEMIES];
 	Enemy* enemies[MAX_ENEMIES];
 	SDL_Texture* sprites;
+	
 };
 
 #endif // __ModuleEnemies_H__

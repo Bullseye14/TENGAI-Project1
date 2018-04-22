@@ -10,6 +10,7 @@
 #include "Enemy_RedShip.h"
 #include "ModuleMiko.h"
 #include "ModuleJunis.h"
+#include "ModuleAudio.h"
 
 #define SPAWN_MARGIN 50
 
@@ -28,6 +29,7 @@ bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
 	sprites = App->textures->Load("tengai/Enemy.png");
+	//Explosion = App->audio->LoadFx("audio/Explosion.wav");
 
 	return true;
 }
@@ -155,7 +157,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
 			{
-				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
+				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y); 
+				//Mix_PlayChannel(-1, Explosion, 0);
 				enemies[i]->EnemyLife--;
 				if (enemies[i]->EnemyLife <= 1)
 				{
@@ -169,6 +172,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			if (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2)
 			{
 				App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
+				//Mix_PlayChannel(-1, Explosion, 0);
 				enemies[i]->EnemyLife--;
 				if (enemies[i]->EnemyLife <= 1)
 				{
