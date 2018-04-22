@@ -158,15 +158,22 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 1500, 50);
-	for (int i = 1; i < 6; i++) 
-	{
-		int space = 400;
-		App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 20 + space * i, 40);
-		App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 50 + space * i, 80);
-		App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 80 + space * i, 120);
-		App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 110 + space * i, 160);
-	}
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 2000, 50);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 520, 20);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 550, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 580, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 610, 140);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1020, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1050, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1080, 140);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1110, 180);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1520, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1550, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1580, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1610, 160);
 	
 	for (int j = 1; j < 10; j++) 
 	{
