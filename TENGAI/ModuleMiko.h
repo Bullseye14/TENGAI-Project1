@@ -25,6 +25,7 @@ public:
 	bool Shield();
 	void Die();
 	void Win();
+	void Friend();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
@@ -33,6 +34,7 @@ public:
 
 public:
 
+	Animation* Mikofriend = nullptr;
 	SDL_Texture * graphics = nullptr;
 	int score_x = 60;
 	int font_score = -1;
@@ -41,6 +43,8 @@ public:
 	uint score = 0;
 
 	Animation* current_animation = nullptr;
+	Animation friendApp;
+	Animation friendIdle;
 	Animation idle;
 	Animation touch;
 	Animation backward;
@@ -52,6 +56,8 @@ public:
 	Collider* bullet_collider;
 
 	iPoint position;
+	iPoint mikofr;
+	Path path_friend;
 	Path path_die;
 	Path path_win;
 	Path path_spawn;
@@ -63,7 +69,7 @@ public:
 	bool alive = true;
 	bool won = false;
 	int speed = 3;
-	int power_ups = 3;
+	int power_ups = 1;
 	int Mlife = 3;
 	int MikoLife = 1;
 };

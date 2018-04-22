@@ -16,6 +16,22 @@ ModuleMiko::ModuleMiko()
 	graphics = NULL;
 	current_animation = NULL;
 
+	path_friend.PushBack({ 1.0f,0.0f }, 3, &friendApp);
+	path_friend.PushBack({ 1.0f,0.0f }, 5000, &friendIdle);
+
+	friendApp.PushBack({ 24,86,3,5 });
+	friendApp.PushBack({ 58,85,11,6 });
+	friendApp.PushBack({ 96,83,17,10 });
+	friendApp.PushBack({ 133,83,20,11 });
+	friendApp.loop = false;
+	friendApp.speed = 0.1f;
+
+	friendIdle.PushBack({ 171,81,24,14 });
+	friendIdle.PushBack({ 211,82,24,13 });
+	friendIdle.PushBack({ 251,82,24,13 });
+	friendIdle.PushBack({ 292,82,23,13 });
+	friendIdle.speed = 0.19f;
+
 	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
 
 	path_die.PushBack({ 0.0f, 0.0f }, 2);
@@ -165,10 +181,8 @@ update_status ModuleMiko::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 			{
-				for (int i = 0; i < power_ups; ++i) {
-				App->particles->AddParticle(App->particles->Mshot, position.x + i*30, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				}
-				//App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, MikosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -204,6 +218,8 @@ update_status ModuleMiko::Update()
 
 	if (position.x == 2500) { won = true; App->junis->won = true; }
 
+	if (power_ups >1) { Friend(); }
+
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
@@ -220,6 +236,20 @@ void ModuleMiko::Die() {
 	current_animation = &die;
 	Mix_PlayChannel(-1, MikoCollision, 0);
 	player_collider->to_delete = true;
+}
+
+void ModuleMiko::Friend() 
+{
+	mikofr = iPoint(position.x - 15, position.y - 15);
+	
+	path_friend.GetCurrentSpeed(&Mikofriend);
+
+	App->render->Blit(graphics, position.x - 12, position.y - 12, &(Mikofriend->GetCurrentFrame()));
+
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
+	{
+		App->particles->AddParticle(App->particles->Mshot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+	}
 }
 
 void ModuleMiko::Win()
@@ -270,10 +300,8 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		if (power_ups < 5) {
-			power_ups++;
-		}
-		score += 200;
+		power_ups++;
+
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
