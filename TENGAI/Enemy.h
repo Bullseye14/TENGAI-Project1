@@ -18,7 +18,7 @@ protected:
 	uint last_time;
 
 public:
-	Animation* animation = nullptr;
+	
 	iPoint position;
 
 public:
@@ -32,7 +32,7 @@ public:
 	virtual void PowerUp();
 	int EnemyLife;
 	bool alive = true;
-
+	Animation* animation = nullptr;
 };
 
 #endif // __ENEMY_H__
