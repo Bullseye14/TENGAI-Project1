@@ -171,11 +171,35 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						App->miko->score += 100;
 					}
 					else App->junis->score += 100;
-
-					enemies[i]->PowerUp();
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
+				}
+			}
+			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			{
+				if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+					|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
+				{
+					enemies[i]->EnemyLife--;
+					if (enemies[i]->EnemyLife <= 1)
+					{
+						//Mix_PlayChannel(-1, Explosion, 0);
+						//Spawn at center of collider
+						App->particles->AddParticle(App->particles->explosion,
+							enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
+							enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
+
+						if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+							App->miko->score += 100;
+						}
+						else App->junis->score += 100;
+
+						enemies[i]->PowerUp();
+						enemies[i]->alive = false;
+						delete enemies[i];
+						enemies[i] = nullptr;
+					}
 				}
 			}
 		}
