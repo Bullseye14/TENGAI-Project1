@@ -43,7 +43,7 @@ ModuleParticles::ModuleParticles()
 	blueShot.anim.PushBack({ 62,203,9,9 });
 	blueShot.anim.PushBack({ 76,204,7,7 });
 	blueShot.anim.speed = 1.0f;
-	blueShot.speed = iPoint(-3, -3);
+	blueShot.speed = iPoint(-3, 0);
 	blueShot.life = 2000;
 
 	Eshot1.anim.PushBack({ 83,82,5,7 });
