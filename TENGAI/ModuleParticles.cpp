@@ -179,18 +179,23 @@ ModuleParticles::ModuleParticles()
 	Jshot.life = 1500;
 
 	//;
-	power_down.anim.PushBack({ 8,38,30,8 });
-	power_down.anim.PushBack({ 1,1,1,1 });
-	power_down.anim.PushBack({ 8,55,30,8 });
-	power_down.anim.PushBack({ 1,1,1,1 });
-	power_down.anim.PushBack({ 47,55,30,8 });
-	power_down.anim.PushBack({ 1,1,1,1 });
-	power_down.anim.speed = 0.1f;
-	power_down.life = 500;
-
-	power_up.anim.PushBack({ 8,38,30,8 });
-	power_up.anim.PushBack({ 8,55,30,8 });
-	power_up.anim.PushBack({ 47,55,30,8 });
+	
+	power_up.anim.PushBack({ 497,7,30,21 });
+	power_up.anim.PushBack({ 535,7,30,21 });
+	power_up.anim.PushBack({ 572,7,30,21 });
+	power_up.anim.PushBack({ 608,7,30,21 });
+	power_up.anim.PushBack({ 646,7,30,21 });
+	power_up.anim.PushBack({ 497,38,30,21 });
+	power_up.anim.PushBack({ 535,38,30,21 });
+	power_up.anim.PushBack({ 572,38,30,21 });
+	power_up.anim.PushBack({ 608,38,30,21 });
+	power_up.anim.PushBack({ 646,38,30,21 });
+	power_up.anim.PushBack({ 497,69,30,21 });
+	power_up.anim.PushBack({ 535,69,30,21 });
+	power_up.anim.PushBack({ 572,69,30,21 });
+	power_up.anim.PushBack({ 608,69,30,21 });
+	power_up.anim.PushBack({ 646,69,30,21 });
+	power_up.anim.PushBack({ 497,101,30,21 });
 	power_up.anim.speed = 0.1f;
 	power_up.life = 3000;
 
