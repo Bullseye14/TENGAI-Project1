@@ -11,6 +11,7 @@
 #include "ModuleMiko.h"
 #include "ModuleJunis.h"
 #include "ModuleAudio.h"
+#include "Enemy_GreenShip.h"
 
 #define SPAWN_MARGIN 10000
 
@@ -133,17 +134,18 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 		{
 			case ENEMY_TYPES::BOSS:
 			enemies[i] = new Enemy_Boss(info.x, info.y);
-			enemies[i]->alive = true;
 			break;
 
 			case ENEMY_TYPES::RED_SHIP:
 			enemies[i] = new Enemy_RedShip(info.x, info.y);
-			enemies[i]->alive = true;
 			break;
 
 			case ENEMY_TYPES::BLUE_NINJA:
 			enemies[i] = new Enemy_BlueNinja(info.x, info.y);
-			enemies[i]->alive = true;
+			break;
+
+			case ENEMY_TYPES::GREEN_SHIP:
+			enemies[i] = new Enemy_GreenShip(info.x, info.y);
 			break;
 		}
 	}
@@ -176,52 +178,49 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					enemies[i] = nullptr;
 				}
 			}
-			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+				|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
 			{
-				if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
-					|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
+				enemies[i]->EnemyLife--;
+				if (enemies[i]->EnemyLife <= 1)
 				{
-					enemies[i]->EnemyLife--;
-					if (enemies[i]->EnemyLife <= 1)
-					{
-						//Mix_PlayChannel(-1, Explosion, 0);
-						//Spawn at center of collider
-						App->particles->AddParticle(App->particles->explosion,
-							enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
-							enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
-						if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
-							App->miko->score += 100;
-						}
-						else App->junis->score += 100;
-
-						enemies[i]->PowerUp();
-						enemies[i]->alive = false;
-						delete enemies[i];
-						enemies[i] = nullptr;
+					//Mix_PlayChannel(-1, Explosion, 0);
+					//Spawn at center of collider
+					App->particles->AddParticle(App->particles->explosion,
+						enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
+						enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
+					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+						App->miko->score += 100;
 					}
+					else App->junis->score += 100;
+
+					enemies[i]->PowerUp();
+					enemies[i]->alive = false;
+					delete enemies[i];
+					enemies[i] = nullptr;
 				}
 			}
+			if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_BOSS && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+				|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_BOSS && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
 			{
-				if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_BOSS && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
-					|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_BOSS && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
+				enemies[i]->EnemyLife--;
+				if (enemies[i]->EnemyLife <= 1)
 				{
-					enemies[i]->EnemyLife--;
-					if (enemies[i]->EnemyLife <= 1)
-					{
-						//Mix_PlayChannel(-1, Explosion, 0);
-						//Spawn at center of collider
-						App->particles->AddParticle(App->particles->explosion,
-							enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
-							enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
-						if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
-							App->miko->score += 100;
-						}
-						else App->junis->score += 100;
-						enemies[i]->PowerUp();
-						enemies[i]->alive = false;
-						delete enemies[i];
-						enemies[i] = nullptr;
+					//Mix_PlayChannel(-1, Explosion, 0);
+					//Spawn at center of collider
+					App->particles->AddParticle(App->particles->explosion,
+						enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
+						enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
+					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+						App->miko->score += 100;
 					}
+					else App->junis->score += 100;
+					enemies[i]->PowerUp();
+					enemies[i]->alive = false;
+					delete enemies[i];
+					enemies[i] = nullptr;
+					App->miko->won = true;
+					App->junis->won = true;
 				}
 			}
 		}

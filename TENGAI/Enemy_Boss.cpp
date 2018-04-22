@@ -5,9 +5,12 @@
 #include "ModuleSceneForest.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
+#include "ModuleRender.h"
 
 Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 {
+	path2.PushBack({ 0.0, 0.0f }, 550, &idle);
+
 	path.PushBack({ 1.0f, -0.25f }, 100, &idle);
 	path.PushBack({ 1.0f, 0.25f }, 100, &open);
 	path.PushBack({ 1.0f, 0.0f }, 1, &shot);
@@ -72,10 +75,11 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 
 	original_position = iPoint(x,y);
 	
-	EnemyLife = 20;
+	EnemyLife = 100;
 }
 
-void Enemy_Boss::Shoot() {
+void Enemy_Boss::Shoot() 
+{
 	App->particles->AddParticle(App->particles->Eshot1, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot2, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
@@ -88,7 +92,6 @@ void Enemy_Boss::Shoot() {
 	App->particles->AddParticle(App->particles->Eshot10, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot11, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot12, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
-	
 }
 
 void Enemy_Boss::Die() 
@@ -108,5 +111,15 @@ void Enemy_Boss::Move()
 	{
 		Die();
 	}
-	position = original_position + path.GetCurrentSpeed(&animation);
+	
+	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH - 150) 
+	{
+		position = original_position + path.GetCurrentSpeed(&animation);
+	}
+	else 
+	{
+		position = original_position + path2.GetCurrentSpeed(&animation);
+	}
+	
+	
 }

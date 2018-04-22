@@ -28,7 +28,7 @@ _Group photo_
 
 ## License & copyright
 
-© QUOKKAS, UPC School
+QUOKKAS, UPC School
 
 Licensed under the [MIT License](https://github.com/Bullseye14/TENGAI-Project1/blob/master/LICENSE.md).
 

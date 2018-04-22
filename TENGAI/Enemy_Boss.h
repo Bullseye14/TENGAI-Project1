@@ -15,6 +15,7 @@ private:
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;
+	Path path2;
 
 public:
 

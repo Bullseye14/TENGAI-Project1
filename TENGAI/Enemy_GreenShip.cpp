@@ -32,7 +32,7 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 
 	animation = &idle;
 
-	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY_GREEN, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	position = iPoint(x, y);
 	original_position = iPoint(x, y);
 	EnemyLife = 2;

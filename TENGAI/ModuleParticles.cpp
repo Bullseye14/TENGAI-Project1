@@ -198,7 +198,6 @@ ModuleParticles::ModuleParticles()
 	Jshot.speed = iPoint(10, 0);
 	Jshot.life = 1500;
 
-	//;
 	
 	power_up.anim.PushBack({ 497,7,30,21 });
 	power_up.anim.PushBack({ 535,7,30,21 });

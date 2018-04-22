@@ -158,7 +158,7 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, SCREEN_WIDTH -90, 50);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 800, 50);
 	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 520, 40);
 	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 550, 80);
 	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 580, 120);

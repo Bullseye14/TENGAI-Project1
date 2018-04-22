@@ -24,7 +24,6 @@ public:
 
 	void Move();
 	void Shoot();
-	void Death();
 
 	bool air = true;
 	bool running = false;
