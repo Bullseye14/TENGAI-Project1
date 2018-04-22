@@ -149,11 +149,11 @@ bool ModuleSceneForest::Start()
 	LOG("Loading forest scene");
 
 	graphics = App->textures->Load("assets/tengai/BG_Sprites.png");
-
-	App->miko->Enable();
-	App->junis->Enable();
+	
 	App->collision->Enable();
 	App->enemies->Enable();
+	App->miko->Enable();
+	App->junis->Enable();
 
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
