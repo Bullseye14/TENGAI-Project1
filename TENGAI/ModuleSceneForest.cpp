@@ -241,8 +241,8 @@ update_status ModuleSceneForest::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
-		App->miko->won=true;
-		App->junis->won=true;
+		App->miko->won = true;
+		App->junis->won = true;
 	}
 
 	if (App->miko->won == true || App->junis->won == true) 

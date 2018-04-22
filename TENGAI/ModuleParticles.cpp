@@ -194,7 +194,6 @@ ModuleParticles::ModuleParticles()
 	power_up.anim.speed = 0.1f;
 	power_up.life = 3000;
 
-	//!!!CREAR PARTICULA EXPLOSIO!!!
 	explosion.anim.PushBack({ 2,240,45,43 });
 	explosion.anim.PushBack({ 59,235,47,53 });
 	explosion.anim.PushBack({ 118,234,53,60 });
@@ -209,8 +208,6 @@ ModuleParticles::ModuleParticles()
 	explosion.anim.PushBack({ 1,1,1,1 });
 	explosion.anim.speed = 0.19f;
 	explosion.anim.loop = false;
-
-
 }
 
 ModuleParticles::~ModuleParticles()

@@ -4,6 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleMiko.h"
+#include "ModuleJunis.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
@@ -25,6 +26,9 @@ bool ModuleSceneRanking::Start()
 
 	AudioRanking = App->audio->LoadMusic("audio/audiowin.ogg");
 	Mix_PlayMusic(AudioRanking, 0);
+
+	App->miko->won = false;
+	App->junis->won = false;
 
 	return true;
 }
