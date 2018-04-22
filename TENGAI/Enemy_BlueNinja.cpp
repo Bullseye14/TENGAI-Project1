@@ -9,8 +9,8 @@
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
 	fly.PushBack({ 206,567,26,35 });
-	/*shot.PushBack({ 206,567,26,35 });
-	shot.loop = false;*/
+	shot.PushBack({ 206,567,26,35 });
+	shot.loop = false;
 	
 	// run animation
 	run.PushBack({ 239,570,27,31 });
@@ -23,9 +23,9 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 
 	path2.PushBack({ 0.0f, 2.0f }, 2500, &fly);
 
-	path.PushBack({ 0.0f, 2.0f }, 93, &fly);
-	path.PushBack({ 0.0f, 2.0f }, 1, &shot);
 	path.PushBack({ 0.0f, 2.0f }, 45, &fly);
+	path.PushBack({ 0.0f, 2.0f }, 1, &shot);
+	path.PushBack({ 0.0f, 2.0f }, 47, &fly);
 	path.PushBack({ -2.0f, 0.0f }, 30, &run);
 	path.PushBack({ 4.0f, -4.0f }, 5000, &fly);
 
@@ -37,16 +37,15 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	EnemyLife = 2;
 }
 
-/*void Enemy_BlueNinja::Shoot() 
+void Enemy_BlueNinja::Shoot() 
 {
 	App->particles->AddParticle(App->particles->blueShot, position.x, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
-}*/
+}
 
 void Enemy_BlueNinja::Move()
 {
-	/*if (position.x % 6 == 0); 
-	{  }*/
-	if(this->animation == &shot) App->particles->AddParticle(App->particles->blueShot, position.x, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
+
+	if (this->animation == &shot) { Shoot(); }
 	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH)
 	{
 		position = original_position + path.GetCurrentSpeed(&animation);
