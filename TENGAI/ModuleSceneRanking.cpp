@@ -12,6 +12,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 #include "ModuleSceneRanking.h"
+#include "ModuleFonts.h"
 
 
 ModuleSceneRanking::ModuleSceneRanking() : Module() { }
@@ -45,8 +46,12 @@ bool ModuleSceneRanking::CleanUp()
 update_status ModuleSceneRanking::Update()
 {
 	App->render->camera.x = 3;
-
 	App->render->Blit(background_ranking, -2, 0, NULL);
+
+	App->fonts->BlitText(30, 90, App->miko->font_score, App->miko->score_text);
+	App->fonts->BlitText(30, 170, App->junis->font_score, App->junis->score_text);
+	App->miko->score = 0;
+	App->junis->score = 0;
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
