@@ -236,7 +236,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 						App->miko->score += 8000;
 					}
 					else App->junis->score += 8000;
-					enemies[i]->PowerUp();
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;

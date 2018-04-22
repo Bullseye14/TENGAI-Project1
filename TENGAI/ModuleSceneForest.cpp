@@ -158,7 +158,7 @@ bool ModuleSceneForest::Start()
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 800, 50);
+	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 1500, 50);
 	for (int i = 1; i < 6; i++) 
 	{
 		int space = 400;
@@ -168,8 +168,15 @@ bool ModuleSceneForest::Start()
 		App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 110 + space * i, 160);
 	}
 	
-
-	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 0);
+	for (int j = 1; j < 10; j++) 
+	{
+		int space2 = 250;
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 210 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 250 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 260 + space2*j, 0);
+	}
+	
 
 	return true;
 }
