@@ -43,7 +43,7 @@ void Enemy_BlueNinja::Shoot() {
 
 void Enemy_BlueNinja::Move()
 {
-	if (animation==&shot); { Shoot(); }
+	//if (animation==&shot); { Shoot(); }
 	
 	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH)
 	{
