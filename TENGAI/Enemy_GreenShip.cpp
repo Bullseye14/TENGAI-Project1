@@ -8,7 +8,8 @@
 
 Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 {
-	
+	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
+
 	path.PushBack({ -3.5f, 0.0f }, 15, &idle);
 	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
 	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
@@ -22,7 +23,7 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
 	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
 	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 3.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
 
 	idle.PushBack({ 42,23,37,36 });
 	idle.PushBack({ 100,23,37,36 });
@@ -40,5 +41,9 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 
 void Enemy_GreenShip::Move()
 {
-	position = original_position + path.GetCurrentSpeed(&animation);
+	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH - 30)
+	{
+		position = original_position + path.GetCurrentSpeed(&animation);
+	}
+	else { position = original_position + path2.GetCurrentSpeed(&animation); }
 }
