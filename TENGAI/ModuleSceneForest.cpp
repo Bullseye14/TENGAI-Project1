@@ -155,6 +155,9 @@ bool ModuleSceneForest::Start()
 	App->miko->Enable();
 	App->junis->Enable();
 
+	App->miko->score = 0;
+	App->junis->score = 0;
+
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
