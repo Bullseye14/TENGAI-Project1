@@ -98,16 +98,16 @@ bool ModuleJunis::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("tengai/junisSpritesheet.png");
-	graphics2 = App->textures->Load("tengai/ParticlesSpritesheet.png");
-	JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
-	JunisCollision = App->audio->LoadFx("audio/JunisCollision.wav");
-	JunisPowerDown = App->audio->LoadFx("audio/JunisPowerDown.wav");
-	JunisPowerUp = App->audio->LoadFx("audio/JunisPowerUp.wav");
-	SocratesAttack = App->audio->LoadFx("audio/JunisFriendAttack.wav");
+	graphics = App->textures->Load("assets/tengai/junisSpritesheet.png");
+	graphics2 = App->textures->Load("assets/tengai/ParticlesSpritesheet.png");
+	JunisShot = App->audio->LoadFx("assets/audio/JunisShot.wav");
+	JunisCollision = App->audio->LoadFx("assets/audio/JunisCollision.wav");
+	JunisPowerDown = App->audio->LoadFx("assets/audio/JunisPowerDown.wav");
+	JunisPowerUp = App->audio->LoadFx("assets/audio/JunisPowerUp.wav");
+	SocratesAttack = App->audio->LoadFx("assets/audio/JunisFriendAttack.wav");
 
-	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
-	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);
+	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
+	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);
 
 	position.x = 10;
 	position.y = 150;

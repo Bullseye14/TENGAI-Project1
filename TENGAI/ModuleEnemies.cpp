@@ -28,8 +28,8 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("tengai/Enemy.png");
-	//Explosion = App->audio->LoadFx("audio/Explosion.wav");
+	sprites = App->textures->Load("assets/tengai/Enemy.png");
+	//Explosion = App->audio->LoadFx("assets/audio/Explosion.wav");
 
 	return true;
 }

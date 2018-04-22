@@ -19,10 +19,10 @@ bool ModuleSceneIntro::Start()
 { 
 	LOG("Loading intro scene");
 
-	background = App->textures->Load("tengai/intro.png");
-	//clouds = App->textures->Load("tengai/waves_intro.png");
+	background = App->textures->Load("assets/tengai/intro.png");
+	//clouds = App->textures->Load("assets/tengai/waves_intro.png");
 
-	intro = App->audio->LoadMusic("audio/audiointro.ogg");
+	intro = App->audio->LoadMusic("assets/audio/audiointro.ogg");
 	Mix_PlayMusic(intro, -1);
 
 	//App->particles->AddParticle(App->particles->start, 160, 112);
@@ -47,7 +47,7 @@ update_status ModuleSceneIntro::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		IntroFX = App->audio->LoadFx("audio/intro_miko.wav");
+		IntroFX = App->audio->LoadFx("assets/audio/intro_miko.wav");
 		Mix_PlayChannel(-1, IntroFX, 0);
 		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
 	}

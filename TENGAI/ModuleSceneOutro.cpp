@@ -20,9 +20,9 @@ bool ModuleSceneOutro::Start()
 {
 	LOG("Loading outro scene");
 
-	background_outro = App->textures->Load("tengai/outro.png");
+	background_outro = App->textures->Load("assets/tengai/outro.png");
 
-	AudioOutro = App->audio->LoadMusic("audio/audiooutro.ogg");
+	AudioOutro = App->audio->LoadMusic("assets/audio/audiooutro.ogg");
 	Mix_PlayMusic(AudioOutro, -1);
 
 	return true;

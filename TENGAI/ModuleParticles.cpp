@@ -242,7 +242,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("tengai/ParticlesSpritesheet.png");
+	graphics = App->textures->Load("assets/tengai/ParticlesSpritesheet.png");
 
 	return true;
 }

@@ -22,9 +22,9 @@ bool ModuleSceneRanking::Start()
 {
 	LOG("Loading ranking scene");
 
-	background_ranking = App->textures->Load("tengai/WIN.png");
+	background_ranking = App->textures->Load("assets/tengai/WIN.png");
 
-	AudioRanking = App->audio->LoadMusic("audio/audiowin.ogg");
+	AudioRanking = App->audio->LoadMusic("assets/audio/audiowin.ogg");
 	Mix_PlayMusic(AudioRanking, 0);
 
 	App->miko->won = false;

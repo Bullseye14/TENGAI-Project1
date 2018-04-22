@@ -98,15 +98,15 @@ bool ModuleMiko::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("tengai/spritesheet.png");
-	MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
-	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
-	MikoPowerDown = App->audio->LoadFx("audio/MikoPowerDown.wav");
-	MikoPowerUp = App->audio->LoadFx("audio/MikoPowerUp.wav");
-	MikoFriendAttack = App->audio->LoadFx("audio/MikoFriendAttack.wav");
+	graphics = App->textures->Load("assets/tengai/spritesheet.png");
+	MikosShot = App->audio->LoadFx("assets/audio/MikosShot.wav");
+	MikoCollision = App->audio->LoadFx("assets/audio/MikoCollision.wav");
+	MikoPowerDown = App->audio->LoadFx("assets/audio/MikoPowerDown.wav");
+	MikoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
+	MikoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
 
-	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
-	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
+	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
+	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
 	position.y = 50;
