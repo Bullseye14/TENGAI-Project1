@@ -257,8 +257,8 @@ void ModuleJunis::Friend()
 
 	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->SocratesShot1, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
-		App->particles->AddParticle(App->particles->SocratesShot2, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->SocratesShot1, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P2);
+		App->particles->AddParticle(App->particles->SocratesShot2, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P2);
 		Mix_PlayChannel(-1, SocratesAttack, 0);
 	}
 }
