@@ -56,7 +56,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	close.speed = 0.15f;
 
 	// die animation 
-	die.PushBack({ 43,44,91,107 });
+	/*die.PushBack({ 43,44,91,107 });
 	die.PushBack({ 1,1,1,1 });
 	die.PushBack({ 43,44,91,107 });
 	die.PushBack({ 1,1,1,1 });
@@ -67,7 +67,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	die.PushBack({ 43,44,91,107 });
 	die.PushBack({ 1,1,1,1 });
 	die.loop = false;
-	die.speed = 0.1f;
+	die.speed = 0.1f;*/
 
 	animation = &idle; 
 	
@@ -94,24 +94,16 @@ void Enemy_Boss::Shoot()
 	App->particles->AddParticle(App->particles->Eshot12, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 }
 
-void Enemy_Boss::Die() 
-{
-	animation = &die;
-}
-
 void Enemy_Boss::Move()
 {
 	if (App->input->keyboard[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN)
 	{
 		Shoot();
 	}
-	if (animation == &shot) { Shoot(); }
-
-	if (EnemyLife==1) 
-	{
-		Die();
+	if (animation == &shot) 
+	{ 
+		Shoot();
 	}
-	
 	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH - 150) 
 	{
 		position = original_position + path.GetCurrentSpeed(&animation);
@@ -120,6 +112,4 @@ void Enemy_Boss::Move()
 	{
 		position = original_position + path2.GetCurrentSpeed(&animation);
 	}
-	
-	
 }

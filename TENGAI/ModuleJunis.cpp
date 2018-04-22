@@ -124,10 +124,11 @@ bool ModuleJunis::CleanUp()
 	LOG("Unloading player");
 
 	App->textures->Unload(graphics);
-	App->fonts->UnLoad(font_score);
+	App->fonts->UnLoad(font_players);
 	if (player_collider)
+	{
 		player_collider->to_delete = true;
-
+	}
 	return true;
 }
 
@@ -215,7 +216,7 @@ update_status ModuleJunis::Update()
 		}
 	}
 
-	if (position.x == 2500) { won = true; App->miko->won = true; }
+	if (position.x == 3000) { won = true; App->miko->won = true; }
 
 	if (power_ups >= 2) { Friend(); }
 	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) { Friend(); }
@@ -308,7 +309,6 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
-
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT)
 	{
 		Die();
