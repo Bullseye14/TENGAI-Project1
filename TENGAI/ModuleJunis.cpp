@@ -234,6 +234,7 @@ update_status ModuleJunis::Update()
 }
 
 void ModuleJunis::Die() {
+	power_ups = 1;
 	path_die.Reset();
 	alive = false;
 	current_animation = &die;
@@ -243,6 +244,7 @@ void ModuleJunis::Die() {
 
 void ModuleJunis::Win() 
 {
+	power_ups = 1;
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;

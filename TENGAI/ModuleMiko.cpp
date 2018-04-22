@@ -159,8 +159,10 @@ update_status ModuleMiko::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 			{
-				if (!Shield_Animation)current_animation = &idle;
-				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+				if (!Shield_Animation) {
+					current_animation = &idle;
+					if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+				}
 				if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
 				{
 					position.x += speed;
@@ -234,6 +236,7 @@ update_status ModuleMiko::Update()
 }
 
 void ModuleMiko::Die() {
+	power_ups = 1;
 	path_die.Reset();
 	alive = false;
 	current_animation = &die;
@@ -258,6 +261,7 @@ void ModuleMiko::Friend()
 
 void ModuleMiko::Win()
 {
+	power_ups = 1;
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
