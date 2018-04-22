@@ -16,6 +16,22 @@ ModuleJunis::ModuleJunis()
 	graphics = NULL;
 	current_animation = NULL;
 
+	path_socrates.PushBack({ 1.0f,0.0f }, 3, &SocratesApp);
+	path_socrates.PushBack({ 1.0f,0.0f }, 5000, &SocratesIdle);
+
+	SocratesApp.PushBack({ 144,35,5,3 });
+	SocratesApp.PushBack({ 175,33,11,6 });
+	SocratesApp.PushBack({ 210,33,19,8 });
+	SocratesApp.PushBack({ 256,32,22,9 });
+	SocratesApp.loop = false;
+	SocratesApp.speed = 0.1f;
+
+	SocratesIdle.PushBack({ 299,50,26,13 });
+	SocratesIdle.PushBack({ 334,50,29,13 });
+	SocratesIdle.PushBack({ 373,53,30,12 });
+	SocratesIdle.PushBack({ 417,52,29,12 });
+	SocratesIdle.speed = 0.19f;
+
 	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
 
 	path_die.PushBack({ 0.0f, 0.0f }, 2);
@@ -83,6 +99,7 @@ bool ModuleJunis::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("tengai/junisSpritesheet.png");
+	graphics2 = App->textures->Load("tengai/ParticlesSpritesheet.png");
 	JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
 	JunisCollision = App->audio->LoadFx("audio/JunisCollision.wav");
 
@@ -197,6 +214,9 @@ update_status ModuleJunis::Update()
 
 	if (position.x == 2500) { won = true; App->miko->won = true; }
 
+	if (power_ups >= 2) { Friend(); }
+	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) { Friend(); }
+
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
@@ -222,6 +242,20 @@ void ModuleJunis::Win()
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
+}
+
+void ModuleJunis::Friend() 
+{
+	socrates_pos = iPoint(position.x - 15, position.y - 15);
+
+	path_socrates.GetCurrentSpeed(&AnimSocrates);
+
+	App->render->Blit(graphics, position.x - 12, position.y - 12, &(AnimSocrates->GetCurrentFrame()));
+
+	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
+	{
+		App->particles->AddParticle(App->particles->Jshot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+	}
 }
 
 bool ModuleJunis::Spawn() {
@@ -250,6 +284,12 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (power_ups > 0) { current_animation = &shield; }
 		else if (alive) { Die(); }
+	}
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
+		power_ups++;
+
+		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
+		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT)

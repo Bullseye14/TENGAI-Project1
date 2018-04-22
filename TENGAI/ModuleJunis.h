@@ -24,6 +24,7 @@ public:
 	bool Spawn();
 	void Die();
 	void Win();
+	void Friend();
 
 	bool Shield_Animation = false;
 	bool Die_Animation = false;
@@ -32,7 +33,10 @@ public:
 
 public:
 
+	Animation* AnimSocrates = nullptr;
+	Animation SocratesApp, SocratesIdle;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* graphics2 = nullptr;
 	int score_x = 10;
 	int score_y = 10;
 	int font_score = -1;
@@ -51,6 +55,8 @@ public:
 	Collider* bullet_collider;
 
 	iPoint position;
+	iPoint socrates_pos;
+	Path path_socrates;
 	Path path_die;
 	Path path_win;
 	Path path_spawn;
