@@ -102,6 +102,9 @@ bool ModuleJunis::Start()
 	graphics2 = App->textures->Load("tengai/ParticlesSpritesheet.png");
 	JunisShot = App->audio->LoadFx("audio/JunisShot.wav");
 	JunisCollision = App->audio->LoadFx("audio/JunisCollision.wav");
+	JunisPowerDown = App->audio->LoadFx("audio/JunisPowerDown.wav");
+	JunisPowerUp = App->audio->LoadFx("audio/JunisPowerUp.wav");
+	SocratesAttack = App->audio->LoadFx("audio/JunisFriendAttack.wav");
 
 	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);
@@ -254,7 +257,9 @@ void ModuleJunis::Friend()
 
 	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->Jshot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->SocratesShot1, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->SocratesShot2, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		Mix_PlayChannel(-1, SocratesAttack, 0);
 	}
 }
 
@@ -282,11 +287,14 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
 	if (Shield_Animation)
 	{
+		if (power_ups > 1) { power_ups--; }
+		Mix_PlayChannel(-1, JunisPowerDown, 0);
 		if (power_ups > 0) { current_animation = &shield; }
 		else if (alive) { Die(); }
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
 		power_ups++;
+		Mix_PlayChannel(-1, JunisPowerUp, 0);
 
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);

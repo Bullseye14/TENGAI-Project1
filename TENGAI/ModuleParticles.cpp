@@ -17,6 +17,26 @@ ModuleParticles::ModuleParticles()
 	start.anim.PushBack({ 5,158,196,39 });
 	start.anim.speed = 0.5f;
 
+	BasaroShot.anim.PushBack({ 357,12,15,15 });
+	BasaroShot.anim.PushBack({ 381,12,15,15 });
+	BasaroShot.anim.PushBack({ 258,77,15,15 });
+	BasaroShot.anim.PushBack({ 282,77,15,15 });
+	BasaroShot.anim.PushBack({ 306,77,15,15 });
+	BasaroShot.anim.PushBack({ 330,77,15,15 });
+	BasaroShot.anim.PushBack({ 354,77,15,15 });
+	BasaroShot.anim.PushBack({ 378,77,15,15 });
+	BasaroShot.anim.speed = 1.0f;
+	BasaroShot.speed = iPoint(7, 0);
+	BasaroShot.life = 2000;
+
+	SocratesShot1.anim.PushBack({ 53,38,8,8 });
+	SocratesShot1.speed = iPoint(7, -2);
+	SocratesShot1.life = 2000;
+
+	SocratesShot2.anim.PushBack({ 53,38,8,8 });
+	SocratesShot2.speed = iPoint(7, 2);
+	SocratesShot2.life = 2000;
+
 	blueShot.anim.PushBack({ 24,204,7,7 });
 	blueShot.anim.PushBack({ 36,203,9,9 });
 	blueShot.anim.PushBack({ 49,203,9,9 });

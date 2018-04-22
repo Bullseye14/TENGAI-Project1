@@ -101,6 +101,9 @@ bool ModuleMiko::Start()
 	graphics = App->textures->Load("tengai/spritesheet.png");
 	MikosShot = App->audio->LoadFx("audio/MikosShot.wav");
 	MikoCollision = App->audio->LoadFx("audio/MikoCollision.wav");
+	MikoPowerDown = App->audio->LoadFx("audio/MikoPowerDown.wav");
+	MikoPowerUp = App->audio->LoadFx("audio/MikoPowerUp.wav");
+	MikoFriendAttack = App->audio->LoadFx("audio/MikoFriendAttack.wav");
 
 	font_score = App->fonts->Load("tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
@@ -248,7 +251,8 @@ void ModuleMiko::Friend()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
-		App->particles->AddParticle(App->particles->Mshot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->BasaroShot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		Mix_PlayChannel(-1, MikoFriendAttack, 0);
 	}
 }
 
@@ -282,7 +286,8 @@ bool ModuleMiko::Shield() {
 	if (!Shield_Animation)
 	{
 		if (power_ups > 0) {
-		power_ups--;		
+		power_ups--;	
+		Mix_PlayChannel(-1, MikoPowerDown, 0);
 		//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 		}
@@ -301,6 +306,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
 		power_ups++;
+		Mix_PlayChannel(-1, MikoPowerUp, 0);
 
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);

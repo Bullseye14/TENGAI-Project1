@@ -64,6 +64,9 @@ public:
 
 	Mix_Chunk* MikosShot = nullptr;
 	Mix_Chunk* MikoCollision = nullptr;
+	Mix_Chunk* MikoPowerUp = nullptr;
+	Mix_Chunk* MikoPowerDown = nullptr;
+	Mix_Chunk* MikoFriendAttack = nullptr;
 
 
 	bool alive = true;

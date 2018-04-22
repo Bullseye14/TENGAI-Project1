@@ -54,6 +54,9 @@ public:
 	Particle Mshot;
 	Particle Jshot;
 	Particle blueShot;
+	Particle SocratesShot1;
+	Particle SocratesShot2;
+	Particle BasaroShot;
 	Particle Eshot1;
 	Particle Eshot2;
 	Particle Eshot3;

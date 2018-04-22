@@ -63,6 +63,9 @@ public:
 
 	Mix_Chunk* JunisShot = nullptr;
 	Mix_Chunk* JunisCollision = nullptr;
+	Mix_Chunk* JunisPowerUp = nullptr;
+	Mix_Chunk* JunisPowerDown = nullptr;
+	Mix_Chunk* SocratesAttack = nullptr;
 
 	bool alive = true;
 	bool won = false;
