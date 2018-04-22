@@ -7,6 +7,9 @@
 
 Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 {
+	path.PushBack({ -4.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -3.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
 	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
 	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
 	path.PushBack({ -1.5f, 0.0f }, 15, &idle);

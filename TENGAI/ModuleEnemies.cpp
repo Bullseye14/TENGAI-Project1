@@ -12,7 +12,7 @@
 #include "ModuleJunis.h"
 #include "ModuleAudio.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 10000
 
 ModuleEnemies::ModuleEnemies()
 {

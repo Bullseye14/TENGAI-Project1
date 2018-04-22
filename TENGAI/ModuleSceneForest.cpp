@@ -159,11 +159,15 @@ bool ModuleSceneForest::Start()
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, SCREEN_WIDTH -90, 50);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 300, 40);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 330, 80);
-	/*
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 360, 120);
-	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 390, 160);*/
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 520, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 550, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 580, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 610, 160);
+
+	/*App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1000, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1030, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1060, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1090, 40);*/
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200, 0);
 
