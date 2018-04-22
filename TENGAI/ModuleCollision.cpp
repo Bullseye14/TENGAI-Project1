@@ -60,6 +60,24 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_ENEMY_PU][COLLIDER_PLAYER_SHOT_P2] = true;
 	matrix[COLLIDER_ENEMY_PU][COLLIDER_POWER_UP] = false;
 	matrix[COLLIDER_ENEMY_PU][COLLIDER_ENEMY_SHOT] = false;
+
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_PLAYER_SHOT_P1] = true;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_PLAYER_SHOT_P2] = true;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_POWER_UP] = false;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_ENEMY_BOSS][COLLIDER_ENEMY_PU] = false;
+
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_PLAYER_SHOT_P1] = true;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_PLAYER_SHOT_P2] = true;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_POWER_UP] = false;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_ENEMY_SHOT] = false;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_ENEMY_PU] = false;
+	matrix[COLLIDER_ENEMY_GREEN][COLLIDER_ENEMY_BOSS] = false;
+	
 }
 
 // Destructor
@@ -162,6 +180,15 @@ void ModuleCollision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 		case COLLIDER_ENEMY: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_ENEMY_BOSS: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_ENEMY_GREEN: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_ENEMY_PU: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case COLLIDER_PLAYER_SHOT_P1: // yellow

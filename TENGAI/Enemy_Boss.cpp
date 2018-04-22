@@ -15,7 +15,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	path.PushBack({ 1.0f, -0.25f }, 100, &close);
 	path.PushBack({ 1.0f, 0.25f }, 100, &idle);
 	path.loop = true;
-
+	
 	//idle
 	idle.PushBack({ 43,138,91,107 });
 	idle.PushBack({ 157,140,96,109 });
@@ -68,7 +68,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 
 	animation = &idle; 
 	
-	collider = App->collision->AddCollider({ x,y,100,150 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x,y,100,150 }, COLLIDER_TYPE::COLLIDER_ENEMY_BOSS, (Module*)App->enemies);
 
 	original_position = iPoint(x,y);
 	
@@ -76,19 +76,19 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 }
 
 void Enemy_Boss::Shoot() {
-	App->particles->AddParticle(App->particles->Eshot1, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
+	App->particles->AddParticle(App->particles->Eshot1, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot2, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
-	/*App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.2f);
-	App->particles->AddParticle(App->particles->Eshot4, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.3f);
-	App->particles->AddParticle(App->particles->Eshot5, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.4f);
+	App->particles->AddParticle(App->particles->Eshot3, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot4, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot5, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
 	App->particles->AddParticle(App->particles->Eshot6, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
-	App->particles->AddParticle(App->particles->Eshot7, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.6f);
-	App->particles->AddParticle(App->particles->Eshot8, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.7f);
-	App->particles->AddParticle(App->particles->Eshot9, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.8f);
-	App->particles->AddParticle(App->particles->Eshot10, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.9f);
-	App->particles->AddParticle(App->particles->Eshot11, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 1.0f);
-	App->particles->AddParticle(App->particles->Eshot12, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 1.1f);
-	*/
+	App->particles->AddParticle(App->particles->Eshot7, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot8, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot9, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot10, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot11, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	App->particles->AddParticle(App->particles->Eshot12, position.x + 48, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT, 0.5f);
+	
 }
 
 void Enemy_Boss::Die() 
@@ -102,6 +102,8 @@ void Enemy_Boss::Move()
 	{
 		Shoot();
 	}
+	if (animation == &shot) { Shoot(); }
+
 	if (EnemyLife==1) 
 	{
 		Die();
