@@ -200,7 +200,7 @@ ModuleParticles::ModuleParticles()
 	explosion.anim.PushBack({ 180,237,49,56 });
 	explosion.anim.PushBack({ 242,235,52,59 });
 	explosion.anim.PushBack({ 304,235,51,62 });
-	explosion.anim.PushBack({ 265,235,52,63 });
+	explosion.anim.PushBack({ 365,235,52,63 });
 	explosion.anim.PushBack({ 432,235,55,62 });
 	explosion.anim.PushBack({ 499,235,55,63 });
 	explosion.anim.PushBack({ 566,234,52,59 });
