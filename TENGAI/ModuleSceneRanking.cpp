@@ -13,6 +13,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleFonts.h"
+#include <stdio.h>
 
 
 ModuleSceneRanking::ModuleSceneRanking() : Module() { }
@@ -40,7 +41,8 @@ bool ModuleSceneRanking::Start()
 bool ModuleSceneRanking::CleanUp()
 {
 	LOG("Unloading ranking scene");
-
+	App->miko->score = 0;
+	App->junis->score = 0;
 	App->textures->Unload(background_ranking);
 
 	return true;
@@ -51,10 +53,15 @@ update_status ModuleSceneRanking::Update()
 	App->render->camera.x = 3;
 	App->render->Blit(background_ranking, -2, 0, NULL);
 
-	App->fonts->BlitText(30, 90, App->miko->font_score, App->miko->score_text);
-	App->fonts->BlitText(30, 170, App->junis->font_score, App->junis->score_text);
-	App->miko->score = 0;
-	App->junis->score = 0;
+	App->fonts->BlitText(40, 90, App->miko->font_score, App->miko->score_text);
+	App->fonts->BlitText(40, 170, App->junis->font_score, App->junis->score_text);
+
+	char sum_score[10];
+	uint uint_sum_score = App->miko->score + App->junis->score;
+	sprintf_s(sum_score, 10, "%7d", uint_sum_score);
+
+	App->fonts->BlitText(200, SCREEN_HEIGHT/2, App->miko->font_score, sum_score);
+	
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
