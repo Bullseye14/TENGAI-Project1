@@ -154,6 +154,10 @@ update_status ModuleCollision::PreUpdate()
 
 	return UPDATE_CONTINUE;
 }
+bool ModuleCollision::Start() {
+	debug = false;
+	return true;
+}
 
 // Called before render is available
 update_status ModuleCollision::Update()
