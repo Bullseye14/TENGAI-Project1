@@ -45,7 +45,7 @@ update_status ModuleSceneOutro::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
 	{
-		App->fade->FadeToBlack(App->scene_outro, App->scene_forest, 1.0);
+		App->fade->FadeToBlack(App->scene_outro, App->scene_intro, 1.0);
 	}
 
 	return UPDATE_CONTINUE;

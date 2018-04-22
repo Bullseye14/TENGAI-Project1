@@ -15,7 +15,7 @@ ModuleSceneIntro::ModuleSceneIntro() : Module() { }
 
 ModuleSceneIntro::~ModuleSceneIntro() { }
 
-bool ModuleSceneIntro::Init() 
+bool ModuleSceneIntro::Start() 
 { 
 	LOG("Loading intro scene");
 
