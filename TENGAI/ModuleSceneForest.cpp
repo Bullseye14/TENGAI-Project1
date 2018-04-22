@@ -183,9 +183,9 @@ bool ModuleSceneForest::Start()
 	{
 		int space2 = 250;
 		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 200 + space2*j, 0);
-		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 220 + space2*j, 0);
-		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 260 + space2*j, 0);
-		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 280 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 230 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 270 + space2*j, 0);
+		App->enemies->AddEnemy(ENEMY_TYPES::BLUE_NINJA, 300 + space2*j, 0);
 	}  
 	return true;
 }
