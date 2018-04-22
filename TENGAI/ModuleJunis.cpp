@@ -216,7 +216,7 @@ update_status ModuleJunis::Update()
 		}
 	}
 
-	if (position.x == 3000) { won = true; App->miko->won = true; }
+	if (position.x == 2500) { won = true; App->miko->won = true; }
 
 	if (power_ups >= 2) { Friend(); }
 	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) { Friend(); }
@@ -285,7 +285,7 @@ bool ModuleJunis::Spawn() {
 bool ModuleJunis::Shield() {
 	if (!Shield_Animation)
 	{
-		if (power_ups > 0) {
+		if (power_ups == 2) {
 			power_ups--;
 			Mix_PlayChannel(-1, JunisPowerDown, 0);
 			//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
@@ -304,7 +304,7 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		power_ups++;
+		if (power_ups == 1) { power_ups++; }
 		Mix_PlayChannel(-1, JunisPowerUp, 0);
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);

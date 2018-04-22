@@ -239,8 +239,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
-					App->miko->won = true;
-					App->junis->won = true;
 				}
 			}
 		}
