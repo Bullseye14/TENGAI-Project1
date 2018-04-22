@@ -15,7 +15,7 @@ private:
 	Animation floor;
 	Animation run;
 	Animation* current_animation = nullptr;
-	Path path;
+	Path path, path2;
 
 public:
 

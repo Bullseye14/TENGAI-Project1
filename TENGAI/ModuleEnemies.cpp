@@ -178,8 +178,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					enemies[i] = nullptr;
 				}
 			}
-			if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
-				|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_PU && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
+			if ((c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_RED && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+				|| (c1->type == COLLIDER_TYPE::COLLIDER_ENEMY_RED && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
 			{
 				enemies[i]->EnemyLife--;
 				if (enemies[i]->EnemyLife <= 1)

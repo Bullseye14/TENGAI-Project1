@@ -31,7 +31,7 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 
 	animation = &idle;
 
-	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY_PU, (Module*)App->enemies);
+	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY_RED, (Module*)App->enemies);
 	position = iPoint(x, y);
 	original_position = iPoint(x, y);
 	EnemyLife = 2;

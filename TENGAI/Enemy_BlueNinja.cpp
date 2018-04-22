@@ -4,6 +4,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollision.h"
 #include "ModuleInput.h"
+#include "ModuleRender.h"
 
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
@@ -18,9 +19,11 @@ Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 	run.PushBack({ 281,609,33,32 });
 	run.speed = 0.2f;
 
+	path2.PushBack({ 0.0f, 2.0f }, 2500, &fly);
+
 	path.PushBack({ 0.0f, 2.0f }, 93, &fly);
 	path.PushBack({ -2.0f, 0.0f }, 30, &run);
-	path.PushBack({ 4.0f, -4.0f }, 100, &fly);
+	path.PushBack({ 4.0f, -4.0f }, 5000, &fly);
 
 	animation = &fly;
 
@@ -36,7 +39,11 @@ void Enemy_BlueNinja::Shoot() {
 
 void Enemy_BlueNinja::Move()
 {
-	position = original_position + path.GetCurrentSpeed(&animation);
+	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH)
+	{
+		position = original_position + path.GetCurrentSpeed(&animation);
+	}
+	else{ position = original_position + path2.GetCurrentSpeed(&animation); }
  
 	if (position.x == SCREEN_WIDTH - 100) { Shoot(); }
 }
