@@ -300,7 +300,7 @@ bool ModuleMiko::Shield() {
 
 void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY)
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_GREEN || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_RED || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_BOSS)
 	{
 		Shield();
 	}
@@ -314,18 +314,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
 	{
-		if (Mlife == 1) 
-		{ 
-			if (alive) 
-			{
-				Die();
-				Mlife = 3;
-			}			
-		}
-		else 
-		{ 
-			Mlife--; 
-		}
+		Die();
 	}
 
 

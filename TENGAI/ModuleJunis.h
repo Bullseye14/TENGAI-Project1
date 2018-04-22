@@ -22,6 +22,7 @@ public:
 	bool CleanUp();
 
 	bool Spawn();
+	bool Shield();
 	void Die();
 	void Win();
 	void Friend();
@@ -71,7 +72,6 @@ public:
 	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
-	int Jlife = 3;
 	int JunisLife = 1;
 };
 

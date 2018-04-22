@@ -281,38 +281,36 @@ bool ModuleJunis::Spawn() {
 	//if is finished
 	return !path_spawn.loop;
 }
-
+bool ModuleJunis::Shield() {
+	if (!Shield_Animation)
+	{
+		if (power_ups > 0) {
+			power_ups--;
+			Mix_PlayChannel(-1, JunisPowerDown, 0);
+			//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
+			App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+		}
+		shield.Reset();
+		current_animation = &shield;
+		Shield_Animation = true;
+	}
+	return !shield.Finished();
+}
 void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 {
-	Shield_Animation = (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY) || (c2->type == COLLIDER_PLAYER && c1->type == COLLIDER_ENEMY);
-	if (Shield_Animation)
+	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_GREEN || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_RED || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_BOSS)
 	{
-		if (power_ups > 1) { power_ups--; }
-		Mix_PlayChannel(-1, JunisPowerDown, 0);
-		if (power_ups > 0) { current_animation = &shield; }
-		else if (alive) { Die(); }
+		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
 		power_ups++;
 		Mix_PlayChannel(-1, JunisPowerUp, 0);
-
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
 
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT)
 	{
-		if (Jlife == 1)
-		{
-			if (alive)
-			{
-				Die();
-				Jlife = 3;
-			}
-		}
-		else
-		{
-			Jlife--;
-		}
+		Die();
 	}
 }
