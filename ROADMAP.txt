@@ -1,0 +1,14 @@
+**Monday 7/May**
+0.6 NEW LEVEL SCROLLING: Fullscreen, background completed, moving camera, gamepad functionallity.
+
+
+**Monday 14/May**
+0.7
+
+
+**Monday 21/May**
+0.8
+
+
+**Monday 28/May**
+0.9
