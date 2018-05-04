@@ -209,13 +209,13 @@ update_status ModuleSceneForest::Update()
 {
 	// Move camera forward -----------------------------
 	int scroll_speed = 1;
+	float speed = 5;
 
 	//Player auto scroll
-	App->miko->position.x += 1;
-	App->junis->position.x += 1;
+	App->miko->position.x += speed / SCREEN_SIZE / 2;
+	App->junis->position.x += speed / SCREEN_SIZE / 2;
 
-
-	App->render->camera.x -= 2;
+	App->render->camera.x -= speed / SCREEN_SIZE / 2;
 
 	int pos = -9, postree = -10, pos2 = 809, pos4 = 780;
 
