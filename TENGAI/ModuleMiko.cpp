@@ -136,7 +136,8 @@ bool ModuleMiko::CleanUp()
 // Update: draw background
 update_status ModuleMiko::Update()
 {
-	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
+	int camera_x = -App->render->camera.x;// Divided by camera.speed;
+	int camera_y = -App->render->camera.y;
 
 	if (alive) 
 	{
@@ -171,7 +172,7 @@ update_status ModuleMiko::Update()
 			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 			{
 				if (!Shield_Animation)current_animation = &backward;
-				if (position.y - speed > -2)
+				if (position.y - speed > -2 + camera_y)
 				{	
 					position.y -= speed;		
 				}
@@ -179,7 +180,7 @@ update_status ModuleMiko::Update()
 			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 			{
 				if (!Shield_Animation)current_animation = &idle;
-				if (position.y + 31 + speed < SCREEN_HEIGHT)
+				if (position.y + 31 + speed < SCREEN_HEIGHT + camera_y)
 				{
 					position.y += speed;
 				}

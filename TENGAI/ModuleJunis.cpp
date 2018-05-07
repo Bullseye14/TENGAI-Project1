@@ -135,7 +135,7 @@ bool ModuleJunis::CleanUp()
 // Update: draw background
 update_status ModuleJunis::Update()
 {
-	int camera_x = (-App->render->camera.x / 2);// Divided by camera.speed;
+	int camera_x = -App->render->camera.x;// Divided by camera.speed;
 
 	if (alive) {
 		if (shield.Finished())
@@ -224,10 +224,10 @@ update_status ModuleJunis::Update()
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
-	score_x = camera_x + (SCREEN_WIDTH) * 2 / 3;
+	score_x = camera_x + (SCREEN_SIZE*SCREEN_WIDTH*2/3);
 
 	App->fonts->BlitText(score_x, 5, font_score, score_text);
-	App->fonts->BlitText(score_x - 25, 5, font_players, "2");// 1 = P1: , 2 = P2:
+	App->fonts->BlitText(score_x-25, 5, font_players, "2");// 1 = P1: , 2 = P2:
 	
 
 	return UPDATE_CONTINUE;	
