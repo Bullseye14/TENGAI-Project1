@@ -75,6 +75,7 @@
     <ClInclude Include="Enemy_RedShip.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleSceneRanking.h" />
+    <ClInclude Include="ModuleSceneSea.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
@@ -122,6 +123,7 @@
     <ClCompile Include="ModuleSceneOutro.cpp" />
     <ClCompile Include="ModuleJunis.cpp" />
     <ClCompile Include="ModuleSceneRanking.cpp" />
+    <ClCompile Include="ModuleSceneSea.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
   </ItemGroup>
