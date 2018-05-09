@@ -177,7 +177,7 @@ update_status ModuleMiko::Update()
 					position.y -= speed;		
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) == 1)
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y + 31 + speed < SCREEN_HEIGHT + camera_y)
@@ -185,7 +185,7 @@ update_status ModuleMiko::Update()
 					position.y += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 			{
 				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
