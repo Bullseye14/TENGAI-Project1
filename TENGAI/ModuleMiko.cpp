@@ -195,6 +195,8 @@ update_status ModuleMiko::Update()
 				&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 				&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 				&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+				&& SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) == 0
+				&& SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) == 0
 				&& !Shield_Animation)
 			{
 				if (position.y > SCREEN_HEIGHT-43) current_animation = &run;
