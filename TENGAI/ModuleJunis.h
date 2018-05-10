@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "Path.h"
 #include "SDL_mixer/include/SDL_mixer.h"
+#include "SDL\include\SDL_joystick.h"
 #pragma comment(lib,"SDL_mixer/libx86/SDL2_mixer.lib")
 
 struct SDL_Texture;

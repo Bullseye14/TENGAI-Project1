@@ -33,14 +33,19 @@ bool ModuleInput::Init()
 		ret = false;
 	}
 
-	if (SDL_NumJoysticks() < 1) 
+	if (SDL_NumJoysticks() < 2) 
 	{
 		LOG("Warning! There is no joystick connected!");
 	}
 	else 
 	{
 		gamepad = SDL_GameControllerOpen(0);
+		gamepad2 = SDL_GameControllerOpen(1);
 		if (gamepad == NULL) 
+		{
+			LOG("Warning! Unable to open GameController. SDL_Error: %s\n", SDL_GetError());
+		}
+		if (gamepad2 == NULL)
 		{
 			LOG("Warning! Unable to open GameController. SDL_Error: %s\n", SDL_GetError());
 		}
@@ -90,6 +95,8 @@ bool ModuleInput::CleanUp()
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	SDL_GameControllerClose(gamepad);
 	gamepad = NULL;
+	SDL_GameControllerClose(gamepad2);
+	gamepad2 = NULL;
 	SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
 	return true;
 }

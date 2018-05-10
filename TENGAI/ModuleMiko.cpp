@@ -150,7 +150,7 @@ update_status ModuleMiko::Update()
 			{
 				Shield_Animation = Shield();
 			}
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.x - speed > camera_x - 2)
@@ -158,7 +158,7 @@ update_status ModuleMiko::Update()
 					position.x -= speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) > 0)
 			{
 				if (!Shield_Animation) {
 					current_animation = &idle;
@@ -169,15 +169,15 @@ update_status ModuleMiko::Update()
 					position.x += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.y - speed > -2 + camera_y)
 				{	
-					position.y -= speed;		
+					position.y -= speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) == 1)
+			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) > 0)
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y + 31 + speed < SCREEN_HEIGHT + camera_y)
@@ -253,7 +253,7 @@ void ModuleMiko::Friend()
 
 	App->render->Blit(graphics, position.x - 12, position.y - 12, &(Mikofriend->GetCurrentFrame()));
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		App->particles->AddParticle(App->particles->BasaroShot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
 		Mix_PlayChannel(-1, MikoFriendAttack, 0);

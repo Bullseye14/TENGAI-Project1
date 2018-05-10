@@ -43,7 +43,9 @@ update_status ModuleSceneOutro::Update()
 
 	App->render->Blit(background_outro, -2, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_REPEAT 
+		|| SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1
+		|| SDL_GameControllerGetButton(App->input->gamepad2, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		App->fade->FadeToBlack(App->scene_outro, App->scene_intro, 1.0);
 	}

@@ -148,7 +148,7 @@ update_status ModuleJunis::Update()
 		}
 		else
 		{
-			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad2, SDL_CONTROLLER_AXIS_LEFTX) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.x - speed > camera_x - 2)
@@ -156,7 +156,7 @@ update_status ModuleJunis::Update()
 					position.x -= speed;
 				}
 			}
-			else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
+			else if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad2, SDL_CONTROLLER_AXIS_LEFTX) > 0)
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
@@ -165,7 +165,7 @@ update_status ModuleJunis::Update()
 					position.x += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad2, SDL_CONTROLLER_AXIS_LEFTY) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.y - speed > -2)
@@ -173,7 +173,7 @@ update_status ModuleJunis::Update()
 					position.y -= speed;
 				}
 			}
-			else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+			else if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad2, SDL_CONTROLLER_AXIS_LEFTY) > 0)
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y + 31 + speed < SCREEN_HEIGHT)
@@ -181,7 +181,7 @@ update_status ModuleJunis::Update()
 					position.y += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
+			if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad2, SDL_CONTROLLER_BUTTON_A) == 1)
 			{
 				App->particles->AddParticle(App->particles->Jshot, position.x + 31, position.y + 6, COLLIDER_PLAYER_SHOT_P2);
 				Mix_PlayChannel(-1, JunisShot, 0);
@@ -258,7 +258,7 @@ void ModuleJunis::Friend()
 
 	App->render->Blit(graphics, position.x - 12, position.y - 12, &(AnimSocrates->GetCurrentFrame()));
 
-	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad2, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		App->particles->AddParticle(App->particles->SocratesShot1, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P2);
 		App->particles->AddParticle(App->particles->SocratesShot2, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P2);

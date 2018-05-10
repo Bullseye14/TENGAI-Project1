@@ -45,7 +45,9 @@ update_status ModuleSceneIntro::Update()
 
 	App->render->Blit(background, -2, 0, NULL);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 
+		|| SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1 
+		|| SDL_GameControllerGetButton(App->input->gamepad2, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		IntroFX = App->audio->LoadFx("assets/audio/intro_miko.wav");
 		Mix_PlayChannel(-1, IntroFX, 0);

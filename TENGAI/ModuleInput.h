@@ -41,6 +41,7 @@ public:
 	KEY_STATE keyboard[MAX_KEYS];
 	BUTTON_STATE button[MAX_BUTTONS];
 	SDL_GameController* gamepad;
+	SDL_GameController* gamepad2;
 	SDL_Event Event;
 };
 
