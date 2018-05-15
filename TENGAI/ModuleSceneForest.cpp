@@ -15,6 +15,7 @@
 #include "Enemy_Boss.h"
 #include "ModuleJunis.h"
 #include "ModuleSceneRanking.h"
+#include "ModuleSceneSea.h"
 
 ModuleSceneForest::ModuleSceneForest()
 {
@@ -158,7 +159,7 @@ bool ModuleSceneForest::Start()
 	App->miko->score = 0;
 	App->junis->score = 0;
 
-	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
+	SceneForest = App->audio->LoadMusic("assets/audio/audiosea.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 800, 50);
@@ -269,7 +270,7 @@ update_status ModuleSceneForest::Update()
 	{
 		App->miko->Win();
 		App->junis->Win();
-		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 3.0);
+		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0);
 	}
 
 	return UPDATE_CONTINUE;
