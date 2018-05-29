@@ -205,7 +205,7 @@ update_status ModuleJunis::Update()
 	}
 	// if dead
 	else {
-		if (!path_die.loop) 
+		if (!path_die.loop)
 		{
 			position += path_die.GetCurrentSpeed();
 		}
@@ -215,8 +215,6 @@ update_status ModuleJunis::Update()
 			Spawn();
 		}
 	}
-
-	if (position.x == 2500) { won = true; App->miko->won = true; }
 
 	if (power_ups >= 2) { Friend(); }
 	if (App->input->keyboard[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) { Friend(); }

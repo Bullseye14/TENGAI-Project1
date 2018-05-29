@@ -159,7 +159,7 @@ bool ModuleSceneForest::Start()
 	App->miko->score = 0;
 	App->junis->score = 0;
 
-	SceneForest = App->audio->LoadMusic("assets/audio/audiosea.ogg");
+	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BOSS, 800, 50);
@@ -258,7 +258,7 @@ update_status ModuleSceneForest::Update()
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
 		App->miko->MikoLife = 1;
-		App->junis->JunisLife = 1;
+		App->junis->JunisLife = 1; 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
@@ -266,10 +266,16 @@ update_status ModuleSceneForest::Update()
 		App->junis->won = true;
 	}
 
+	if (App->miko->position.x >= 2500) { App->miko->won = true; }
+
+	if (App->junis->position.x >= 2500) { App->junis->won = true; }
+
 	if (App->miko->won == true || App->junis->won == true) 
 	{
-		App->miko->Win();
-		App->junis->Win();
+		if (App->miko->alive) {App->miko->Win();}
+
+		else if (App->junis->alive) {App->junis->Win();}
+
 		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0);
 	}
 

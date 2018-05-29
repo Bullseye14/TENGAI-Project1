@@ -224,8 +224,6 @@ update_status ModuleMiko::Update()
 		}
 	}
 
-	if (position.x == 2500) { won = true; App->junis->won = true; }
-
 	if (power_ups >1) { Friend(); }
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
