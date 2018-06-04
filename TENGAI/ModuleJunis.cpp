@@ -138,16 +138,16 @@ update_status ModuleJunis::Update()
 	int camera_x = -App->render->camera.x;// Divided by camera.speed;
 
 	if (alive) {
-		if (shield.Finished())
-		{
-			Shield_Animation = false;
-			shield.Reset();
-		}
-		else if (Spawn_Animation) {
+
+		if (Spawn_Animation) {
 			Spawn_Animation = Spawn();
 		}
 		else
 		{
+			if (Shield_Animation)
+			{
+				Shield_Animation = Shield();
+			}
 			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad2, SDL_CONTROLLER_AXIS_LEFTX) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
