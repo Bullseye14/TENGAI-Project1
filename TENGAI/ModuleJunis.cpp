@@ -67,15 +67,6 @@ ModuleJunis::ModuleJunis()
 	run.PushBack({ 46, 0, 27, 24 });
 	run.PushBack({ 89, 1, 27, 24 });
 	run.speed = 0.10f;
-	/*run.PushBack({ 72,7,33,35 });
-	run.PushBack({ 108,7,33,35 });
-	run.PushBack({ 145,7,33,35 });
-	run.PushBack({ 190,7,33,35 });
-	run.PushBack({ 230,7,33,35 });
-	run.PushBack({ 270,7,33,35 });
-	run.PushBack({ 308,7,33,35 });
-	run.PushBack({ 349,7,33,35 });
-	run.speed = 0.19f;*/
 
 	// die animation 
 	die.PushBack({ 1,73,23,25 });
@@ -87,7 +78,6 @@ ModuleJunis::ModuleJunis()
 	shield.PushBack({ 5,110,15,26 });
 	shield.PushBack({ 37,111,19,26 });
 	shield.speed = 0.1f;
-
 }
 
 ModuleJunis::~ModuleJunis()
