@@ -26,12 +26,15 @@ Art: _Albert Robles_
 
 _Group photo_
 
-## Gameplay
+## OUR GAME
 
-## Download
+### Gameplay
+
+### Download
 
 You can download our last release of the game clicking [here](https://github.com/Bullseye14/TENGAI-Project1/releases/tag/0.4.7)
-## License & copyright
+
+### License & copyright
 
 QUOKKAS, UPC School
 
