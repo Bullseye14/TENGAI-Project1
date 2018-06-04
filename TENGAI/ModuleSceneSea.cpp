@@ -192,40 +192,6 @@ ModuleSceneSea::ModuleSceneSea()
 	Geniusjump.PushBack({ 396, 327, 48, 45 });
 	Geniusjump.speed = 0.1f;
 	Geniusjump.loop = false;
-
-	/*// waves
-	waves1.x = 801;
-	waves1.y = 88;
-	waves1.w = 960;
-	waves1.h = 16;
-
-	waves2.x = 801;
-	waves2.y = 115;
-	waves2.w = 960;
-	waves2.h = 16;
-
-	waves3.x = 800;
-	waves3.y = 145;
-	waves3.w = 960;
-	waves3.h = 20;
-
-	waves4.x = 801;
-	waves4.y = 176;
-	waves4.w = 960;
-	waves4.h = 20;
-
-	waves5.x = 801;
-	waves5.y = 206;
-	waves5.w = 960;
-	waves5.h = 41;
-
-	// background far
-	BG_far.x = 0;
-	BG_far.y = 0;
-	BG_far.w = 756;
-	BG_far.h = 128;
-	*/
-
 }
 
 ModuleSceneSea::~ModuleSceneSea()
@@ -243,19 +209,15 @@ bool ModuleSceneSea::Start()
 
 	App->collision->Enable();
 	App->enemies->Enable();
+
 	App->miko->Enable();
 	App->junis->Enable();
 
-	/*App->miko->score = 0;
-	App->junis->score = 0;*/
+	App->miko->won = false;
+	App->junis->won = false;
 
-	right = false;
-	up = false;
-	down = false;
-	left = false;
-	down_right = false;
-	waterfall = false;
-	stop = false;
+	App->miko->MikoLife = 3;
+	App->junis->JunisLife = 3;
 
 	graphics1 = App->textures->Load("assets/tengai/Scene_Water/mountain&waterfall.png");
 	graphics2 = App->textures->Load("assets/tengai/Scene_Water/waterfall.png");
@@ -360,7 +322,7 @@ update_status ModuleSceneSea::Update()
 	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55f);
 	App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
 
-	if (App->miko->MikoLife <= 3 && App->junis->JunisLife <= 3)
+	if (App->miko->MikoLife <= 0 && App->junis->JunisLife <= 0)
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0);
 	}
@@ -369,7 +331,10 @@ update_status ModuleSceneSea::Update()
 		App->miko->won = true;
 		App->junis->won = true;
 	}
-
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
+	{
+		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 3.0f);
+	}
 	if (App->miko->won == true || App->junis->won == true)
 	{
 		App->miko->Win();

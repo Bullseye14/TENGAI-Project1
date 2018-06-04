@@ -159,6 +159,9 @@ bool ModuleSceneForest::Start()
 	App->miko->score = 0;
 	App->junis->score = 0;
 
+	App->miko->MikoLife = 3;
+	App->junis->JunisLife = 3;
+
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
 
@@ -221,7 +224,6 @@ update_status ModuleSceneForest::Update()
 	int pos = -9, postree = -10, pos2 = 809, pos4 = 780;
 
 	// Draw everything --------------------------------------
-	//App->render->Blit(background, 0, 0, NULL);
 	for (int i = 0; i < 6; ++i) {
 		App->render->Blit(graphics, pos, 0, &BG_far, 0.55f);
 		App->render->Blit(graphics, pos+170, 26, &tree2, 0.60f);
@@ -260,22 +262,19 @@ update_status ModuleSceneForest::Update()
 		App->miko->won = true;
 		App->junis->won = true;
 	}
-
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
+	{
+		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 3.0f);
+	}
 	if (App->miko->position.x >= 2500) { App->miko->won = true; }
 
 	if (App->junis->position.x >= 2500) { App->junis->won = true; }
 
 	if (App->miko->won == true || App->junis->won == true) 
 	{
-		if (App->miko->alive) {App->miko->Win();}
+		App->miko->Win();
+		App->junis->Win();
 
-		if (App->junis->alive) {App->junis->Win();}
-
-		App->miko->won = false;
-		App->junis->won = false;
-		App->miko->Spawn();
-		App->junis->Spawn();
-		CleanUp();
 		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0f);
 	}
 

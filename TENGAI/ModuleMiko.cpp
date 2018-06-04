@@ -203,7 +203,7 @@ update_status ModuleMiko::Update()
 				else current_animation = &idle;
 			}
 			// DEBUG INPUT
-			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_REPEAT)
 			{
 				Die();
 			}
@@ -261,6 +261,7 @@ void ModuleMiko::Friend()
 
 void ModuleMiko::Win()
 {
+	power_ups = 1;
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
