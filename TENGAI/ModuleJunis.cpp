@@ -195,7 +195,7 @@ update_status ModuleJunis::Update()
 				if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
 				else current_animation = &idle;
 			}
-			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
+			if (App->input->keyboard[SDL_SCANCODE_F7] == KEY_STATE::KEY_DOWN)
 			{
 				JunisLife = 3;
 				Die();
@@ -209,9 +209,9 @@ update_status ModuleJunis::Update()
 		{
 			position += path_die.GetCurrentSpeed();
 		}
-		else if (JunisLife != 3)
+		else if (JunisLife <= 0)
 		{
-			JunisLife++;
+			JunisLife = 3;
 			Spawn();
 		}
 	}
@@ -238,6 +238,7 @@ void ModuleJunis::Die() {
 	current_animation = &die;
 	Mix_PlayChannel(-1, JunisCollision, 0);
 	player_collider->to_delete = true;
+	
 }
 
 void ModuleJunis::Win() 

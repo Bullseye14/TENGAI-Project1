@@ -342,6 +342,7 @@ anim(p.anim), position(p.position), speed(p.speed),
 fx(p.fx), born(p.born), life(p.life)
 {}
 
+
 bool Particle::Update()
 {
 	bool ret = true;
@@ -350,11 +351,15 @@ bool Particle::Update()
 	{
 		if((SDL_GetTicks() - born) > life)
 			ret = false;
-	}
+	} 
 	else
 		if(anim.Finished())
 			ret = false;
 
+	//friends speed
+	if (collider != nullptr && collider->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+
+	}
 	position.x += speed.x;
 	position.y += speed.y;
 
@@ -363,4 +368,9 @@ bool Particle::Update()
 		collider->SetPos(position.x, position.y);
 
 	return ret;
+}
+
+bool Particle::InScreen() {
+	return position.x <= SCREEN_WIDTH && position.x >= 0 &&
+		position.y <= SCREEN_HEIGHT && position.y >= 0;
 }

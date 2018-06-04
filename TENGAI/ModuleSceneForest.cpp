@@ -257,8 +257,8 @@ update_status ModuleSceneForest::Update()
 	if (App->miko->MikoLife == 3 && App->junis->JunisLife == 3)
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
-		App->miko->MikoLife = 1;
-		App->junis->JunisLife = 1; 
+		//App->miko->MikoLife = 1;
+		//App->junis->JunisLife = 1; 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
@@ -274,9 +274,14 @@ update_status ModuleSceneForest::Update()
 	{
 		if (App->miko->alive) {App->miko->Win();}
 
-		else if (App->junis->alive) {App->junis->Win();}
+		if (App->junis->alive) {App->junis->Win();}
 
-		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0);
+		App->miko->won = false;
+		App->junis->won = false;
+		App->miko->Spawn();
+		App->junis->Spawn();
+		CleanUp();
+		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0f);
 	}
 
 	return UPDATE_CONTINUE;

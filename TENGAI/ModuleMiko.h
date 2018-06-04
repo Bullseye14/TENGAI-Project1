@@ -74,7 +74,7 @@ public:
 	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
-	int MikoLife = 1;
+	int MikoLife = 3;
 };
 
 #endif

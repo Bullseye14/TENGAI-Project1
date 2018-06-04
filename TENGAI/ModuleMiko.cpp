@@ -217,14 +217,14 @@ update_status ModuleMiko::Update()
 		{
 			position += path_die.GetCurrentSpeed();
 		}
-		else if (MikoLife != 3)
+		else if (MikoLife > 0)
 		{
-			MikoLife++;
+			MikoLife = 3;
 			Spawn();
 		}
 	}
 
-	if (power_ups >1) { Friend(); }
+	if (power_ups > 1) { Friend(); }
 
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
@@ -262,7 +262,6 @@ void ModuleMiko::Friend()
 
 void ModuleMiko::Win()
 {
-	power_ups = 1;
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
@@ -274,7 +273,7 @@ bool ModuleMiko::Spawn() {
 	{
 		path_spawn.Reset();
 		current_animation = &touch;
-		position = iPoint(-App->render->camera.x / 2, 50);
+		position = iPoint(-App->render->camera.x, 50);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
 		alive = true;
@@ -290,7 +289,7 @@ bool ModuleMiko::Spawn() {
 bool ModuleMiko::Shield() {
 	if (!Shield_Animation)
 	{
-		if (power_ups ==2) {
+		if (power_ups >= 2) {
 		power_ups--;	
 		Mix_PlayChannel(-1, MikoPowerDown, 0);
 		//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
@@ -310,7 +309,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		if (power_ups == 1) { power_ups++; }
+		if (power_ups < 5) { power_ups++; }
 
 		Mix_PlayChannel(-1, MikoPowerUp, 0);
 

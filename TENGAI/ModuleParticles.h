@@ -27,6 +27,7 @@ struct Particle
 	Particle();
 	Particle(const Particle& p);
 	bool Update();
+	bool InScreen();
 };
 
 class ModuleParticles : public Module

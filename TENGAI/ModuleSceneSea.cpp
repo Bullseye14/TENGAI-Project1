@@ -239,6 +239,8 @@ bool ModuleSceneSea::Start()
 
 	graphics1 = App->textures->Load("assets/tengai/Water/SeaBG.png");
 
+	App->render->camera.x = 0;
+
 	App->collision->Enable();
 	App->enemies->Enable();
 	App->miko->Enable();
@@ -273,6 +275,10 @@ bool ModuleSceneSea::CleanUp()
 	LOG("Unloading sea scene");
 
 	App->textures->Unload(graphics1);
+	App->textures->Unload(graphics2);
+	App->textures->Unload(graphics3);
+	App->textures->Unload(graphics4);
+	App->textures->Unload(orientaljump);
 	App->miko->Disable();
 	App->junis->Disable();
 	App->collision->Disable();
@@ -351,14 +357,14 @@ update_status ModuleSceneSea::Update()
 		App->render->Blit(graphics1, 436, 407, &transition, 0.55f);
 	}
 
-	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55F);
+	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55f);
 	App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
 
 	if (App->miko->MikoLife == 3 && App->junis->JunisLife == 3)
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0);
-		App->miko->MikoLife = 1;
-		App->junis->JunisLife = 1;
+		//App->miko->MikoLife = 1;
+		//App->junis->JunisLife = 1;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT)
 	{
@@ -373,5 +379,5 @@ update_status ModuleSceneSea::Update()
 		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 3.0);
 	}
 
-	return UPDATE_CONTINUE;
+	return update_status::UPDATE_CONTINUE;
 }
