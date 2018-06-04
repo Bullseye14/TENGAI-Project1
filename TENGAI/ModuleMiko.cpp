@@ -235,7 +235,7 @@ update_status ModuleMiko::Update()
 }
 
 void ModuleMiko::Die() {
-	MikoLife--;
+	if (MikoLife>0)MikoLife--;
 	power_ups = 1;
 	path_die.Reset();
 	alive = false;
@@ -272,7 +272,7 @@ bool ModuleMiko::Spawn() {
 	{
 		path_spawn.Reset();
 		current_animation = &touch;
-		position = iPoint(-App->render->camera.x, 50);
+		position = iPoint(-App->render->camera.x-20, 50);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
 		alive = true;
