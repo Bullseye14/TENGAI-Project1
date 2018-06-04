@@ -20,7 +20,7 @@ Github: [Bullseye14](https://github.com/Bullseye14)
 
 QA: _Albert Maleki_
 
-Github: [byTyneeZ(https://github.com/byTyneeZ)
+Github: [byTyneeZ](https://github.com/byTyneeZ)
 
 Code: _Oscar Pons_
 
