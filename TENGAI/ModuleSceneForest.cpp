@@ -272,8 +272,10 @@ update_status ModuleSceneForest::Update()
 
 	if (App->miko->won == true || App->junis->won == true) 
 	{
+		
 		App->miko->Win();
 		App->junis->Win();
+		
 
 		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0f);
 	}

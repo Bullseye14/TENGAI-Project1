@@ -213,6 +213,9 @@ bool ModuleSceneSea::Start()
 	App->miko->Enable();
 	App->junis->Enable();
 
+	App->miko->path_win.Reset();
+	App->junis->path_win.Reset();
+
 	App->miko->won = false;
 	App->junis->won = false;
 
@@ -337,8 +340,10 @@ update_status ModuleSceneSea::Update()
 	}
 	if (App->miko->won == true || App->junis->won == true)
 	{
+		
 		App->miko->Win();
 		App->junis->Win();
+		
 		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 3.0);
 	}
 
