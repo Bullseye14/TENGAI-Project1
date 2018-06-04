@@ -14,19 +14,19 @@ Tengai is horizontal-scrolling shoot'em up game released in Japanese arcades in 
 
 ## TEAM
 
-Management: _Pol Casau_
+**Management:** _Pol Casau_
 
 Github: [Bullseye14](https://github.com/Bullseye14)
 
-QA: _Albert Maleki_
+**QA:** _Albert Maleki_
 
 Github: [byTyneeZ](https://github.com/byTyneeZ)
 
-Code: _Oscar Pons_
+**Code:** _Oscar Pons_
 
 Github: [ponspack9](https://github.com/ponspack9)
 
-Art: _Albert Robles_
+**Art:** _Albert Robles_
 
 Github: [Albertito029](https://github.com/Albertito029)
 
