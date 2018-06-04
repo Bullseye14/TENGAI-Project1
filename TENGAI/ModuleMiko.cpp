@@ -205,7 +205,6 @@ update_status ModuleMiko::Update()
 			// DEBUG INPUT
 			if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
 			{
-				MikoLife = 3;
 				Die();
 			}
 		}
@@ -219,7 +218,6 @@ update_status ModuleMiko::Update()
 		}
 		else if (MikoLife > 0)
 		{
-			MikoLife = 3;
 			Spawn();
 		}
 	}
@@ -237,6 +235,7 @@ update_status ModuleMiko::Update()
 }
 
 void ModuleMiko::Die() {
+	MikoLife--;
 	power_ups = 1;
 	path_die.Reset();
 	alive = false;

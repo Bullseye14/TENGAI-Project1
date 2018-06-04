@@ -73,7 +73,7 @@ public:
 	bool won = false;
 	int speed = 3;
 	int power_ups = 1;
-	int JunisLife = 1;
+	int JunisLife = 3;
 };
 
 #endif

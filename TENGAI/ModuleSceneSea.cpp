@@ -360,11 +360,9 @@ update_status ModuleSceneSea::Update()
 	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55f);
 	App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
 
-	if (App->miko->MikoLife == 3 && App->junis->JunisLife == 3)
+	if (App->miko->MikoLife <= 3 && App->junis->JunisLife <= 3)
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0);
-		//App->miko->MikoLife = 1;
-		//App->junis->JunisLife = 1;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT)
 	{

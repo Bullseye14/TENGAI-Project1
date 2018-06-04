@@ -250,15 +250,10 @@ update_status ModuleSceneForest::Update()
 	App->render->Blit(graphics, 1764, 0, &floor4, 0.75f);
 	App->render->Blit(graphics, 2019, 0, &floor5, 0.75f);
 
-	/*App->render->Blit(graphics, 0, 0, &log2, 0.75f);
-	App->render->Blit(graphics, 0, 0, &log1, 0.9f);
-	App->render->Blit(graphics, 0, 152, &floor6, 1.0f);*/
 
-	if (App->miko->MikoLife == 3 && App->junis->JunisLife == 3)
+	if (App->miko->MikoLife <= 0 && App->junis->JunisLife <= 0)
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
-		//App->miko->MikoLife = 1;
-		//App->junis->JunisLife = 1; 
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
