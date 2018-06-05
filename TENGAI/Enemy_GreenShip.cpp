@@ -24,10 +24,10 @@ Enemy_GreenShip::Enemy_GreenShip(int x, int y) : Enemy(x, y)
 	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
 	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
 
-	idle.PushBack({ 42,23,37,36 });
-	idle.PushBack({ 100,23,37,36 });
-	idle.PushBack({ 157,23,37,36 });
-	idle.PushBack({ 212,23,37,36 });
+	idle.PushBack({ 42,0,37,36 });
+	idle.PushBack({ 100,0,37,36 });
+	idle.PushBack({ 157,0,37,36 });
+	idle.PushBack({ 212,0,37,36 });
 	idle.speed = 0.2f;
 
 	animation = &idle;
