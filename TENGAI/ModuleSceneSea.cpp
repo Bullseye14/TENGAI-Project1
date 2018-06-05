@@ -182,7 +182,7 @@ ModuleSceneSea::ModuleSceneSea()
 	big_waterfall.PushBack({ 1276, 46, 198, 609 });
 	big_waterfall.speed = 0.02f;
 
-	camera_path_down.PushBack(fPoint(0.0f, 1.0f), 400);
+	//camera_path_down.PushBack(fPoint(0.0f, 1.0f), 400);
 }
 
 ModuleSceneSea::~ModuleSceneSea()
@@ -243,29 +243,19 @@ bool ModuleSceneSea::CleanUp()
 bool ModuleSceneSea::MoveCameraDown() {
 	if (!camera_moving)
 	{
-		camera_path_down.Reset();
 		camera_moving = true;
 	}
 	else {
-		if (current_time >= last_time_camera_down + 100) {
-
-			int foo = camera_path_down.GetCurrentSpeed().y;
-
-			App->miko->position.y += foo;
-			App->sho->position.y += foo;
-			App->render->camera.y -= foo;
-
-			last_time_camera_down = current_time;
-		}
+			App->miko->position.y += 1;
+			App->sho->position.y += 1;
+			App->render->camera.y -= 1;
 	}
-	return !camera_path_down.loop;
+	return true;
 }
 // Update: draw background
 update_status ModuleSceneSea::Update()
 {	
-	current_time = SDL_GetTicks();
-	// Move camera forward -----------------------------
-	
+	current_time = SDL_GetTicks();	
 	
 	//Player auto scroll
 	if (-App->render->camera.x <= 250 && !camera_moving) {
@@ -275,8 +265,8 @@ update_status ModuleSceneSea::Update()
 		App->render->camera.x -= speed / SCREEN_SIZE / 2;
 		
 	}
-	else if(-App->render->camera.y <= 250 && MoveCameraDown()){
-		camera_moving = true;
+	else if(-App->render->camera.y <= 300){
+		MoveCameraDown();
 	}
 	else {
 		App->miko->position.x += speed / SCREEN_SIZE / 2;

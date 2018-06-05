@@ -52,7 +52,6 @@ public:
 	bool camera_moving;
 	float speed = 5;
 	int scroll_speed = 1;
-	Path camera_path_down;
 	uint current_time, last_time_camera_down;
 
 	Mix_Music* SceneSea = nullptr;
