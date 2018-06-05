@@ -8,17 +8,17 @@
 
 Enemy_BlueNinja::Enemy_BlueNinja(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 206,567,26,35 });
-	shot.PushBack({ 206,567,26,35 });
+	fly.PushBack({ 206,544,26,35 });
+	shot.PushBack({ 206,544,26,35 });
 	shot.loop = false;
 	
 	// run animation
-	run.PushBack({ 239,570,27,31 });
-	run.PushBack({ 239,570,27,31 });
-	run.PushBack({ 277,568,24,33 });
-	run.PushBack({ 209,611,24,33 });
-	run.PushBack({ 241,611,33,35 });
-	run.PushBack({ 281,609,33,32 });
+	run.PushBack({ 239,547,27,31 });
+	run.PushBack({ 239,547,27,31 });
+	run.PushBack({ 277,545,24,33 });
+	run.PushBack({ 209,588,24,33 });
+	run.PushBack({ 241,588,33,35 });
+	run.PushBack({ 281,586,33,32 });
 	run.speed = 0.2f;
 
 	path2.PushBack({ 0.0f, 2.0f }, 2500, &fly);

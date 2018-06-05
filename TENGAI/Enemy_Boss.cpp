@@ -20,38 +20,38 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	path.loop = true;
 	
 	//idle
-	idle.PushBack({ 43,138,91,107 });
-	idle.PushBack({ 157,140,96,109 });
-	idle.PushBack({ 253,143,93,107 });
-	idle.PushBack({ 362,145,93,108 });
-	idle.PushBack({ 38,261,91,108 });
-	idle.PushBack({ 133,259,88,110 });
-	idle.PushBack({ 240,267,98,101 });
+	idle.PushBack({ 43,115,91,107 });
+	idle.PushBack({ 157,117,96,109 });
+	idle.PushBack({ 253,120,93,107 });
+	idle.PushBack({ 362,122,93,108 });
+	idle.PushBack({ 38,238,91,108 });
+	idle.PushBack({ 133,236,88,110 });
+	idle.PushBack({ 240,244,98,101 });
 	idle.loop = true;
 	idle.speed = 0.15f;
 	//open
-	open.PushBack({ 359,267,98,101 });
-	open.PushBack({ 6,383,97,102 });
-	open.PushBack({ 104,375,97,113 });
-	open.PushBack({ 202,371,97,121 });
-	open.PushBack({ 309,369,97,130 });
-	open.PushBack({ 412,401,98,133 });
-	open.PushBack({ 412,401,98,133 });
-	open.PushBack({ 412,401,98,133 });
-	open.PushBack({ 412,401,98,133 });
+	open.PushBack({ 359,244,98,101 });
+	open.PushBack({ 6,360,97,102 });
+	open.PushBack({ 104,352,97,113 });
+	open.PushBack({ 202,348,97,121 });
+	open.PushBack({ 309,346,97,130 });
+	open.PushBack({ 412,378,98,133 });
+	open.PushBack({ 412,378,98,133 });
+	open.PushBack({ 412,378,98,133 });
+	open.PushBack({ 412,378,98,133 });
 	open.loop = false;
 	open.speed = 0.15f;
 	//shot
-	shot.PushBack({ 412,401,98,133 });
+	shot.PushBack({ 412,378,98,133 });
 	shot.loop = false;
 	//aftershot
-	aftershot.PushBack({ 412,401,98,133 });
+	aftershot.PushBack({ 412,378,98,133 });
 	//close
-	close.PushBack({ 309,369,97,130 });
-	close.PushBack({ 202,371,97,121 });
-	close.PushBack({ 104,375,97,113 });
-	close.PushBack({ 6,383,97,102 });
-	close.PushBack({ 359,267,98,101 });
+	close.PushBack({ 309,346,97,130 });
+	close.PushBack({ 202,348,97,121 });
+	close.PushBack({ 104,352,97,113 });
+	close.PushBack({ 6,360,97,102 });
+	close.PushBack({ 359,244,98,101 });
 	close.loop = false;
 	close.speed = 0.15f;
 

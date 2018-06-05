@@ -24,9 +24,9 @@ Enemy_RedShip::Enemy_RedShip(int x, int y) : Enemy(x, y)
 	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
 	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
 
-	idle.PushBack({ 85,498,32,38 });
-	idle.PushBack({ 83,578,32,38 });
-	idle.PushBack({ 81,654,32,38 });
+	idle.PushBack({ 85,475,32,38 });
+	idle.PushBack({ 83,555,32,38 });
+	idle.PushBack({ 81,631,32,38 });
 	idle.speed = 0.2f;
 
 	animation = &idle;
