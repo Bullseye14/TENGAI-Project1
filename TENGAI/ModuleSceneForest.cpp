@@ -152,6 +152,7 @@ bool ModuleSceneForest::Start()
 	graphics = App->textures->Load("assets/tengai/BG_Sprites.png");
 	
 	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 
 	App->collision->Enable();
 	App->enemies->Enable();

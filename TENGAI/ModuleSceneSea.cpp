@@ -195,6 +195,7 @@ bool ModuleSceneSea::Start()
 	LOG("Loading sea scene");
 
 	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	delta_camera = 0;
 	camera_moved = false;
 
