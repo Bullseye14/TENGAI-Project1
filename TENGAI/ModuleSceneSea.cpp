@@ -211,9 +211,7 @@ bool ModuleSceneSea::Start()
 	App->enemies->Enable();
 
 	App->miko->Enable();
-	//App->sho->Enable();
 	App->sho->Enable();
-	//App->sho->score = App->sho->score;
 
 	App->miko->path_win.Reset();
 	App->sho->path_win.Reset();
