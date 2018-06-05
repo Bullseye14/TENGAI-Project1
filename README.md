@@ -39,7 +39,7 @@ _Group Photo_
 ## OUR GAME
 
 ### Gameplay
-Click [here]() to watch our Tengai Gameplay.
+Click [here](https://youtu.be/xcrneKsaMA4) to watch our Tengai Gameplay.
 
 ### Download
 
