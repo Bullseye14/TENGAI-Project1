@@ -18,17 +18,17 @@ ModuleSho::ModuleSho()
 	path_friend.PushBack({ 1.0f,0.0f }, 3, &friendApp);
 	path_friend.PushBack({ 1.0f,0.0f }, 5000, &friendIdle);
 
-	friendApp.PushBack({ 24,86,3,5 });
-	friendApp.PushBack({ 58,85,11,6 });
-	friendApp.PushBack({ 96,83,17,10 });
-	friendApp.PushBack({ 133,83,20,11 });
+	friendApp.PushBack({ 8,148,4,6 });
+	friendApp.PushBack({ 16,148,5,6 });
+	friendApp.PushBack({ 30,146,10,10 });
+	friendApp.PushBack({ 49,146,11,12 });
 	friendApp.loop = false;
 	friendApp.speed = 0.1f;
 
-	friendIdle.PushBack({ 171,81,24,14 });
-	friendIdle.PushBack({ 211,82,24,13 });
-	friendIdle.PushBack({ 251,82,24,13 });
-	friendIdle.PushBack({ 292,82,23,13 });
+	friendIdle.PushBack({ 121,174,15,13 });
+	friendIdle.PushBack({ 146,174,15,13 });
+	friendIdle.PushBack({ 170,174,14,13 });
+	friendIdle.PushBack({ 193,173,15,13 });
 	friendIdle.speed = 0.19f;
 
 	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
@@ -43,9 +43,10 @@ ModuleSho::ModuleSho()
 	path_win.PushBack({ 0.7f, 0.0f }, 40);
 	
 	// idle animation
-	idle.PushBack({ 392, 10, 31, 27 });
-	idle.PushBack({ 432, 10, 31, 27 });
-	idle.PushBack({ 472, 10, 31, 27 });
+	idle.PushBack({ 181,8,22,27 });
+	idle.PushBack({ 36, 8, 29, 27 });
+	idle.PushBack({ 73, 9, 29, 26 });
+	idle.PushBack({ 110, 9, 29, 27 });
 	idle.speed = 0.10f;
 
 	// miko touched animation
@@ -58,21 +59,20 @@ ModuleSho::ModuleSho()
 	touch.speed = 0.1f;
 
 	// backward animation (arcade sprite sheet)
-	backward.PushBack({ 514,7,41,31 });
-	backward.PushBack({ 555,7,31,31 });
-	backward.PushBack({ 592,7,33,31 });
+	backward.PushBack({ 181,8,22,27 });
+	backward.PushBack({ 147,8,24,27 });
 	backward.speed = 0.15f;
 
 	// run animation (arcade sprite sheet)
-	run.PushBack({ 72,7,33,35 });
-	run.PushBack({ 108,7,33,35 });
-	run.PushBack({ 145,7,33,35 });
-	run.PushBack({ 190,7,33,35 });
-	run.PushBack({ 230,7,33,35 });
-	run.PushBack({ 270,7,33,35 });
-	run.PushBack({ 308,7,33,35 });
-	run.PushBack({ 349,7,33,35 });
-	run.speed = 0.19f;
+	run.PushBack({ 8, 56, 29, 24 });
+	run.PushBack({ 46, 57, 26, 23 });
+	run.PushBack({ 79, 55, 27, 25 });
+	run.PushBack({ 112, 57, 31, 24 });
+	run.PushBack({ 149, 57, 30, 24 });
+	run.PushBack({ 187, 58, 27, 23 });
+	run.PushBack({ 221, 55, 30, 26 });
+	run.PushBack({ 257, 54, 30, 26 });
+	run.speed = 0.10f;
 
 	// die animation 
 	die.PushBack({ 630,7,35,35 });
@@ -97,14 +97,14 @@ bool ModuleSho::Start()
 {
 	LOG("Loading player");
 
-	graphics = App->textures->Load("assets/tengai/spritesheet.png");
+	graphics = App->textures->Load("assets/tengai/ShosSpritesheet.png");
 	ShosShot = App->audio->LoadFx("assets/audio/MikosShot.wav");
 	ShoCollision = App->audio->LoadFx("assets/audio/MikoCollision.wav");
 	ShoPowerDown = App->audio->LoadFx("assets/audio/MikoPowerDown.wav");
 	ShoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
 	ShoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
 
-	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
+	//font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
@@ -253,7 +253,7 @@ void ModuleSho::Friend()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
-		App->particles->AddParticle(App->particles->BasaroShot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->Shosfriend, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
 		Mix_PlayChannel(-1, ShoFriendAttack, 0);
 	}
 }
@@ -293,7 +293,7 @@ bool ModuleSho::Shield() {
 		power_ups--;	
 		Mix_PlayChannel(-1, ShoPowerDown, 0);
 		//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
-		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->P_D, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 		}
 		shield.Reset();
 		current_animation = &shield;
@@ -309,7 +309,9 @@ void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		if (power_ups < 5) { power_ups++; }
+		if (power_ups < 5) {
+			App->particles->AddParticle(App->particles->P_U, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+			power_ups++; }
 
 		Mix_PlayChannel(-1, ShoPowerUp, 0);
 

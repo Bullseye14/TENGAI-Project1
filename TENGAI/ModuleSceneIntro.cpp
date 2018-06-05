@@ -10,6 +10,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
+#include "ModuleSceneRanking.h"
 
 ModuleSceneIntro::ModuleSceneIntro() : Module() { }
 

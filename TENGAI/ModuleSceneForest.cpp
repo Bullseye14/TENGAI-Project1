@@ -281,7 +281,7 @@ update_status ModuleSceneForest::Update()
 		App->junis->Win();
 		
 
-		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 3.0f);
+		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 0.5f);
 	}
 
 	return UPDATE_CONTINUE;

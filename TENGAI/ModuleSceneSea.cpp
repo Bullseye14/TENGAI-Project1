@@ -336,7 +336,7 @@ update_status ModuleSceneSea::Update()
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
 	{
-		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 3.0f);
+		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0f);
 	}
 	if (App->miko->won == true || App->junis->won == true)
 	{
@@ -344,7 +344,7 @@ update_status ModuleSceneSea::Update()
 		App->miko->Win();
 		App->junis->Win();
 		
-		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 3.0);
+		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 0.5);
 	}
 
 	return update_status::UPDATE_CONTINUE;

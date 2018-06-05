@@ -278,7 +278,7 @@ bool ModuleJunis::Shield() {
 			power_ups--;
 			Mix_PlayChannel(-1, JunisPowerDown, 0);
 			//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
-			App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+			App->particles->AddParticle(App->particles->P_D, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 		}
 		shield.Reset();
 		current_animation = &shield;
@@ -293,7 +293,9 @@ void ModuleJunis::OnCollision(Collider* c1, Collider* c2)
 		Shield();
 	}
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
-		if (power_ups == 1) { power_ups++; }
+		if (power_ups == 1) { 
+			App->particles->AddParticle(App->particles->P_U, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
+			power_ups++; }
 		Mix_PlayChannel(-1, JunisPowerUp, 0);
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
