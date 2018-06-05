@@ -8,6 +8,22 @@
 
 Enemy_Samurai::Enemy_Samurai(int x, int y) : Enemy(x, y)
 {
+	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
+
+	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
+	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
+
 	wave.PushBack({ 9,1088,33,11 });
 	wave.PushBack({ 59,1075,47,26 });
 	wave.PushBack({ 131,1058,46,41 });

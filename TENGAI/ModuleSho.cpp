@@ -118,11 +118,6 @@ bool ModuleSho::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(font_players);
 	App->fonts->UnLoad(font_score);
-	App->audio->UnloadSFX(ShosShot);
-	App->audio->UnloadSFX(ShoCollision);
-	App->audio->UnloadSFX(ShoPowerDown);
-	App->audio->UnloadSFX(ShoPowerUp);
-	App->audio->UnloadSFX(ShoFriendAttack);
 
 	if (player_collider)
 	{

@@ -35,10 +35,9 @@ bool ModuleSceneIntro::Start()
 bool ModuleSceneIntro::CleanUp() 
 { 
 	LOG("Unloading intro scene");
-
 	App->textures->Unload(background);
+
 	App->audio->UnloadMusic(intro);
-	App->audio->UnloadSFX(IntroFX);
 	
 	return true;
 }

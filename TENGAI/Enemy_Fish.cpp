@@ -8,6 +8,22 @@
 
 Enemy_Fish::Enemy_Fish(int x, int y) : Enemy(x, y)
 {
+	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
+
+	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
+	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
+
 	idle.PushBack({ 33,821,29,23 });
 	idle.PushBack({ 84,821,30,23 });
 	idle.PushBack({ 132,821,31,23 });

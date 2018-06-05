@@ -12,6 +12,10 @@
 #include "ModuleSho.h"
 #include "ModuleAudio.h"
 #include "Enemy_GreenShip.h"
+#include "Enemy_Samurai.h"
+#include "Enemy_SeaShip.h"
+#include "Enemy_MetalicGreen.h"
+#include "Enemy_Fish.h"
 
 #define SPAWN_MARGIN 10000
 
@@ -146,6 +150,22 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 
 			case ENEMY_TYPES::GREEN_SHIP:
 			enemies[i] = new Enemy_GreenShip(info.x, info.y);
+			break;
+
+			case ENEMY_TYPES::FISH:
+			enemies[i] = new Enemy_Fish(info.x, info.y);
+			break;
+
+			case ENEMY_TYPES::METALIC_GREEN:
+			enemies[i] = new Enemy_MetalicGreen(info.x, info.y);
+			break;
+
+			case ENEMY_TYPES::SAMURAI:
+			enemies[i] = new Enemy_Samurai(info.x, info.y);
+			break;
+
+			case ENEMY_TYPES::SEA_SHIP:
+			enemies[i] = new Enemy_SeaShip(info.x, info.y);
 			break;
 		}
 	}

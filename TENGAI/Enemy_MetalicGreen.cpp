@@ -8,6 +8,22 @@
 
 Enemy_MetalicGreen::Enemy_MetalicGreen(int x, int y) : Enemy(x, y)
 {
+	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
+
+	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
+	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
+	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
+	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
+
 	idle.PushBack({ 23,759,31,30 });
 	idle.PushBack({ 79,759,31,31 });
 	idle.PushBack({ 136,759,31,30 });
@@ -17,7 +33,6 @@ Enemy_MetalicGreen::Enemy_MetalicGreen(int x, int y) : Enemy(x, y)
 	
 	animation = &idle;
 
-	path.PushBack({ 1.0f, 0.0f }, 200, &idle);
 
 	collider = App->collision->AddCollider({ x,y,32,38 }, COLLIDER_TYPE::COLLIDER_ENEMY, (Module*)App->enemies);
 	position = iPoint(x, y);
@@ -27,13 +42,12 @@ Enemy_MetalicGreen::Enemy_MetalicGreen(int x, int y) : Enemy(x, y)
 
 void Enemy_MetalicGreen::Move()
 {
-	/*if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH + 40)
+	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH + 40)
 	{
 		position = original_position + path.GetCurrentSpeed(&animation);
 	}
 	else if (position.x <= -App->render->camera.x / 2)
 	{
 		position = original_position + path2.GetCurrentSpeed(&animation);
-	}*/
-	position = original_position + path.GetCurrentSpeed(&animation);
+	}
 }

@@ -181,17 +181,6 @@ ModuleSceneSea::ModuleSceneSea()
 	big_waterfall.PushBack({ 683, 48, 183, 609 });
 	big_waterfall.PushBack({ 1276, 46, 198, 609 });
 	big_waterfall.speed = 0.02f;
-
-	//enemy jump
-	Geniusjump.PushBack({ 10, 366, 32, 12 });
-	Geniusjump.PushBack({ 60, 353, 48, 27 });
-	Geniusjump.PushBack({ 132, 336, 47, 42 });
-	Geniusjump.PushBack({ 203, 305, 45, 73 });
-	Geniusjump.PushBack({ 265, 308, 46, 73 });
-	Geniusjump.PushBack({ 334, 308, 46, 70 });
-	Geniusjump.PushBack({ 396, 327, 48, 45 });
-	Geniusjump.speed = 0.1f;
-	Geniusjump.loop = false;
 }
 
 ModuleSceneSea::~ModuleSceneSea()
@@ -203,13 +192,10 @@ bool ModuleSceneSea::Start()
 {
 	LOG("Loading sea scene");
 
-	graphics1 = App->textures->Load("assets/tengai/Water/SeaBG.png");
-
 	App->render->camera.x = 0;
 
 	App->collision->Enable();
 	App->enemies->Enable();
-
 	App->miko->Enable();
 	App->sho->Enable();
 
@@ -222,14 +208,15 @@ bool ModuleSceneSea::Start()
 	App->miko->MikoLife = 3;
 	App->sho->ShoLife = 3;
 
-	graphics1 = App->textures->Load("assets/tengai/Scene_Water/mountain&waterfall.png");
-	graphics2 = App->textures->Load("assets/tengai/Scene_Water/waterfall.png");
-	graphics3 = App->textures->Load("assets/tengai/Scene_Water/background_waterfall.png");
-	graphics4 = App->textures->Load("assets/tengai/Scene_Water/lateral_scroll&loop.png");
-	//orientaljump = App->textures->Load("assets/tengai/Scene_Water/tengai_enemies.png");
+	graphics = App->textures->Load("assets/tengai/Scene_Water/mountain&waterfall.png");
 
 	SceneSea = App->audio->LoadMusic("assets/audio/audiosea.ogg");
 	Mix_PlayMusic(SceneSea, -1);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::SEA_SHIP, 520, 20);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 550, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 580, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::SAMURAI, 610, 140);
 
 	return true;
 }
@@ -239,11 +226,7 @@ bool ModuleSceneSea::CleanUp()
 {
 	LOG("Unloading sea scene");
 
-	App->textures->Unload(graphics1);
-	App->textures->Unload(graphics2);
-	App->textures->Unload(graphics3);
-	App->textures->Unload(graphics4);
-	//App->textures->Unload(orientaljump);
+	App->textures->Unload(graphics);
 	App->audio->UnloadMusic(SceneSea);
 
 	App->miko->Disable();
@@ -268,7 +251,25 @@ update_status ModuleSceneSea::Update()
 
 	App->render->camera.x -= speed / SCREEN_SIZE / 2;
 
-	int pos = -9, postree = -10, pos2 = 809, pos4 = 780;
+	int pos1 = 0, pos2 = 0;
+
+	for (int i = 0; i < 5; i++) {
+		App->render->Blit(graphics, 0 + pos1, 0, &BG_Mountain, 0.50f);
+		App->render->Blit(graphics, 156 + pos1, 44, &(waterfall1.GetCurrentFrame()), 0.50F);
+		App->render->Blit(graphics, 510 + pos1, 44, &(waterfall2.GetCurrentFrame()), 0.50F);
+		App->render->Blit(graphics, 509 + pos1, 106, &(under_waterfall.GetCurrentFrame()), 0.50F);
+		App->render->Blit(graphics, 710 + pos1, 55, &(waterfall3.GetCurrentFrame()), 0.50F);
+		App->render->Blit(graphics, 693 + pos1, 110, &(under_waterfall.GetCurrentFrame()), 0.50F);
+		App->render->Blit(graphics, 0 + pos2, 128, &layer_ocean_1, 0.60f);
+		App->render->Blit(graphics, 0 + pos2, 144, &layer_ocean_2, 0.60f);
+		App->render->Blit(graphics, 0 + pos2, 160, &layer_ocean_3, 0.60f);
+		App->render->Blit(graphics, 0 + pos2, 180, &layer_ocean_4, 0.60f);
+		App->render->Blit(graphics, 0 + pos2, 200, &layer_ocean_5, 0.60f);
+		pos1 += 756;
+		pos2 += 960;
+	}
+
+	/*int pos = -9, postree = -10, pos2 = 809, pos4 = 780;
 
 	App->render->Blit(graphics1, 0, 0, &BG_Mountain, 0.55f);
 	App->render->Blit(graphics1, 437, 223, &Waterfall_bg, 0.55F);
@@ -327,7 +328,7 @@ update_status ModuleSceneSea::Update()
 
 	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55f);
 	//App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
-
+	*/
 	if (App->miko->MikoLife <= 0 && App->sho->ShoLife <= 0)
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0);
