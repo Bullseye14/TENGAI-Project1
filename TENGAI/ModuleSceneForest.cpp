@@ -155,18 +155,14 @@ bool ModuleSceneForest::Start()
 
 	App->collision->Enable();
 	App->enemies->Enable();
+
 	App->miko->Enable();
 	App->sho->Enable();
-	//App->sho->Disable();
 
 	App->miko->path_win.Reset();
 	App->sho->path_win.Reset();
 
-	//App->miko->score = 0;
-	//App->sho->score;
-
 	App->miko->won = false;
-	//App->sho->won = false;
 	App->sho->won = false;
 
 	App->miko->MikoLife = 3;
@@ -210,6 +206,7 @@ bool ModuleSceneForest::CleanUp()
 	LOG("Unloading forest scene");
 
 	App->textures->Unload(graphics);
+	//App->audio->UnloadMusic(SceneForest);
 	App->miko->Disable();
 	App->sho->Disable();
 

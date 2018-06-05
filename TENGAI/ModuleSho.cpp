@@ -31,7 +31,7 @@ ModuleSho::ModuleSho()
 	friendIdle.PushBack({ 193,173,15,13 });
 	friendIdle.speed = 0.19f;
 
-	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
+	path_spawn.PushBack({ 0.025f, 0.0f }, 100);
 
 	path_die.PushBack({ 0.0f, 0.0f }, 2);
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
@@ -49,14 +49,12 @@ ModuleSho::ModuleSho()
 	idle.PushBack({ 110, 9, 29, 27 });
 	idle.speed = 0.10f;
 
-	// miko touched animation
-	touch.PushBack({ 392, 10, 31, 27 });
-	touch.PushBack({ 1,1,1,1 });
-	touch.PushBack({ 432, 10, 31, 27 });
-	touch.PushBack({ 1,1,1,1 });
-	touch.PushBack({ 472, 10, 31, 27 });
-	touch.PushBack({ 1,1,1,1 });
-	touch.speed = 0.1f;
+	// touched animation now idle animation
+	touch.PushBack({ 36, 8, 29, 27 });
+	touch.PushBack({ 73, 9, 29, 26 });
+	touch.PushBack({ 110, 9, 29, 27 });
+	touch.speed = 0.10f;
+	
 
 	// backward animation (arcade sprite sheet)
 	//backward.PushBack({ 181,8,22,27 });
@@ -74,18 +72,14 @@ ModuleSho::ModuleSho()
 	run.PushBack({ 257, 54, 30, 26 });
 	run.speed = 0.10f;
 
-	// die animation 
-	die.PushBack({ 630,7,35,35 });
+	// die animation now idle animation
+	die.PushBack({ 36, 8, 29, 27 });;
 
-	// shield animation
-	shield.PushBack({ 673,7,35,35 });
-	shield.PushBack({ 713,7,35,35 });
-	shield.PushBack({ 750,7,35,35 });
-	shield.PushBack({ 795,7,35,35 });
-	shield.PushBack({ 830,7,35,35 });
-	shield.PushBack({ 870,7,35,35 });
-	shield.PushBack({ 911,7,35,35 });
-	shield.speed = 0.1f;
+	// shield animation now idle animation
+	shield.PushBack({ 36, 8, 29, 27 });
+	shield.PushBack({ 73, 9, 29, 26 });
+	shield.PushBack({ 110, 9, 29, 27 });
+	shield.speed = 0.10f;
 	
 }
 
@@ -150,12 +144,7 @@ update_status ModuleSho::Update()
 	int camera_y = -App->render->camera.y;
 
 	if (alive) 
-	{
-		if (Spawn_Animation) {
-			Spawn_Animation = Spawn();
-		}
-		else 
-		{	
+	{	
 			if (Shield_Animation)
 			{
 				Shield_Animation = Shield();
@@ -217,8 +206,15 @@ update_status ModuleSho::Update()
 			{
 				Die();
 			}
-		}
+		
 		player_collider->SetPos(position.x, position.y);
+
+	}
+	else if (Spawn_Animation) {
+		Spawn_Animation = Spawn();
+		if (!Spawn_Animation) {
+			alive = true;
+		}
 	}
 	// if dead 
 	else {
@@ -285,10 +281,9 @@ bool ModuleSho::Spawn() {
 	{
 		path_spawn.Reset();
 		current_animation = &touch;
-		position = iPoint(-App->render->camera.x-25, 50);
+		position = iPoint(-App->render->camera.x-25, 80);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
-		alive = true;
 	}
 	//Actually moving behind the camera
 	else {
@@ -331,7 +326,7 @@ void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
+	if (alive && (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT)) 
 	{
 		Die();
 	}

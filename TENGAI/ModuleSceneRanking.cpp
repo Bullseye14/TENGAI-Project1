@@ -45,6 +45,8 @@ bool ModuleSceneRanking::CleanUp()
 	App->miko->score = 0;
 	App->sho->score = 0;
 	App->textures->Unload(background_ranking);
+	App->fonts->UnLoad(font);
+	//App->audio->UnloadMusic(AudioRanking);
 
 	return true;
 }
@@ -55,17 +57,17 @@ update_status ModuleSceneRanking::Update()
 	App->render->Blit(background_ranking, -2, 0, NULL);
 	//sprintf_s(App->miko->score_text, 10, "%7d", "ABCD");
 	//perque siguin mes iguals tots, si no , jeje
-	App->fonts->BlitText(60, 30, font, "PLAYER 1");
+	//App->fonts->BlitText(60, 30, font, "PLAYER 1");
 
 	
 	App->fonts->BlitText(40, 90, font, App->miko->score_text); // 
 	App->fonts->BlitText(40, 170, font, App->sho->score_text);
 
-	char sum_score[10];
+	/*char sum_score[10];
 	uint uint_sum_score = App->miko->score + App->sho->score;
 	sprintf_s(sum_score, 10, "%7d", uint_sum_score);
 
-	App->fonts->BlitText(200, SCREEN_HEIGHT/2, font, sum_score);
+	App->fonts->BlitText(200, SCREEN_HEIGHT/2, font, sum_score);*/
 	
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 

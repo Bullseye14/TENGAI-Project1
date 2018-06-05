@@ -32,7 +32,7 @@ ModuleMiko::ModuleMiko()
 	friendIdle.PushBack({ 292,82,23,13 });
 	friendIdle.speed = 0.19f;
 
-	path_spawn.PushBack({ 0.025f, 0.0f }, 100, &touch);
+	path_spawn.PushBack({ 0.025f, 0.0f }, 100);
 
 	path_die.PushBack({ 0.0f, 0.0f }, 2);
 	path_die.PushBack({ -0.1f,-0.35f }, 5);
@@ -151,11 +151,6 @@ update_status ModuleMiko::Update()
 
 	if (alive) 
 	{
-		if (Spawn_Animation) {
-			Spawn_Animation = Spawn();
-		}
-		else 
-		{	
 			if (Shield_Animation)
 			{
 				Shield_Animation = Shield();
@@ -217,8 +212,14 @@ update_status ModuleMiko::Update()
 			{
 				Die();
 			}
-		}
+		
 		player_collider->SetPos(position.x, position.y);
+	}
+	else if (Spawn_Animation) {
+		Spawn_Animation = Spawn();
+		if (!Spawn_Animation) {
+			alive = true;
+		}
 	}
 	// if dead 
 	else {
@@ -287,7 +288,6 @@ bool ModuleMiko::Spawn() {
 		position = iPoint(-App->render->camera.x-25, 50);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 }, COLLIDER_TYPE::COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
-		alive = true;
 	}
 	//Actually moving behind the camera
 	else {
@@ -331,7 +331,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 	}
 
-	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT) 
+	if (alive && (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_SHOT))
 	{
 		Die();
 	}
