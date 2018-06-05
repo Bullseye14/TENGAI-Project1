@@ -43,7 +43,7 @@ Click [here](https://youtu.be/xcrneKsaMA4) to watch our Tengai Gameplay.
 
 ### Download
 
-You can download our last release of the game clicking [here](https://github.com/Bullseye14/TENGAI-Project1/releases/tag/0.4.7)
+You can download our last release of the game clicking [here](https://github.com/Bullseye14/TENGAI-Project1/releases/tag/1.0)
 
 ### License & copyright
 
