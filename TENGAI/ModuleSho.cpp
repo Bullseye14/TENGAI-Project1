@@ -43,7 +43,7 @@ ModuleSho::ModuleSho()
 	path_win.PushBack({ 0.7f, 0.0f }, 40);
 	
 	// idle animation
-	idle.PushBack({ 181,8,22,27 });
+	//idle.PushBack({ 181,8,22,27 });
 	idle.PushBack({ 36, 8, 29, 27 });
 	idle.PushBack({ 73, 9, 29, 26 });
 	idle.PushBack({ 110, 9, 29, 27 });
@@ -59,7 +59,7 @@ ModuleSho::ModuleSho()
 	touch.speed = 0.1f;
 
 	// backward animation (arcade sprite sheet)
-	backward.PushBack({ 181,8,22,27 });
+	//backward.PushBack({ 181,8,22,27 });
 	backward.PushBack({ 147,8,24,27 });
 	backward.speed = 0.15f;
 
@@ -149,7 +149,7 @@ update_status ModuleSho::Update()
 			{
 				Shield_Animation = Shield();
 			}
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) < 0)
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.x - speed > camera_x - 2)
@@ -157,7 +157,7 @@ update_status ModuleSho::Update()
 					position.x -= speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) > 0)
+			if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) > 0)
 			{
 				if (!Shield_Animation) {
 					current_animation = &idle;
@@ -168,7 +168,7 @@ update_status ModuleSho::Update()
 					position.x += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) < 0)
+			if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) < 0)
 			{
 				if (!Shield_Animation)current_animation = &backward;
 				if (position.y - speed > -2 + camera_y)
@@ -176,7 +176,7 @@ update_status ModuleSho::Update()
 					position.y -= speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) > 0)
+			if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT || SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) > 0)
 			{
 				if (!Shield_Animation)current_animation = &idle;
 				if (position.y + 31 + speed < SCREEN_HEIGHT + camera_y)
@@ -184,16 +184,16 @@ update_status ModuleSho::Update()
 					position.y += speed;
 				}
 			}
-			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
+			if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 			{
 				App->particles->AddParticle(App->particles->Shoshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				App->particles->AddParticle(App->particles->Shoshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, ShosShot, 0);
 			}
-			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-				&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-				&& App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-				&& App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
+				&& App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_IDLE
 				&& SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTY) == 0
 				&& SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) == 0
 				&& !Shield_Animation)
@@ -202,7 +202,7 @@ update_status ModuleSho::Update()
 				else current_animation = &idle;
 			}
 			// DEBUG INPUT
-			if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_REPEAT)
+			if (App->input->keyboard[SDL_SCANCODE_N] == KEY_STATE::KEY_REPEAT)
 			{
 				Die();
 			}
@@ -251,7 +251,7 @@ void ModuleSho::Friend()
 
 	App->render->Blit(graphics, position.x - 12, position.y - 12, &(Shofriend->GetCurrentFrame()));
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
+	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		App->particles->AddParticle(App->particles->Shosfriend, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
 		Mix_PlayChannel(-1, ShoFriendAttack, 0);

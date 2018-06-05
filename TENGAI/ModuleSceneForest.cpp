@@ -156,7 +156,7 @@ bool ModuleSceneForest::Start()
 	App->enemies->Enable();
 	App->miko->Enable();
 	App->junis->Enable();
-	App->sho->Enable();
+	App->sho->Disable();
 
 	App->miko->score = 0;
 	App->junis->score = 0;
@@ -204,7 +204,7 @@ bool ModuleSceneForest::CleanUp()
 	App->textures->Unload(graphics);
 	App->miko->Disable();
 	App->junis->Disable();
-	App->sho->Disable();
+	//App->sho->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
 

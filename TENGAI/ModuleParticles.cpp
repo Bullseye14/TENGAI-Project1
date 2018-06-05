@@ -236,17 +236,17 @@ ModuleParticles::ModuleParticles()
 
 
 	// TO PRECISE, per arreglar a partir daqui//
-	Shoshot.anim.PushBack({ 73,151,26,3 });
-	Shoshot.anim.PushBack({ 107,151,31,4 });
-	Shoshot.anim.PushBack({ 148,151,31,3 });
+	Shoshot.anim.PushBack({ 71,363,26,3 });
+	Shoshot.anim.PushBack({ 105,363,31,4 });
+	Shoshot.anim.PushBack({ 46,363,31,3 });
 	Shoshot.anim.speed = 0.4f;
 	Shoshot.speed = iPoint(10, 0);
 	Shoshot.life = 500;
 
-	Shosfriend.anim.PushBack({ 191,146,23,13 });
-	Shosfriend.anim.PushBack({ 226,146,32,13 });
-	Shosfriend.anim.PushBack({ 268,146,32,13 });
-	Shosfriend.anim.PushBack({ 309,246,32,13 });
+	Shosfriend.anim.PushBack({ 189,358,23,13 });
+	Shosfriend.anim.PushBack({ 224,358,32,13 });
+	Shosfriend.anim.PushBack({ 266,358,32,13 });
+	Shosfriend.anim.PushBack({ 307,358,32,13 });
 	Shosfriend.anim.speed = 0.3f;
 	Shosfriend.speed = iPoint(10, 0);
 	Shosfriend.life = 2000;
