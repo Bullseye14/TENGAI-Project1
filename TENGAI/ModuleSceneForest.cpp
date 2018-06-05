@@ -151,13 +151,23 @@ bool ModuleSceneForest::Start()
 
 	graphics = App->textures->Load("assets/tengai/BG_Sprites.png");
 	
+	App->render->camera.x = 0;
+
 	App->collision->Enable();
 	App->enemies->Enable();
 	App->miko->Enable();
 	App->sho->Enable();
+	//App->sho->Disable();
 
-	App->miko->score = 0;
-	App->sho->score = 0;
+	App->miko->path_win.Reset();
+	App->sho->path_win.Reset();
+
+	//App->miko->score = 0;
+	//App->sho->score;
+
+	App->miko->won = false;
+	//App->sho->won = false;
+	App->sho->won = false;
 
 	App->miko->MikoLife = 3;
 	App->sho->ShoLife = 3;
@@ -202,6 +212,7 @@ bool ModuleSceneForest::CleanUp()
 	App->textures->Unload(graphics);
 	App->miko->Disable();
 	App->sho->Disable();
+
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -274,8 +285,7 @@ update_status ModuleSceneForest::Update()
 	{
 		App->miko->Win();
 		App->sho->Win();
-		
-		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 0.5f);
+		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 0.5f);
 	}
 
 	return UPDATE_CONTINUE;

@@ -104,7 +104,7 @@ bool ModuleSho::Start()
 	ShoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
 	ShoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
 
-	//font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
+	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
@@ -123,9 +123,20 @@ bool ModuleSho::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(font_players);
+	App->fonts->UnLoad(font_score);
+	/*App->audio->UnloadSFX(ShosShot);
+	App->audio->UnloadSFX(ShoCollision);
+	App->audio->UnloadSFX(ShoPowerDown);
+	App->audio->UnloadSFX(ShoPowerUp);
+	App->audio->UnloadSFX(ShoFriendAttack);*/
+
 	if (player_collider)
 	{
 		player_collider->to_delete = true;
+	}
+	if (bullet_collider)
+	{
+		bullet_collider->to_delete = true;
 	}
 	return true;
 }
@@ -186,8 +197,8 @@ update_status ModuleSho::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 			{
-				App->particles->AddParticle(App->particles->Shoshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				App->particles->AddParticle(App->particles->Shoshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Shoshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P2);
+				App->particles->AddParticle(App->particles->Shoshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P2);
 				Mix_PlayChannel(-1, ShosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
@@ -226,9 +237,10 @@ update_status ModuleSho::Update()
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
-	score_x = camera_x + 30;
+	score_x = camera_x + (SCREEN_SIZE*SCREEN_WIDTH * 2 / 3);
+
 	App->fonts->BlitText(score_x, 5, font_score, score_text);
-	App->fonts->BlitText(score_x - 25, 5, font_players, "1");
+	App->fonts->BlitText(score_x - 25, 5, font_players, "2");
 
 	return UPDATE_CONTINUE;
 }
@@ -253,7 +265,7 @@ void ModuleSho::Friend()
 
 	if (App->input->keyboard[SDL_SCANCODE_RCTRL] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
-		App->particles->AddParticle(App->particles->Shosfriend, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
+		App->particles->AddParticle(App->particles->Shosfriend, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P2);
 		Mix_PlayChannel(-1, ShoFriendAttack, 0);
 	}
 }

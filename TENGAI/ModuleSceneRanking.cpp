@@ -4,7 +4,6 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleMiko.h"
-#include "ModuleSho.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
@@ -13,6 +12,7 @@
 #include "ModuleSceneOutro.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleFonts.h"
+#include "ModuleSho.h"
 #include <stdio.h>
 
 
@@ -58,7 +58,7 @@ update_status ModuleSceneRanking::Update()
 	App->fonts->BlitText(60, 30, font, "PLAYER 1");
 
 	
-	App->fonts->BlitText(40, 90, font, App->miko->score_text); 
+	App->fonts->BlitText(40, 90, font, App->miko->score_text); // 
 	App->fonts->BlitText(40, 170, font, App->sho->score_text);
 
 	char sum_score[10];

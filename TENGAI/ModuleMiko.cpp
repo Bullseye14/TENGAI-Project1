@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleMiko.h"
 #include "ModuleAudio.h"
+#include "ModuleSho.h"
 #include "ModuleFonts.h"
 
 #include <stdio.h>
@@ -120,12 +121,22 @@ bool ModuleMiko::Start()
 bool ModuleMiko::CleanUp()
 {
 	LOG("Unloading player");
-
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(font_players);
+	App->fonts->UnLoad(font_score);
+	/*App->audio->UnloadSFX(MikosShot);
+	App->audio->UnloadSFX(MikoCollision);
+	App->audio->UnloadSFX(MikoPowerDown);
+	App->audio->UnloadSFX(MikoPowerUp);
+	App->audio->UnloadSFX(MikoFriendAttack);*/
+	
 	if (player_collider)
 	{
 		player_collider->to_delete = true;
+	}
+	if (bullet_collider)
+	{
+		bullet_collider->to_delete = true;
 	}
 	return true;
 }

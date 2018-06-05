@@ -6,7 +6,7 @@
 #include "ModuleMiko.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
-#include "ModuleSceneForest.h"
+#include "ModuleSceneSea.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
@@ -52,7 +52,7 @@ update_status ModuleSceneIntro::Update()
 	{
 		IntroFX = App->audio->LoadFx("assets/audio/intro_miko.wav");
 		Mix_PlayChannel(-1, IntroFX, 0);
-		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
+		App->fade->FadeToBlack(App->scene_intro, App->scene_sea, 1.0);
 	}
 
 	return UPDATE_CONTINUE;
