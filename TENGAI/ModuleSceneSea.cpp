@@ -436,11 +436,12 @@ update_status ModuleSceneSea::Update()
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0);
 	}
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT || -App->render->camera.x > 3024)
 	{
 		App->miko->won = true;
 		App->sho->won = true;
 	}
+	
 	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0f);
