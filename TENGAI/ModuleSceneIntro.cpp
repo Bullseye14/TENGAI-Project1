@@ -38,6 +38,7 @@ bool ModuleSceneIntro::CleanUp()
 
 	App->textures->Unload(background);
 	App->audio->UnloadMusic(intro);
+	App->audio->UnloadSFX(IntroFX);
 	
 	return true;
 }
