@@ -5,7 +5,7 @@
 #include "ModuleSceneForest.h"
 #include "ModuleMiko.h"
 #include "ModuleParticles.h"
-#include "ModuleJunis.h"
+#include "ModuleSho.h"
 
 ModuleCollision::ModuleCollision()
 {
@@ -182,12 +182,12 @@ void ModuleCollision::DebugDraw()
 	{
 		if (!f5) {
 			App->miko->player_collider->to_delete = true;
-			App->junis->player_collider->to_delete = true;
+			App->sho->player_collider->to_delete = true;
 			f5 = true;
 		}
 		else {
 			App->miko->player_collider = App->collision->AddCollider({ App->miko->position.x, App->miko->position.y, 31, 31 }, COLLIDER_PLAYER, this);
-			App->junis->player_collider = App->collision->AddCollider({ App->junis->position.x, App->junis->position.y, 27, 28 }, COLLIDER_PLAYER, this);
+			App->sho->player_collider = App->collision->AddCollider({ App->sho->position.x, App->sho->position.y, 27, 28 }, COLLIDER_PLAYER, this);
 			f5 = false;
 
 		}

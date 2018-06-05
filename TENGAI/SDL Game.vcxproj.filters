@@ -83,9 +83,6 @@
     <ClInclude Include="Path.h">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleJunis.h">
-      <Filter>Modules\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleMiko.h">
       <Filter>Modules\Characters</Filter>
     </ClInclude>
@@ -165,9 +162,6 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneOutro.cpp">
       <Filter>Modules\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleJunis.cpp">
-      <Filter>Modules\Characters</Filter>
     </ClCompile>
     <ClCompile Include="ModuleMiko.cpp">
       <Filter>Modules\Characters</Filter>

@@ -13,7 +13,6 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "Enemy_Boss.h"
-#include "ModuleJunis.h"
 #include "ModuleSho.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleSceneSea.h"
@@ -155,21 +154,13 @@ bool ModuleSceneForest::Start()
 	App->collision->Enable();
 	App->enemies->Enable();
 	App->miko->Enable();
-	App->junis->Enable();
-	//App->sho->Disable();
-
-	App->miko->path_win.Reset();
-	App->junis->path_win.Reset();
+	App->sho->Enable();
 
 	App->miko->score = 0;
-	App->junis->score = 0;
-
-	App->miko->won = false;
-	//App->sho->won = false;
-	App->junis->won = false;
+	App->sho->score = 0;
 
 	App->miko->MikoLife = 3;
-	App->junis->JunisLife = 3;
+	App->sho->ShoLife = 3;
 
 	SceneForest = App->audio->LoadMusic("assets/audio/audioforest.ogg");
 	Mix_PlayMusic(SceneForest, -1);
@@ -210,8 +201,7 @@ bool ModuleSceneForest::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->miko->Disable();
-	App->junis->Disable();
-	//App->sho->Disable();
+	App->sho->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -227,7 +217,6 @@ update_status ModuleSceneForest::Update()
 
 	//Player auto scroll
 	App->miko->position.x += speed / SCREEN_SIZE / 2;
-	App->junis->position.x += speed / SCREEN_SIZE / 2;
 	App->sho->position.x += speed / SCREEN_SIZE / 2;
 
 	App->render->camera.x -= speed / SCREEN_SIZE / 2;
@@ -264,14 +253,14 @@ update_status ModuleSceneForest::Update()
 	App->render->Blit(graphics, 2019, 0, &floor5, 0.75f);
 
 
-	if (App->miko->MikoLife <= 0 && App->junis->JunisLife <= 0)
+	if (App->miko->MikoLife <= 0 && App->sho->ShoLife <= 0)
 	{
 		App->fade->FadeToBlack(App->scene_forest, App->scene_outro, 2.0);
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_REPEAT) 
 	{
 		App->miko->won = true;
-		App->junis->won = true;
+		App->sho->won = true;
 	}
 	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT)
 	{
@@ -279,13 +268,14 @@ update_status ModuleSceneForest::Update()
 	}
 	if (App->miko->position.x >= 2500) { App->miko->won = true; }
 
-	if (App->junis->position.x >= 2500) { App->junis->won = true; }
+	if (App->sho->position.x >= 2500) { App->sho->won = true; }
 
-	if (App->miko->won == true || App->junis->won == true) 
+	if (App->miko->won == true || App->sho->won == true) 
 	{
 		App->miko->Win();
-		App->junis->Win();
-		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 0.5f);
+		App->sho->Win();
+		
+		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 0.5f);
 	}
 
 	return UPDATE_CONTINUE;

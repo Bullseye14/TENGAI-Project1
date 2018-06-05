@@ -13,7 +13,6 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "Enemy_Boss.h"
-#include "ModuleJunis.h"
 #include "ModuleSho.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleSceneSea.h"
@@ -212,20 +211,16 @@ bool ModuleSceneSea::Start()
 	App->enemies->Enable();
 
 	App->miko->Enable();
-	//App->junis->Enable();
 	App->sho->Enable();
 
 	App->miko->path_win.Reset();
 	App->sho->path_win.Reset();
 
-	App->miko->score = 0;
-	App->sho->score = 0;
-
 	App->miko->won = false;
 	App->sho->won = false;
 
 	App->miko->MikoLife = 3;
-	//App->junis->JunisLife = 3;
+	App->sho->ShoLife = 3;
 
 	graphics1 = App->textures->Load("assets/tengai/Scene_Water/mountain&waterfall.png");
 	graphics2 = App->textures->Load("assets/tengai/Scene_Water/waterfall.png");
@@ -251,7 +246,6 @@ bool ModuleSceneSea::CleanUp()
 	App->textures->Unload(orientaljump);
 	App->miko->Disable();
 	App->sho->Disable();
-	//App->junis->Disable(); 
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -344,19 +338,12 @@ update_status ModuleSceneSea::Update()
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0f);
 	}
-	
-	if (App->miko->position.x >= 2500) { App->miko->won = true; }
-
-	if (App->sho->position.x >= 2500) { App->sho->won = true; }
-
 	if (App->miko->won == true || App->sho->won == true)
 	{
-		
 		App->miko->Win();
 		App->sho->Win();
-		App->miko->won = false;
-		App->sho->won = false;
-		App->fade->FadeToBlack(App->scene_sea, App->scene_forest, 0.5);
+		
+		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 0.5);
 	}
 
 	return update_status::UPDATE_CONTINUE;

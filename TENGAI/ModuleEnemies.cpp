@@ -9,7 +9,7 @@
 #include "Enemy_BlueNinja.h"
 #include "Enemy_RedShip.h"
 #include "ModuleMiko.h"
-#include "ModuleJunis.h"
+#include "ModuleSho.h"
 #include "ModuleAudio.h"
 #include "Enemy_GreenShip.h"
 
@@ -172,7 +172,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
 						App->miko->score += 200;
 					}
-					else App->junis->score += 200;
+					else App->sho->score += 200;
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
@@ -193,7 +193,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
 						App->miko->score += 100;
 					}
-					else App->junis->score += 100;
+					else App->sho->score += 100;
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
@@ -213,7 +213,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
 						App->miko->score += 100;
 					}
-					else App->junis->score += 100;
+					else App->sho->score += 100;
 
 					enemies[i]->PowerUp();
 					enemies[i]->alive = false;
@@ -235,7 +235,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
 						App->miko->score += 8000;
 					}
-					else App->junis->score += 8000;
+					else App->sho->score += 8000;
 					enemies[i]->alive = false;
 					delete enemies[i];
 					enemies[i] = nullptr;
