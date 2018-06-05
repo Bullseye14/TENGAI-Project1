@@ -241,6 +241,26 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					enemies[i] = nullptr;
 				}
 			}
+			if ((c1->type == COLLIDER_TYPE::COLLIDER_SAMURAI && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1)
+				|| (c1->type == COLLIDER_TYPE::COLLIDER_SAMURAI && c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P2))
+			{
+				enemies[i]->EnemyLife--;
+				if (enemies[i]->EnemyLife <= 1)
+				{
+					//Mix_PlayChannel(-1, Explosion, 0);
+					//Spawn at center of collider
+					App->particles->AddParticle(App->particles->explosion,
+						enemies[i]->position.x + enemies[i]->animation->GetCurrentFrame().w / 2,
+						enemies[i]->position.y + enemies[i]->animation->GetCurrentFrame().h / 2);
+					if (c2->type == COLLIDER_TYPE::COLLIDER_PLAYER_SHOT_P1) {
+						App->miko->score += 1400;
+					}
+					else App->sho->score += 1400;
+					enemies[i]->alive = false;
+					delete enemies[i];
+					enemies[i] = nullptr;
+				}
+			}
 		}
 	}
 

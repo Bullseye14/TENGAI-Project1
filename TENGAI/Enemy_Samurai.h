@@ -12,6 +12,7 @@ private:
 	iPoint original_position;
 	Animation idle;
 	Animation wave;
+	Animation attack;
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;
