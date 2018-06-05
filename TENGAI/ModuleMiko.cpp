@@ -235,11 +235,11 @@ update_status ModuleMiko::Update()
 
 	sprintf_s(score_text, 10, "%7d", score);
 	score_x = camera_x + 30;
-	App->fonts->BlitText(score_x, 5, font_score, score_text);
-	App->fonts->BlitText(score_x - 25, 5, font_players, "1");
+	App->fonts->BlitText(score_x, 5 + camera_y, font_score, score_text);
+	App->fonts->BlitText(score_x - 25, 5 + camera_y, font_players, "1");
 
 	for (int i = 0; i < MikoLife; ++i) {
-		App->particles->AddParticle(App->particles->Mlife, (score_x + 65) + i*18, 2);
+		App->particles->AddParticle(App->particles->Mlife, (score_x + 65) + i*18, camera_y + 2);
 	}
 
 	return UPDATE_CONTINUE;

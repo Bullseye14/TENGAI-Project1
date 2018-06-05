@@ -195,7 +195,8 @@ bool ModuleSceneSea::Start()
 	LOG("Loading sea scene");
 
 	App->render->camera.x = 0;
-	camera_moving = false;
+	delta_camera = 0;
+	camera_moved = false;
 
 	App->collision->Enable();
 	App->enemies->Enable();
@@ -241,14 +242,16 @@ bool ModuleSceneSea::CleanUp()
 	return true;
 }
 bool ModuleSceneSea::MoveCameraDown() {
-	if (!camera_moving)
+	if (!camera_moved)
 	{
-		camera_moving = true;
+		delta_camera = 0;
+		camera_moved = true;
 	}
 	else {
 			App->miko->position.y += 1;
 			App->sho->position.y += 1;
 			App->render->camera.y -= 1;
+			delta_camera += 1;
 	}
 	return true;
 }
@@ -258,14 +261,14 @@ update_status ModuleSceneSea::Update()
 	current_time = SDL_GetTicks();	
 	
 	//Player auto scroll
-	if (-App->render->camera.x <= 250 && !camera_moving) {
+	if (-App->render->camera.x <= camera_trigger_down_x && !camera_moved) {
 		App->miko->position.x += speed / SCREEN_SIZE / 2;
 		App->sho->position.x += speed / SCREEN_SIZE / 2;
 
 		App->render->camera.x -= speed / SCREEN_SIZE / 2;
 		
 	}
-	else if(-App->render->camera.y <= 300){
+	else if(-App->render->camera.y <= camera_trigger_down_y){
 		MoveCameraDown();
 	}
 	else {
@@ -275,23 +278,45 @@ update_status ModuleSceneSea::Update()
 		App->render->camera.x -= speed / SCREEN_SIZE / 2;
 	}
 	
+	//SKY
+	if (-App->render->camera.y <= camera_trigger_down_y) {
+		int pos1 = 0, pos2 = 0;
 
-	int pos1 = 0, pos2 = 0;
+		for (int i = 0; i < 5; i++) {
+			App->render->Blit(graphics, 0 + pos1, 0, &BG_Mountain, 0.50f);
+			App->render->Blit(graphics, 156 + pos1, 44, &(waterfall1.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 510 + pos1, 44, &(waterfall2.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 509 + pos1, 106, &(under_waterfall.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 710 + pos1, 55, &(waterfall3.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 693 + pos1, 110, &(under_waterfall.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 0 + pos2, 128, &layer_ocean_1, 0.60f);
+			App->render->Blit(graphics, 0 + pos2, 144, &layer_ocean_2, 0.60f);
+			App->render->Blit(graphics, 0 + pos2, 160, &layer_ocean_3, 0.60f);
+			App->render->Blit(graphics, 0 + pos2, 180, &layer_ocean_4, 0.60f);
+			App->render->Blit(graphics, 0 + pos2, 200, &layer_ocean_5, 0.60f);
+			pos1 += 756;
+			pos2 += 960;
+		}
+	}
+	//SEA
+	else {
+		int pos1 = 0, pos2 = 0;
+		for (int i = 0; i < 5; i++) {
+			App->render->Blit(graphics, 0 + pos1,     0+delta_camera, &BG_Mountain, 0.50f);
+			App->render->Blit(graphics, 156 + pos1,  44+delta_camera, &(waterfall1.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 510 + pos1,  44+delta_camera, &(waterfall2.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 509 + pos1, 106+delta_camera, &(under_waterfall.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 710 + pos1,  55+delta_camera, &(waterfall3.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 693 + pos1, 110+delta_camera, &(under_waterfall.GetCurrentFrame()), 0.50F);
+			App->render->Blit(graphics, 0 + pos2,   128+delta_camera, &layer_ocean_1, 0.60f);
+			App->render->Blit(graphics, 0 + pos2,   144+delta_camera, &layer_ocean_2, 0.60f);
+			App->render->Blit(graphics, 0 + pos2,   160+delta_camera, &layer_ocean_3, 0.60f);
+			App->render->Blit(graphics, 0 + pos2,   180+delta_camera, &layer_ocean_4, 0.60f);
+			App->render->Blit(graphics, 0 + pos2,   200+delta_camera, &layer_ocean_5, 0.60f);
+			pos1 += 756;
+			pos2 += 960;
+		}
 
-	for (int i = 0; i < 5; i++) {
-		App->render->Blit(graphics, 0 + pos1, 0, &BG_Mountain, 0.50f);
-		App->render->Blit(graphics, 156 + pos1, 44, &(waterfall1.GetCurrentFrame()), 0.50F);
-		App->render->Blit(graphics, 510 + pos1, 44, &(waterfall2.GetCurrentFrame()), 0.50F);
-		App->render->Blit(graphics, 509 + pos1, 106, &(under_waterfall.GetCurrentFrame()), 0.50F);
-		App->render->Blit(graphics, 710 + pos1, 55, &(waterfall3.GetCurrentFrame()), 0.50F);
-		App->render->Blit(graphics, 693 + pos1, 110, &(under_waterfall.GetCurrentFrame()), 0.50F);
-		App->render->Blit(graphics, 0 + pos2, 128, &layer_ocean_1, 0.60f);
-		App->render->Blit(graphics, 0 + pos2, 144, &layer_ocean_2, 0.60f);
-		App->render->Blit(graphics, 0 + pos2, 160, &layer_ocean_3, 0.60f);
-		App->render->Blit(graphics, 0 + pos2, 180, &layer_ocean_4, 0.60f);
-		App->render->Blit(graphics, 0 + pos2, 200, &layer_ocean_5, 0.60f);
-		pos1 += 756;
-		pos2 += 960;
 	}
 
 	/*int pos = -9, postree = -10, pos2 = 809, pos4 = 780;

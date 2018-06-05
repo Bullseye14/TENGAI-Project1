@@ -49,10 +49,15 @@ public:
 	Animation wave;
 	Animation big_waterfall;
 
-	bool camera_moving;
+	bool camera_moved;
 	float speed = 5;
 	int scroll_speed = 1;
 	uint current_time, last_time_camera_down;
+
+	int camera_trigger_down_x = 250;
+	int camera_trigger_down_y = 300;
+	int delta_camera = 0;
+
 
 	Mix_Music* SceneSea = nullptr;
 
