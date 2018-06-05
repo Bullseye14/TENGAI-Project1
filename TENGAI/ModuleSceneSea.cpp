@@ -218,10 +218,54 @@ bool ModuleSceneSea::Start()
 	SceneSea = App->audio->LoadMusic("assets/audio/audiosea.ogg");
 	Mix_PlayMusic(SceneSea, -1);
 
-	App->enemies->AddEnemy(ENEMY_TYPES::SEA_SHIP, 520, 20);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 520, 20);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 550, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 580, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 610, 140);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1020, 60);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1050, 100);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1080, 140);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1110, 180);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1520, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1550, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::GREEN_SHIP, 1580, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::RED_SHIP, 1610, 160);
+	
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 600, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1752, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1800, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1850, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1900, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1950, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2000, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2050, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2100, 40);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2100, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2150, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2150, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1700, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 850, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1250, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 1300, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2200, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 2200, 160);
+
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2300, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2300, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2300, 160);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2500, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2500, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2500, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2700, 80);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2700, 120);
+	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 2700, 160);
+
+	/*App->enemies->AddEnemy(ENEMY_TYPES::SEA_SHIP, 520, 20);
 	App->enemies->AddEnemy(ENEMY_TYPES::METALIC_GREEN, 550, 60);
 	App->enemies->AddEnemy(ENEMY_TYPES::FISH, 580, 100);
-	App->enemies->AddEnemy(ENEMY_TYPES::SAMURAI, 610, 140);
+	App->enemies->AddEnemy(ENEMY_TYPES::SAMURAI, 610, 140);*/
 
 	return true;
 }
@@ -260,8 +304,13 @@ bool ModuleSceneSea::MoveCameraDown() {
 update_status ModuleSceneSea::Update()
 {	
 	current_time = SDL_GetTicks();	
+	App->miko->position.x += speed / SCREEN_SIZE / 2;
+	App->sho->position.x += speed / SCREEN_SIZE / 2;
+
+	App->render->camera.x -= speed / SCREEN_SIZE / 2;
 	
 	//Player auto scroll
+	/*
 	if (-App->render->camera.x <= camera_trigger_down_x && !camera_moved) {
 		App->miko->position.x += speed / SCREEN_SIZE / 2;
 		App->sho->position.x += speed / SCREEN_SIZE / 2;
@@ -277,12 +326,12 @@ update_status ModuleSceneSea::Update()
 		App->sho->position.x += speed / SCREEN_SIZE / 2;
 
 		App->render->camera.x -= speed / SCREEN_SIZE / 2;
-	}
+	}*/
 	
 	//SKY
 	int pos1 = 0, pos2 = 0;
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 5; i++) {
 		App->render->Blit(graphics, 0 + pos1, 0, &BG_Mountain, 0.50f);
 		App->render->Blit(graphics, 156 + pos1, 44, &(waterfall1.GetCurrentFrame()), 0.50F);
 		App->render->Blit(graphics, 510 + pos1, 44, &(waterfall2.GetCurrentFrame()), 0.50F);
@@ -297,7 +346,7 @@ update_status ModuleSceneSea::Update()
 		pos1 += 756;
 		pos2 += 960;
 	}
-	App->render->Blit(graphics, 1212, 224, &Waterfall_bg, 0.55f);
+	App->render->Blit(graphics, pos1, -SCREEN_HEIGHT-App->render->camera.y, &Waterfall_bg, 0.55f);
 
 	/*if (-App->render->camera.y <= camera_trigger_down_y) {
 		
