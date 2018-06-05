@@ -35,7 +35,7 @@ public:
 	SDL_Texture * graphics2 = nullptr;
 	SDL_Texture * graphics3 = nullptr;
 	SDL_Texture * graphics4 = nullptr;
-	SDL_Texture* orientaljump = nullptr;
+	//SDL_Texture* orientaljump = nullptr;
 	SDL_Rect BG_Mountain;
 	SDL_Rect layer_ocean_1;
 	SDL_Rect layer_ocean_2;

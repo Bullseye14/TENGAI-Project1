@@ -226,7 +226,7 @@ bool ModuleSceneSea::Start()
 	graphics2 = App->textures->Load("assets/tengai/Scene_Water/waterfall.png");
 	graphics3 = App->textures->Load("assets/tengai/Scene_Water/background_waterfall.png");
 	graphics4 = App->textures->Load("assets/tengai/Scene_Water/lateral_scroll&loop.png");
-	orientaljump = App->textures->Load("assets/tengai/Scene_Water/tengai_enemies.png");
+	//orientaljump = App->textures->Load("assets/tengai/Scene_Water/tengai_enemies.png");
 
 	SceneSea = App->audio->LoadMusic("assets/audio/audiosea.ogg");
 	Mix_PlayMusic(SceneSea, -1);
@@ -243,8 +243,8 @@ bool ModuleSceneSea::CleanUp()
 	App->textures->Unload(graphics2);
 	App->textures->Unload(graphics3);
 	App->textures->Unload(graphics4);
-	App->textures->Unload(orientaljump);
-	//App->audio->UnloadMusic(SceneSea);
+	//App->textures->Unload(orientaljump);
+	App->audio->UnloadMusic(SceneSea);
 
 	App->miko->Disable();
 	App->sho->Disable();
@@ -326,7 +326,7 @@ update_status ModuleSceneSea::Update()
 	}
 
 	App->render->Blit(graphics2, 580, 232, &(big_waterfall.GetCurrentFrame()), 0.55f);
-	App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
+	//App->render->Blit(orientaljump, 100, 150, &(Geniusjump.GetCurrentFrame()));
 
 	if (App->miko->MikoLife <= 0 && App->sho->ShoLife <= 0)
 	{
