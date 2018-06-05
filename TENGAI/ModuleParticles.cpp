@@ -232,6 +232,71 @@ ModuleParticles::ModuleParticles()
 	explosion.anim.PushBack({ 1,1,1,1 });
 	explosion.anim.speed = 0.19f;
 	explosion.anim.loop = false;
+	
+
+
+	// TO PRECISE, per arreglar a partir daqui//
+	Shoshot.anim.PushBack({ 71,363,26,3 });
+	Shoshot.anim.PushBack({ 105,363,31,4 });
+	Shoshot.anim.PushBack({ 46,363,31,3 });
+	Shoshot.anim.speed = 0.4f;
+	Shoshot.speed = iPoint(10, 0);
+	Shoshot.life = 500;
+
+	Shosfriend.anim.PushBack({ 189,358,23,13 });
+	Shosfriend.anim.PushBack({ 224,358,32,13 });
+	Shosfriend.anim.PushBack({ 266,358,32,13 });
+	Shosfriend.anim.PushBack({ 307,358,32,13 });
+	Shosfriend.anim.speed = 0.3f;
+	Shosfriend.speed = iPoint(10, 0);
+	Shosfriend.life = 2000;
+
+	P_U.anim.PushBack({ 496,128,26,15 });
+	P_U.anim.PushBack({ 496,140,26,15 });
+	P_U.anim.PushBack({ 496,158,26,15 });
+	P_U.anim.speed = 0.1f;
+	P_U.life = 3000;
+	
+	P_D.anim.PushBack({ 529,140,26,15 });
+	P_D.anim.PushBack({ 529,158,26,15 });
+	P_D.anim.speed = 0.1f;
+	P_D.life = 3000;
+	
+	_100.anim.PushBack({ 560,147,9,7 });
+	_100.anim.PushBack({ 560,157,9,7 });
+	_100.anim.PushBack({ 560,167,9,7 });
+	_100.anim.speed = 0.1f;
+	_100.life = 3000;
+	
+	_500.anim.PushBack({ 94,36,11,7 });
+	_500.anim.PushBack({ 94,27,11,7 });
+	_500.anim.PushBack({ 94,18,11,7 });
+	_500.anim.speed = 0.1f;
+	_500.life = 3000;
+	
+	_200.anim.PushBack({ 80,36,11,7 });
+	_200.anim.PushBack({ 80,27,11,7 });
+	_200.anim.PushBack({ 80,18,11,7 });
+	_200.anim.speed = 0.1f;
+	_200.life = 3000;
+	
+	_1000.anim.PushBack({ 108,36,13,7 });
+	_1000.anim.PushBack({ 108,27,13,7 });
+	_1000.anim.PushBack({ 108,18,13,7 });
+	_1000.anim.speed = 0.1f;
+	_1000.life = 3000;
+	
+	_2000.anim.PushBack({ 124,36,15,7 });
+	_2000.anim.PushBack({ 124,27,15,7 });
+	_2000.anim.PushBack({ 124,18,15,7 });
+	_2000.anim.speed = 0.1f;
+	_2000.life = 3000;
+	
+	_4000.anim.PushBack({ 142,36,15,7 });
+	_4000.anim.PushBack({ 142,27,15,7 });
+	_4000.anim.PushBack({ 142,18,15,7 });
+	_4000.anim.speed = 0.1f;
+	_4000.life = 3000;
 }
 
 ModuleParticles::~ModuleParticles()

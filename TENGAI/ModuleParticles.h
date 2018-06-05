@@ -77,6 +77,11 @@ public:
 	Particle power_down;
 	Particle power_up;
 	Particle explosion;
+	Particle Shoshot;
+	Particle Shosfriend;
+	Particle P_U;
+	Particle P_D;
+	Particle _100, _200, _500, _1000, _2000, _4000;
 
 	Particle start;
 };

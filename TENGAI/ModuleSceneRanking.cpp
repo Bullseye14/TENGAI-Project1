@@ -28,6 +28,7 @@ bool ModuleSceneRanking::Start()
 	App->junis->path_win.Reset();
 
 	background_ranking = App->textures->Load("assets/tengai/WIN.png");
+	font = App->fonts->Load("assets/tengai/font1.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZ(),-./0123456789-./0123456", 4);
 
 	AudioRanking = App->audio->LoadMusic("assets/audio/audiowin.ogg");
 	Mix_PlayMusic(AudioRanking, 0);
@@ -52,15 +53,19 @@ update_status ModuleSceneRanking::Update()
 {
 	App->render->camera.x = 3;
 	App->render->Blit(background_ranking, -2, 0, NULL);
+	//sprintf_s(App->miko->score_text, 10, "%7d", "ABCD");
+	//perque siguin mes iguals tots, si no , jeje
+	App->fonts->BlitText(60, 30, font, "PLAYER 1");
 
-	App->fonts->BlitText(40, 90, App->miko->font_score, App->miko->score_text);
-	App->fonts->BlitText(40, 170, App->junis->font_score, App->junis->score_text);
+	
+	App->fonts->BlitText(40, 90, font, App->miko->score_text); // 
+	App->fonts->BlitText(40, 170, font, App->junis->score_text);
 
 	char sum_score[10];
 	uint uint_sum_score = App->miko->score + App->junis->score;
 	sprintf_s(sum_score, 10, "%7d", uint_sum_score);
 
-	App->fonts->BlitText(200, SCREEN_HEIGHT/2, App->miko->font_score, sum_score);
+	App->fonts->BlitText(200, SCREEN_HEIGHT/2, font, sum_score);
 	
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1 

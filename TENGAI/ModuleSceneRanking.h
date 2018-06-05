@@ -23,6 +23,8 @@ public:
 public:
 	SDL_Texture * background_ranking = nullptr;
 	SDL_Texture * stars = nullptr;
+	int font = -1;
+
 
 	Mix_Music* AudioRanking = nullptr;
 
