@@ -289,6 +289,10 @@ ModuleParticles::ModuleParticles()
 	_4000.anim.PushBack({ 142,18,15,7 });
 	_4000.anim.speed = 0.1f;
 	_4000.life = 3000;
+
+	Mlife.anim.PushBack({385,320,20,20});
+	Slife.anim.PushBack({ 385,352,20,20 });
+
 }
 
 ModuleParticles::~ModuleParticles()

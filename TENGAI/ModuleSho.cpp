@@ -233,10 +233,14 @@ update_status ModuleSho::Update()
 	App->render->Blit(graphics, position.x, position.y, &(current_animation->GetCurrentFrame()));
 
 	sprintf_s(score_text, 10, "%7d", score);
-	score_x = camera_x + (SCREEN_SIZE*SCREEN_WIDTH * 2 / 3);
+	score_x = camera_x + (SCREEN_SIZE*SCREEN_WIDTH * 2 / 3) -20;
 
 	App->fonts->BlitText(score_x, 5, font_score, score_text);
 	App->fonts->BlitText(score_x - 25, 5, font_players, "2");
+
+	for (int i = 0; i < ShoLife; ++i) {
+		App->particles->AddParticle(App->particles->Slife, (score_x + 65) + i * 18, 2);
+	}
 
 	return UPDATE_CONTINUE;
 }

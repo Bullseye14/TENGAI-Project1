@@ -79,6 +79,7 @@ public:
 	Particle explosion;
 	Particle Shoshot;
 	Particle Shosfriend;
+	Particle Mlife, Slife;
 	Particle P_U;
 	Particle P_D;
 	Particle _100, _200, _500, _1000, _2000, _4000;
