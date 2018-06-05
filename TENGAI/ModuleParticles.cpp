@@ -46,69 +46,61 @@ ModuleParticles::ModuleParticles()
 	blueShot.speed = iPoint(-3, 0);
 	blueShot.life = 2000;
 
-	Eshot1.anim.PushBack({ 83,82,5,7 });
-	Eshot1.anim.PushBack({ 98,82,6,5 });
-	Eshot1.anim.PushBack({ 113,83,7,5 });
-	Eshot1.anim.PushBack({ 129,83,7,5 });
+	Eshot1.anim.PushBack({ 428,48,6,6 });
+	Eshot1.anim.PushBack({ 439,48,6,6 });
+	Eshot1.anim.PushBack({ 451,48,6,6 });
 	Eshot1.anim.speed = 0.3f;
 	Eshot1.speed = iPoint(3, 0);
 	Eshot1.life = 2000;
 
-	Eshot2.anim.PushBack({ 83,82,5,7 });
-	Eshot2.anim.PushBack({ 98,82,6,5 });
-	Eshot2.anim.PushBack({ 113,83,7,5 });
-	Eshot2.anim.PushBack({ 129,83,7,5 });
+	Eshot2.anim.PushBack({ 428,48,6,6 });
+	Eshot2.anim.PushBack({ 439,48,6,6 });
+	Eshot2.anim.PushBack({ 451,48,6,6 });
 	Eshot2.anim.speed = 0.3f;
 	Eshot2.speed = iPoint(2, 1);
 	Eshot2.life = 2000;
 
-	Eshot3.anim.PushBack({ 83,82,5,7 });
-	Eshot3.anim.PushBack({ 98,82,6,5 });
-	Eshot3.anim.PushBack({ 113,83,7,5 });
-	Eshot3.anim.PushBack({ 129,83,7,5 });
+	Eshot3.anim.PushBack({ 428,48,6,6 });
+	Eshot3.anim.PushBack({ 439,48,6,6 });
+	Eshot3.anim.PushBack({ 451,48,6,6 });
 	Eshot3.anim.speed = 0.3f;
 	Eshot3.speed = iPoint(1, 2);
 	Eshot3.life = 2000;
 
-	Eshot4.anim.PushBack({ 83,82,5,7 });
-	Eshot4.anim.PushBack({ 98,82,6,5 });
-	Eshot4.anim.PushBack({ 113,83,7,5 });
-	Eshot4.anim.PushBack({ 129,83,7,5 });
+	Eshot4.anim.PushBack({ 428,48,6,6 });
+	Eshot4.anim.PushBack({ 439,48,6,6 });
+	Eshot4.anim.PushBack({ 451,48,6,6 });
 	Eshot4.anim.speed = 0.3f;
 	Eshot4.speed = iPoint(0, 3);
 	Eshot4.life = 2000;
 
-	Eshot5.anim.PushBack({ 83,82,5,7 });
-	Eshot5.anim.PushBack({ 98,82,6,5 });
-	Eshot5.anim.PushBack({ 113,83,7,5 });
-	Eshot5.anim.PushBack({ 129,83,7,5 });
+	Eshot5.anim.PushBack({ 428,48,6,6 });
+	Eshot5.anim.PushBack({ 439,48,6,6 });
+	Eshot5.anim.PushBack({ 451,48,6,6 });
 	Eshot5.anim.speed = 0.3f;
 	Eshot5.speed = iPoint(-0.67, 2);
 	Eshot5.life = 2000;
 
-	Eshot5.anim.PushBack({ 83,82,5,7 });
-	Eshot5.anim.PushBack({ 98,82,6,5 });
-	Eshot5.anim.PushBack({ 113,83,7,5 });
-	Eshot5.anim.PushBack({ 129,83,7,5 });
-	Eshot5.anim.speed = 0.3f;
-	Eshot5.speed = iPoint(-1.33, 1);
-	Eshot5.life = 2000;
-
-	Eshot6.anim.PushBack({ 83,82,5,7 });
-	Eshot6.anim.PushBack({ 98,82,6,5 });
-	Eshot6.anim.PushBack({ 113,83,7,5 });
-	Eshot6.anim.PushBack({ 129,83,7,5 });
+	Eshot6.anim.PushBack({ 428,48,6,6 });
+	Eshot6.anim.PushBack({ 439,48,6,6 });
+	Eshot6.anim.PushBack({ 451,48,6,6 });
 	Eshot6.anim.speed = 0.3f;
-	Eshot6.speed = iPoint(-2, 0);
+	Eshot6.speed = iPoint(-1.33, 1);
 	Eshot6.life = 2000;
 
-	Eshot7.anim.PushBack({ 83,82,5,7 });
-	Eshot7.anim.PushBack({ 98,82,6,5 });
-	Eshot7.anim.PushBack({ 113,83,7,5 });
-	Eshot7.anim.PushBack({ 129,83,7,5 });
+	Eshot7.anim.PushBack({ 428,48,6,6 });
+	Eshot7.anim.PushBack({ 439,48,6,6 });
+	Eshot7.anim.PushBack({ 451,48,6,6 });
 	Eshot7.anim.speed = 0.3f;
-	Eshot7.speed = iPoint(-1.33, -1);
+	Eshot7.speed = iPoint(-2, 0);
 	Eshot7.life = 2000;
+
+	Eshot8.anim.PushBack({ 428,48,6,6 });
+	Eshot8.anim.PushBack({ 439,48,6,6 });
+	Eshot8.anim.PushBack({ 451,48,6,6 });
+	Eshot8.anim.speed = 0.3f;
+	Eshot8.speed = iPoint(-1.33, -1);
+	Eshot8.life = 2000;
 	
 	Eshot8.anim.PushBack({ 83,82,5,7 });
 	Eshot8.anim.PushBack({ 98,82,6,5 });

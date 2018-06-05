@@ -113,6 +113,18 @@
     <ClInclude Include="ModuleSho.h">
       <Filter>Modules\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy_Samurai.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_MetalicGreen.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Fish.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_SeaShip.h">
+      <Filter>Modules\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -189,6 +201,18 @@
     </ClCompile>
     <ClCompile Include="ModuleSho.cpp">
       <Filter>Modules\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Samurai.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_MetalicGreen.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Fish.cpp">
+      <Filter>Modules\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_SeaShip.cpp">
+      <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

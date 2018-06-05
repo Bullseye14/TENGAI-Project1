@@ -71,8 +71,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Enemy_BlueNinja.h" />
+    <ClInclude Include="Enemy_Fish.h" />
     <ClInclude Include="Enemy_GreenShip.h" />
+    <ClInclude Include="Enemy_MetalicGreen.h" />
     <ClInclude Include="Enemy_RedShip.h" />
+    <ClInclude Include="Enemy_Samurai.h" />
+    <ClInclude Include="Enemy_SeaShip.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleSceneRanking.h" />
     <ClInclude Include="ModuleSceneSea.h" />
@@ -106,8 +110,12 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BlueNinja.cpp" />
     <ClCompile Include="Enemy_Boss.cpp" />
+    <ClCompile Include="Enemy_Fish.cpp" />
     <ClCompile Include="Enemy_GreenShip.cpp" />
+    <ClCompile Include="Enemy_MetalicGreen.cpp" />
     <ClCompile Include="Enemy_RedShip.cpp" />
+    <ClCompile Include="Enemy_Samurai.cpp" />
+    <ClCompile Include="Enemy_SeaShip.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
