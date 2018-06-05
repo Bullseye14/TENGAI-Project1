@@ -12,11 +12,13 @@ private:
 	iPoint original_position;
 	Animation idle;
 	Animation wave;
-	Animation attack;
+	Animation attack, attacking;
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;
 	Path path2;
+
+	int screen = 1;
 
 public:
 
@@ -24,6 +26,7 @@ public:
 	Collider* enemy_collider;
 
 	void Move();
+	void Shoot();
 };
 
 #endif
