@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleCollision.h"
 #include "ModuleMiko.h"
+#include "ModuleSho.h"
 #include "SDL/include/SDL.h"
 
 ModuleRender::ModuleRender() : Module()

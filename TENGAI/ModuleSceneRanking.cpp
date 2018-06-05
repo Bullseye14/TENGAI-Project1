@@ -4,7 +4,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleMiko.h"
-#include "ModuleJunis.h"
+#include "ModuleSho.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleSceneForest.h"
@@ -25,7 +25,7 @@ bool ModuleSceneRanking::Start()
 	LOG("Loading ranking scene");
 
 	App->miko->path_win.Reset();
-	App->junis->path_win.Reset();
+	App->sho->path_win.Reset();
 
 	background_ranking = App->textures->Load("assets/tengai/WIN.png");
 	font = App->fonts->Load("assets/tengai/font1.png", "ABCDEFGHIJKLMNOPQRSTUVWXYZ(),-./0123456789-./0123456", 4);
@@ -34,7 +34,7 @@ bool ModuleSceneRanking::Start()
 	Mix_PlayMusic(AudioRanking, 0);
 
 	App->miko->won = false;
-	App->junis->won = false;
+	App->sho->won = false;
 
 	return true;
 }
@@ -43,7 +43,7 @@ bool ModuleSceneRanking::CleanUp()
 {
 	LOG("Unloading ranking scene");
 	App->miko->score = 0;
-	App->junis->score = 0;
+	App->sho->score = 0;
 	App->textures->Unload(background_ranking);
 
 	return true;
@@ -58,11 +58,11 @@ update_status ModuleSceneRanking::Update()
 	App->fonts->BlitText(60, 30, font, "PLAYER 1");
 
 	
-	App->fonts->BlitText(40, 90, font, App->miko->score_text); // 
-	App->fonts->BlitText(40, 170, font, App->junis->score_text);
+	App->fonts->BlitText(40, 90, font, App->miko->score_text); 
+	App->fonts->BlitText(40, 170, font, App->sho->score_text);
 
 	char sum_score[10];
-	uint uint_sum_score = App->miko->score + App->junis->score;
+	uint uint_sum_score = App->miko->score + App->sho->score;
 	sprintf_s(sum_score, 10, "%7d", uint_sum_score);
 
 	App->fonts->BlitText(200, SCREEN_HEIGHT/2, font, sum_score);

@@ -108,7 +108,7 @@ bool ModuleSho::Start()
 	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
-	position.y = 150;
+	position.y = 80;
 	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 },COLLIDER_TYPE::COLLIDER_PLAYER, this);
 
@@ -264,7 +264,6 @@ void ModuleSho::Win()
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
-	//App->sho->won = false;
 	//path_win.accumulated_speed = fPoint(0.0f, 0.0f);
 }
 
