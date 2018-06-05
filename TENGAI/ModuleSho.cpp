@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
 #include "ModuleMiko.h"
+#include "ModuleSceneForest.h"
 #include <stdio.h>
 
 ModuleSho::ModuleSho()
@@ -156,7 +157,7 @@ update_status ModuleSho::Update()
 			{
 				if (!Shield_Animation) {
 					current_animation = &idle;
-					if (position.y > SCREEN_HEIGHT - 43) current_animation = &run;
+					if (position.y > SCREEN_HEIGHT - 43 && App->scene_forest->enabled) current_animation = &run;
 				}
 				if (position.x + 29 + speed < SCREEN_WIDTH + camera_x)
 				{
@@ -193,7 +194,7 @@ update_status ModuleSho::Update()
 				&& SDL_GameControllerGetAxis(App->input->gamepad, SDL_CONTROLLER_AXIS_LEFTX) == 0
 				&& !Shield_Animation)
 			{
-				if (position.y > SCREEN_HEIGHT-43) current_animation = &run;
+				if (position.y > SCREEN_HEIGHT-43 && App->scene_forest->enabled) current_animation = &run;
 				else current_animation = &idle;
 			}
 			// DEBUG INPUT

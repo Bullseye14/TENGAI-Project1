@@ -6,7 +6,7 @@ struct Collider;
 
 class Module
 {
-private:
+public:
 	bool enabled = true;
 
 public:

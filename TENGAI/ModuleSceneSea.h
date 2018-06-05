@@ -18,6 +18,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool MoveCameraDown();
+
 public:
 
 	SDL_Texture * graphics = nullptr;
@@ -46,6 +48,12 @@ public:
 	Animation candle3;
 	Animation wave;
 	Animation big_waterfall;
+
+	bool camera_moving;
+	float speed = 5;
+	int scroll_speed = 1;
+	Path camera_path_down;
+	uint current_time, last_time_camera_down;
 
 	Mix_Music* SceneSea = nullptr;
 
