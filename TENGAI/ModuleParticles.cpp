@@ -50,7 +50,7 @@ ModuleParticles::ModuleParticles()
 	Eshot1.anim.PushBack({ 439,48,6,6 });
 	Eshot1.anim.PushBack({ 451,48,6,6 });
 	Eshot1.anim.speed = 0.3f;
-	Eshot1.speed = iPoint(3, 0);
+	Eshot1.speed = iPoint(-3, 0);
 	Eshot1.life = 2000;
 
 	Eshot2.anim.PushBack({ 428,48,6,6 });

@@ -10,19 +10,14 @@ Enemy_Fish::Enemy_Fish(int x, int y) : Enemy(x, y)
 {
 	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
 
-	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
-	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
-	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
-	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
+	path.PushBack({ 0.0f, 0.0f }, 40, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 20, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 1, &attack);
+	path.PushBack({ 1.0f, 0.0f }, 20, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 1, &attack);
+	path.PushBack({ 1.0f, 0.0f }, 20, &idle);
+	path.PushBack({ 1.0f, 0.0f }, 1, &attack);
+	path.PushBack({ 0.0f, 0.2f }, 5000, &idle);
 
 	idle.PushBack({ 33,821,29,23 });
 	idle.PushBack({ 84,821,30,23 });
@@ -41,16 +36,22 @@ Enemy_Fish::Enemy_Fish(int x, int y) : Enemy(x, y)
 	EnemyLife = 2;
 }
 
+void Enemy_Fish::Shoot() 
+{
+	App->particles->AddParticle(App->particles->Eshot1, position.x, position.y + animation->GetCurrentFrame().h / 2, COLLIDER_ENEMY_SHOT);
+}
+
 void Enemy_Fish::Move()
 {
-	/*if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH + 40)
+	if (this->animation == &attack) { Shoot(); }
+
+	if (position.x <= -App->render->camera.x / 2)
+	{
+		position = original_position + path2.GetCurrentSpeed(&animation);
+	}
+	else if (position.x <= -App->render->camera.x + SCREEN_WIDTH)
 	{
 		position = original_position + path.GetCurrentSpeed(&animation);
 	}
-	else if (position.x <= -App->render->camera.x / 2)
-	{
-		position = original_position + path2.GetCurrentSpeed(&animation);
-	}*/
-
-	position = original_position + path.GetCurrentSpeed(&animation);
+	
 }

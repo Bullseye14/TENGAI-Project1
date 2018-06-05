@@ -13,8 +13,10 @@ private:
 	Animation idle;
 	Animation* current_animation = nullptr;
 	Animation die;
-	Path path;
+	Path pathup;
+	Path pathdown;
 	Path path2;
+	int screen = 1;
 
 public:
 

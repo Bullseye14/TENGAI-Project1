@@ -15,6 +15,11 @@ private:
 	Animation* current_animation = nullptr;
 	Animation die;
 	Path path;
+
+	Path attack1;
+	Path attack2;
+
+	Path move;
 	Path path2;
 
 public:
@@ -22,6 +27,7 @@ public:
 	Collider* enemy_collider;
 
 	void Move();
+	void Shoot();
 };
 
 #endif

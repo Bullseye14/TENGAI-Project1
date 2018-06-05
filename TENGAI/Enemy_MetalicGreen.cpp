@@ -10,20 +10,12 @@ Enemy_MetalicGreen::Enemy_MetalicGreen(int x, int y) : Enemy(x, y)
 {
 	path2.PushBack({ 0.0f,0.0f }, 5000, &idle);
 
-	path.PushBack({ -3.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -2.5f, 0.0f }, 15, &idle);
-	path.PushBack({ -2.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -1.5f, 0.0f }, 15, &idle);
-	path.PushBack({ -1.0f, 0.0f }, 15, &idle);
-	path.PushBack({ -0.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 0.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 1.0f, 0.0f }, 100, &idle);
-	path.PushBack({ 1.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 2.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 2.5f, 0.0f }, 15, &idle);
-	path.PushBack({ 3.0f, 0.0f }, 15, &idle);
-	path.PushBack({ 3.5f, 0.0f }, 6000, &idle);
+	pathup.PushBack({ 0.0f, 1.2f }, 80, &idle);
+	pathup.PushBack({ 4.0f, 0.0f }, 5000, &idle);
 
+	pathdown.PushBack({ 0.0f, -1.2f }, 80, &idle);
+	pathdown.PushBack({ 4.0f, 0.0f }, 5000, &idle);
+	
 	idle.PushBack({ 23,759,31,30 });
 	idle.PushBack({ 79,759,31,31 });
 	idle.PushBack({ 136,759,31,30 });
@@ -42,12 +34,17 @@ Enemy_MetalicGreen::Enemy_MetalicGreen(int x, int y) : Enemy(x, y)
 
 void Enemy_MetalicGreen::Move()
 {
-	if (position.x <= -App->render->camera.x / 2 + SCREEN_WIDTH + 40)
-	{
-		position = original_position + path.GetCurrentSpeed(&animation);
-	}
-	else if (position.x <= -App->render->camera.x / 2)
+	if (screen == 1 && position.x <= -App->render->camera.x / 2)
 	{
 		position = original_position + path2.GetCurrentSpeed(&animation);
 	}
+	else if (position.x <= -App->render->camera.x + SCREEN_WIDTH)
+	{
+		screen = 0;
+		if (original_position.y > SCREEN_HEIGHT / 2)
+		{ 
+			position = original_position + pathdown.GetCurrentSpeed(&animation); 
+		}
+		else { position = original_position + pathup.GetCurrentSpeed(&animation); }
+	}	
 }
