@@ -33,7 +33,7 @@ bool ModuleSceneOutro::CleanUp()
 	LOG("Unloading outro scene");
 
 	App->textures->Unload(background_outro);
-	//App->audio->UnloadMusic(AudioOutro);
+	App->audio->UnloadMusic(AudioOutro);
 	return true;
 }
 

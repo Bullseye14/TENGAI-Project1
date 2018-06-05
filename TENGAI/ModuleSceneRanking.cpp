@@ -46,7 +46,7 @@ bool ModuleSceneRanking::CleanUp()
 	App->sho->score = 0;
 	App->textures->Unload(background_ranking);
 	App->fonts->UnLoad(font);
-	//App->audio->UnloadMusic(AudioRanking);
+	App->audio->UnloadMusic(AudioRanking);
 
 	return true;
 }

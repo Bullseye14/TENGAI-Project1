@@ -26,7 +26,7 @@ bool ModuleSceneIntro::Start()
 	intro = App->audio->LoadMusic("assets/audio/audiointro.ogg");
 	Mix_PlayMusic(intro, -1);
 
-	//App->particles->AddParticle(App->particles->start, 160, 112);
+	App->particles->AddParticle(App->particles->start, 160, 112);
 	
 	return true;
 }
@@ -36,7 +36,7 @@ bool ModuleSceneIntro::CleanUp()
 	LOG("Unloading intro scene");
 
 	App->textures->Unload(background);
-	//App->audio->UnloadMusic(intro);
+	App->audio->UnloadMusic(intro);
 	
 	return true;
 }

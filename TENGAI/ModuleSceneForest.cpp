@@ -206,7 +206,7 @@ bool ModuleSceneForest::CleanUp()
 	LOG("Unloading forest scene");
 
 	App->textures->Unload(graphics);
-	//App->audio->UnloadMusic(SceneForest);
+	App->audio->UnloadMusic(SceneForest);
 	App->miko->Disable();
 	App->sho->Disable();
 

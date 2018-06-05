@@ -37,7 +37,6 @@ update_status ModuleFadeToBlack::Update()
 		{
 			if(now >= total_time)
 			{
-				to_disable->CleanUp();
 				to_disable->Disable();
 				to_enable->Enable();
 				total_time += total_time;

@@ -7,7 +7,7 @@
 #include "ModuleSho.h"
 #include "ModuleAudio.h"
 #include "ModuleFonts.h"
-
+#include "ModuleMiko.h"
 #include <stdio.h>
 
 ModuleSho::ModuleSho()
@@ -98,8 +98,8 @@ bool ModuleSho::Start()
 	ShoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
 	ShoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
 
-	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
-	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
+	font_score = App->miko->font_score;
+	font_players = App->miko->font_players;
 
 	position.x = 10;
 	position.y = 80;
@@ -118,11 +118,11 @@ bool ModuleSho::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(font_players);
 	App->fonts->UnLoad(font_score);
-	/*App->audio->UnloadSFX(ShosShot);
+	App->audio->UnloadSFX(ShosShot);
 	App->audio->UnloadSFX(ShoCollision);
 	App->audio->UnloadSFX(ShoPowerDown);
 	App->audio->UnloadSFX(ShoPowerUp);
-	App->audio->UnloadSFX(ShoFriendAttack);*/
+	App->audio->UnloadSFX(ShoFriendAttack);
 
 	if (player_collider)
 	{
