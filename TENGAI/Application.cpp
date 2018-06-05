@@ -13,6 +13,7 @@
 #include "ModuleCollision.h"
 #include "ModuleEnemies.h"
 #include "ModuleJunis.h"
+#include "ModuleSho.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleFonts.h"
 #include "ModuleSceneSea.h"
@@ -29,13 +30,14 @@ Application::Application()
 	modules[7] = enemies = new ModuleEnemies();
 	modules[8] = miko = new ModuleMiko();
 	modules[9] = junis = new ModuleJunis();
-	modules[10] = particles = new ModuleParticles();
-	modules[11] = scene_outro = new ModuleSceneOutro();
-	modules[12] = scene_ranking = new ModuleSceneRanking();
-	modules[13] = scene_intro = new ModuleSceneIntro();
-	modules[14] = collision = new ModuleCollision();
-	modules[15] = fade = new ModuleFadeToBlack();
-	modules[16] = fonts = new ModuleFonts();
+	modules[10] = sho = new ModuleSho();
+	modules[11] = particles = new ModuleParticles();
+	modules[12] = scene_outro = new ModuleSceneOutro();
+	modules[13] = scene_ranking = new ModuleSceneRanking();
+	modules[14] = scene_intro = new ModuleSceneIntro();
+	modules[15] = collision = new ModuleCollision();
+	modules[16] = fade = new ModuleFadeToBlack();
+	modules[17] = fonts = new ModuleFonts();
 	
 	
 }	
@@ -52,6 +54,7 @@ bool Application::Init()
 
 	miko->Disable();
 	junis->Disable();
+	sho->Disable();
 	enemies->Disable();
 	scene_forest->Disable();
 	scene_sea->Disable();

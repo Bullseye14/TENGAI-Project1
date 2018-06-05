@@ -259,7 +259,7 @@ bool ModuleJunis::Spawn() {
 	{
 		path_spawn.Reset();
 		current_animation = &touch;
-		position = iPoint(-App->render->camera.x -20, 150);
+		position = iPoint(-App->render->camera.x -25, 150);
 		player_collider = App->collision->AddCollider({ position.x, position.y, 27, 28 }, COLLIDER_PLAYER, this);
 		Spawn_Animation = true;
 		alive = true;

@@ -76,6 +76,7 @@
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleSceneRanking.h" />
     <ClInclude Include="ModuleSceneSea.h" />
+    <ClInclude Include="ModuleSho.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -124,8 +126,12 @@
     <ClCompile Include="ModuleJunis.cpp" />
     <ClCompile Include="ModuleSceneRanking.cpp" />
     <ClCompile Include="ModuleSceneSea.cpp" />
+    <ClCompile Include="ModuleSho.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TENGAI.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

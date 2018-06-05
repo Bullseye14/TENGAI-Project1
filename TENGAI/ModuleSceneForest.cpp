@@ -14,6 +14,7 @@
 #include "ModuleEnemies.h"
 #include "Enemy_Boss.h"
 #include "ModuleJunis.h"
+#include "ModuleSho.h"
 #include "ModuleSceneRanking.h"
 #include "ModuleSceneSea.h"
 
@@ -155,6 +156,7 @@ bool ModuleSceneForest::Start()
 	App->enemies->Enable();
 	App->miko->Enable();
 	App->junis->Enable();
+	App->sho->Enable();
 
 	App->miko->score = 0;
 	App->junis->score = 0;
@@ -202,6 +204,7 @@ bool ModuleSceneForest::CleanUp()
 	App->textures->Unload(graphics);
 	App->miko->Disable();
 	App->junis->Disable();
+	App->sho->Disable();
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -218,6 +221,7 @@ update_status ModuleSceneForest::Update()
 	//Player auto scroll
 	App->miko->position.x += speed / SCREEN_SIZE / 2;
 	App->junis->position.x += speed / SCREEN_SIZE / 2;
+	App->sho->position.x += speed / SCREEN_SIZE / 2;
 
 	App->render->camera.x -= speed / SCREEN_SIZE / 2;
 

@@ -110,6 +110,12 @@
     <ClInclude Include="ModuleSceneSea.h">
       <Filter>Modules\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSho.h">
+      <Filter>Modules\Characters</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -187,5 +193,11 @@
     <ClCompile Include="ModuleSceneSea.cpp">
       <Filter>Modules\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleSho.cpp">
+      <Filter>Modules\Characters</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TENGAI.rc" />
   </ItemGroup>
 </Project>

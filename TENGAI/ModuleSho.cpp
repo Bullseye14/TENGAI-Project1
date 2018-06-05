@@ -4,14 +4,13 @@
 #include "ModuleInput.h"
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
-#include "ModuleMiko.h"
+#include "ModuleSho.h"
 #include "ModuleAudio.h"
-#include "ModuleJunis.h"
 #include "ModuleFonts.h"
 
 #include <stdio.h>
 
-ModuleMiko::ModuleMiko()
+ModuleSho::ModuleSho()
 {
 	graphics = NULL;
 	current_animation = NULL;
@@ -90,26 +89,26 @@ ModuleMiko::ModuleMiko()
 	
 }
 
-ModuleMiko::~ModuleMiko()
+ModuleSho::~ModuleSho()
 {}
 
 // Load assets
-bool ModuleMiko::Start()
+bool ModuleSho::Start()
 {
 	LOG("Loading player");
 
 	graphics = App->textures->Load("assets/tengai/spritesheet.png");
-	MikosShot = App->audio->LoadFx("assets/audio/MikosShot.wav");
-	MikoCollision = App->audio->LoadFx("assets/audio/MikoCollision.wav");
-	MikoPowerDown = App->audio->LoadFx("assets/audio/MikoPowerDown.wav");
-	MikoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
-	MikoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
+	ShosShot = App->audio->LoadFx("assets/audio/MikosShot.wav");
+	ShoCollision = App->audio->LoadFx("assets/audio/MikoCollision.wav");
+	ShoPowerDown = App->audio->LoadFx("assets/audio/MikoPowerDown.wav");
+	ShoPowerUp = App->audio->LoadFx("assets/audio/MikoPowerUp.wav");
+	ShoFriendAttack = App->audio->LoadFx("assets/audio/MikoFriendAttack.wav");
 
 	font_score = App->fonts->Load("assets/tengai/fonts3.png", "0123456789", 1);
 	font_players = App->fonts->Load("assets/tengai/p1p2.png", "12", 1);// 1 = P1: , 2 = P2:
 
 	position.x = 10;
-	position.y = 50;
+	position.y = 80;
 	alive = true;
 	player_collider = App->collision->AddCollider({ position.x, position.y, 31, 31 },COLLIDER_TYPE::COLLIDER_PLAYER, this);
 
@@ -118,7 +117,7 @@ bool ModuleMiko::Start()
 }
 
 // Unload assets
-bool ModuleMiko::CleanUp()
+bool ModuleSho::CleanUp()
 {
 	LOG("Unloading player");
 
@@ -134,7 +133,7 @@ bool ModuleMiko::CleanUp()
 
 
 // Update: draw background
-update_status ModuleMiko::Update()
+update_status ModuleSho::Update()
 {
 	int camera_x = -App->render->camera.x;// Divided by camera.speed;
 	int camera_y = -App->render->camera.y;
@@ -189,7 +188,7 @@ update_status ModuleMiko::Update()
 			{
 				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				Mix_PlayChannel(-1, MikosShot, 0);
+				Mix_PlayChannel(-1, ShosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
 				&& App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
@@ -216,7 +215,7 @@ update_status ModuleMiko::Update()
 		{
 			position += path_die.GetCurrentSpeed();
 		}
-		else if (MikoLife > 0)
+		else if (ShoLife > 0)
 		{
 			Spawn();
 		}
@@ -234,32 +233,32 @@ update_status ModuleMiko::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleMiko::Die() {
-	if (MikoLife>0)MikoLife--;
+void ModuleSho::Die() {
+	if (ShoLife>0)ShoLife--;
 	power_ups = 1;
 	path_die.Reset();
 	alive = false;
 	current_animation = &die;
-	Mix_PlayChannel(-1, MikoCollision, 0);
+	Mix_PlayChannel(-1, ShoCollision, 0);
 	player_collider->to_delete = true;
 }
 
-void ModuleMiko::Friend() 
+void ModuleSho::Friend() 
 {
-	mikofr = iPoint(position.x - 15, position.y - 15);
+	shofr = iPoint(position.x - 15, position.y - 15);
 	
-	path_friend.GetCurrentSpeed(&Mikofriend);
+	path_friend.GetCurrentSpeed(&Shofriend);
 
-	App->render->Blit(graphics, position.x - 12, position.y - 12, &(Mikofriend->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 12, position.y - 12, &(Shofriend->GetCurrentFrame()));
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 	{
 		App->particles->AddParticle(App->particles->BasaroShot, position.x + 9, position.y - 15, COLLIDER_PLAYER_SHOT_P1);
-		Mix_PlayChannel(-1, MikoFriendAttack, 0);
+		Mix_PlayChannel(-1, ShoFriendAttack, 0);
 	}
 }
 
-void ModuleMiko::Win()
+void ModuleSho::Win()
 {
 	power_ups = 1;
 	position += path_win.GetCurrentSpeed();
@@ -268,7 +267,7 @@ void ModuleMiko::Win()
 	//path_win.accumulated_speed = fPoint(0.0f, 0.0f);
 }
 
-bool ModuleMiko::Spawn() {
+bool ModuleSho::Spawn() {
 	//first time is called, spawn behind camera
 	if (!Spawn_Animation)
 	{
@@ -287,12 +286,12 @@ bool ModuleMiko::Spawn() {
 	return !path_spawn.loop;
 }
 
-bool ModuleMiko::Shield() {
+bool ModuleSho::Shield() {
 	if (!Shield_Animation)
 	{
 		if (power_ups >= 2) {
 		power_ups--;	
-		Mix_PlayChannel(-1, MikoPowerDown, 0);
+		Mix_PlayChannel(-1, ShoPowerDown, 0);
 		//TO CHANGE : PARTICLE POWER DOWN  PROMPT(ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
 		}
@@ -303,7 +302,7 @@ bool ModuleMiko::Shield() {
 	return !shield.Finished();
 }
 
-void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
+void ModuleSho::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_GREEN || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_RED || c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_ENEMY_BOSS)
 	{
@@ -312,7 +311,7 @@ void ModuleMiko::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == COLLIDER_PLAYER && c2->type == COLLIDER_POWER_UP) {
 		if (power_ups < 5) { power_ups++; }
 
-		Mix_PlayChannel(-1, MikoPowerUp, 0);
+		Mix_PlayChannel(-1, ShoPowerUp, 0);
 
 		//TO CHANGE : PARTICLE POWER UP PROMPT (ModuleParticles.cpp);
 		App->particles->AddParticle(App->particles->power_down, position.x + 5, position.y + 10, COLLIDER_TYPE::COLLIDER_NONE);
