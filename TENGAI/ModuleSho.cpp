@@ -186,8 +186,8 @@ update_status ModuleSho::Update()
 			}
 			if (App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || SDL_GameControllerGetButton(App->input->gamepad, SDL_CONTROLLER_BUTTON_A) == 1)
 			{
-				App->particles->AddParticle(App->particles->Mshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
-				App->particles->AddParticle(App->particles->Mshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Shoshot, position.x + 35, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
+				App->particles->AddParticle(App->particles->Shoshot, position.x + 10, position.y + 6, COLLIDER_PLAYER_SHOT_P1);
 				Mix_PlayChannel(-1, ShosShot, 0);
 			}
 			if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
@@ -234,7 +234,7 @@ update_status ModuleSho::Update()
 }
 
 void ModuleSho::Die() {
-	if (ShoLife>0)ShoLife--;
+	if (ShoLife > 0)ShoLife--;
 	power_ups = 1;
 	path_die.Reset();
 	alive = false;
