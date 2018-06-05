@@ -218,6 +218,9 @@ bool ModuleSceneSea::Start()
 	App->miko->path_win.Reset();
 	App->sho->path_win.Reset();
 
+	App->miko->score = 0;
+	App->sho->score = 0;
+
 	App->miko->won = false;
 	App->sho->won = false;
 
@@ -246,9 +249,9 @@ bool ModuleSceneSea::CleanUp()
 	App->textures->Unload(graphics3);
 	App->textures->Unload(graphics4);
 	App->textures->Unload(orientaljump);
-	//App->miko->Disable();
+	App->miko->Disable();
 	App->sho->Disable();
-	App->junis->Disable();
+	//App->junis->Disable(); 
 	App->collision->Disable();
 	App->enemies->Disable();
 
@@ -341,13 +344,19 @@ update_status ModuleSceneSea::Update()
 	{
 		App->fade->FadeToBlack(App->scene_sea, App->scene_outro, 2.0f);
 	}
+	
+	if (App->miko->position.x >= 2500) { App->miko->won = true; }
+
+	if (App->sho->position.x >= 2500) { App->sho->won = true; }
+
 	if (App->miko->won == true || App->sho->won == true)
 	{
 		
 		App->miko->Win();
 		App->sho->Win();
-		
-		App->fade->FadeToBlack(App->scene_sea, App->scene_ranking, 0.5);
+		App->miko->won = false;
+		App->sho->won = false;
+		App->fade->FadeToBlack(App->scene_sea, App->scene_forest, 0.5);
 	}
 
 	return update_status::UPDATE_CONTINUE;

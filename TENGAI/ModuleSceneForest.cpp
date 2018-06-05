@@ -156,10 +156,17 @@ bool ModuleSceneForest::Start()
 	App->enemies->Enable();
 	App->miko->Enable();
 	App->junis->Enable();
-	App->sho->Disable();
+	//App->sho->Disable();
+
+	App->miko->path_win.Reset();
+	App->junis->path_win.Reset();
 
 	App->miko->score = 0;
 	App->junis->score = 0;
+
+	App->miko->won = false;
+	//App->sho->won = false;
+	App->junis->won = false;
 
 	App->miko->MikoLife = 3;
 	App->junis->JunisLife = 3;
@@ -276,12 +283,9 @@ update_status ModuleSceneForest::Update()
 
 	if (App->miko->won == true || App->junis->won == true) 
 	{
-		
 		App->miko->Win();
 		App->junis->Win();
-		
-
-		App->fade->FadeToBlack(App->scene_forest, App->scene_sea, 0.5f);
+		App->fade->FadeToBlack(App->scene_forest, App->scene_ranking, 0.5f);
 	}
 
 	return UPDATE_CONTINUE;

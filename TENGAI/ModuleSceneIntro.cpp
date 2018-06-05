@@ -11,6 +11,7 @@
 #include "ModuleAudio.h"
 #include "ModuleSceneOutro.h"
 #include "ModuleSceneRanking.h"
+#include "ModuleSceneSea.h"
 
 ModuleSceneIntro::ModuleSceneIntro() : Module() { }
 
@@ -52,7 +53,7 @@ update_status ModuleSceneIntro::Update()
 	{
 		IntroFX = App->audio->LoadFx("assets/audio/intro_miko.wav");
 		Mix_PlayChannel(-1, IntroFX, 0);
-		App->fade->FadeToBlack(App->scene_intro, App->scene_forest, 1.0);
+		App->fade->FadeToBlack(App->scene_intro, App->scene_sea, 1.0);
 	}
 
 	return UPDATE_CONTINUE;

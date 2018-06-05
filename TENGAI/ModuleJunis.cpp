@@ -235,6 +235,7 @@ void ModuleJunis::Win()
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
+	//App->junis->won = false;
 }
 
 void ModuleJunis::Friend() 

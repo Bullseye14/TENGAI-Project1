@@ -265,6 +265,7 @@ void ModuleMiko::Win()
 	position += path_win.GetCurrentSpeed();
 	current_animation = &idle;
 	player_collider->to_delete = true;
+	//App->miko->won = false;
 	//path_win.accumulated_speed = fPoint(0.0f, 0.0f);
 }
 
